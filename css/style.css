@@ -51,6 +51,76 @@ em {
     font-style: italic;
     color: var(--accent-orange);
 }
+.bg-orange {
+    background-color: #F7A531 !important;
+}
+
+.orange {
+    color: #F7A531 !important;
+}
+
+.card {
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+/* NAVBAR */
+.navbar {
+  background: #fff;
+  box-shadow: 0 2px 14px rgba(62, 64, 163, 0.09);
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.navbar .container {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--primary) !important;
+  padding: 14px 0;
+}
+.brand-icon {
+  width: 40px;
+  height: 40px;
+}
+.active {
+    color: #3e40a3 !important;
+}
+.nav-link {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #444;
+  letter-spacing: 0.03em;
+  padding: 0 13px !important;
+  transition: color 0.2s;
+}
+.nav-link:hover {
+  color: var(--primary) !important;
+}
+.btn-login {
+  border: 1.5px solid var(--primary);
+  color: var(--primary) !important;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 7px 22px;
+  transition: all 0.2s;
+}
+.btn-login:hover {
+  background: var(--primary);
+  color: #fff !important;
+}
 
 a {
     text-decoration: none;
@@ -125,6 +195,22 @@ img {
 
 .section-heading.light {
     color: white;
+}
+.footer-brand-name {
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+}
+.footer-brand-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 /* ══════════════════════════════════════════════
