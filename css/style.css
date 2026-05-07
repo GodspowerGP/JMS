@@ -27,6 +27,23 @@ h5,
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;
 }
 
+.bg-orange {
+    background-color: #F7A531 !important;
+}
+
+.orange {
+    color: #F7A531 !important;
+}
+
+.card {
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
 /* NAVBAR */
 .navbar {
   background: #fff;
@@ -43,21 +60,23 @@ h5,
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-family: "Playfair Display", serif;
-  font-size: 1.1rem;
+  gap: 12px;
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--primary) !important;
   padding: 14px 0;
 }
 .brand-icon {
-  width: 26px;
-  height: 26px;
+  width: 40px;
+  height: 40px;
+}
+.active {
+    color: #3e40a3 !important;
 }
 .nav-link {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #444 !important;
+  color: #444;
   letter-spacing: 0.03em;
   padding: 0 13px !important;
   transition: color 0.2s;
@@ -451,13 +470,13 @@ footer {
 }
 .footer-brand-name {
   font-family: "Playfair Display", serif;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: #fff;
 }
 .footer-brand-icon {
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   background: var(--primary);
   border-radius: 7px;
   display: flex;
