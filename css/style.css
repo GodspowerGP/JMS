@@ -125,6 +125,13 @@ img {
   display: block;
 }
 
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: 0 !important;
+}
+
 /* ══════════════════════════════════════════════
    UTILITY & BUTTONS
    ══════════════════════════════════════════════ */
