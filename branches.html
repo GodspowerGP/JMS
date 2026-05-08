@@ -64,12 +64,8 @@
                     <li class="has-dropdown">
                         <a href="#" class="nav-item-link active">Academics <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu-custom">
-                            <div style="padding: 0 15px 10px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--accent-orange);">Academic Branches</div>
-                            <a href="branches.html"><i class="fas fa-school"></i> Kubwa Branch</a>
-                            <a href="branches.html"><i class="fas fa-building"></i> Kagini Branch</a>
-                            <a href="branches.html"><i class="fas fa-child"></i> Primary Branch</a>
-                            <div style="height: 1px; background: rgba(0,0,0,0.05); margin: 10px 0;"></div>
-                            <a href="admissions.html" style="color: var(--primary-blue);"><i class="fas fa-user-plus"></i> Admission Info</a>
+                            <a href="branches.html"><i class="fas fa-campground"></i> Branches / Campuses</a>
+                            <a href="admissions.html"><i class="fas fa-info-circle"></i> Admission Info</a>
                         </div>
                     </li>
                     <li><a href="awards.html" class="nav-item-link">Achievements</a></li>
@@ -78,7 +74,7 @@
 
                 <!-- CTA -->
                 <div class="nav-cta">
-                    <a href="admissions.html" class="btn-enrol">Enrol Now</a>
+                    <a href="https://www.jewelmodelschools.sch.ng/" class="btn-enrol" target="_blank">School Portal</a>
                     <button class="hamburger" id="hamburger" aria-label="Menu">
                         <span></span><span></span><span></span>
                     </button>
@@ -88,6 +84,9 @@
 
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
+            <button class="mobile-close" id="mobileClose" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
@@ -100,61 +99,155 @@
                 </li>
                 <li><a href="awards.html">Achievements</a></li>
                 <li><a href="#footer">Contact Us</a></li>
-                <li><a href="admissions.html" class="mobile-portal-btn">Enrol Now</a></li>
+                <li><a href="https://www.jewelmodelschools.sch.ng/" class="mobile-portal-btn" target="_blank">School Portal</a></li>
             </ul>
         </div>
     </nav>
 
     
 <main style="padding-top: 50px;">
-<!-- ═══ BRANCHES SECTION ═══ -->
-    <section id="branches" class="branches-section">
+    <!-- ═══ HERO SECTION ═══ -->
+    <section class="branches-hero">
         <div class="container">
-            <div class="section-header text-center reveal-up">
-                <p class="section-eyebrow">Our Campuses</p>
-                <h2 class="section-heading">Three Branches, <em>One Excellence</em></h2>
-                <p class="section-subtext">Each campus offers the same world-class JMS experience in a welcoming, nurturing environment.</p>
+            <div class="branches-hero-content reveal-up">
+                <span class="section-eyebrow rounded-pill px-3 py-1 d-inline-block mb-3">Our Campuses</span>
+                <h1 class="display-3 fw-bold mb-4">Discover Our Campuses</h1>
+                <p class="lead">Experience excellence across our diverse locations. One vision, multiple homes.</p>
             </div>
-            <div class="branches-grid">
-                <div class="branch-card reveal-up">
-                    <div class="branch-img">
-                        <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.52 (1).jpeg" alt="Kubwa Branch">
-                        <div class="branch-badge">Main Campus</div>
-                    </div>
-                    <div class="branch-info">
-                        <div class="branch-icon-wrap"><i class="fas fa-school"></i></div>
-                        <h3>Kubwa Branch</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> Kukwaba, Along Express Bypass, Kubwa Village, Abuja</p>
-                        <a href="tel:08132706800" class="branch-phone"><i class="fas fa-phone"></i> 0813 270 6800</a>
-                        <a href="admissions.html" class="branch-link">Enquire Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
+        </div>
+    </section>
+
+    <!-- ═══ OVERVIEW SECTION ═══ -->
+    <section class="branches-overview">
+        <div class="container">
+            <p class="lead-text reveal-up">
+                Whether you choose our Kubwa Main Campus, our modern Kagini facility, or our dedicated Primary Branch, the Jewel Model Schools standard remains unified. We provide a nurturing, rigorous, and technologically advanced environment designed to raise globally competitive leaders.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══ DETAILED BRANCH SHOWCASES ═══ -->
+    <section class="branch-features">
+        <div class="container">
+            
+            <!-- KUBWA BRANCH -->
+            <div class="branch-feature-row reveal-up">
+                <div class="branch-feature-img">
+                    <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.52 (1).jpeg" alt="Kubwa Main Campus">
                 </div>
-                <div class="branch-card reveal-up" style="animation-delay:.15s">
-                    <div class="branch-img">
-                        <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.55 (1).jpeg" alt="Kagini Branch">
-                        <div class="branch-badge">Kagini</div>
+                <div class="branch-feature-content">
+                    <span class="branch-feature-badge">Main Campus</span>
+                    <h2>Kubwa Branch</h2>
+                    <p class="text-muted">Established in 1996, our flagship campus in Kubwa sets the standard for comprehensive education. Spanning state-of-the-art facilities, it caters to secondary students seeking academic rigor combined with moral excellence.</p>
+                    
+                    <ul class="branch-details-list">
+                        <li><i class="fas fa-flask"></i> Advanced Science & ICT Laboratories</li>
+                        <li><i class="fas fa-futbol"></i> Expansive Sports Complex & Fields</li>
+                        <li><i class="fas fa-users"></i> Specialized A-Level & Exam Prep Centers</li>
+                    </ul>
+
+                    <div class="branch-contact-box">
+                        <p><i class="fas fa-map-marker-alt text-primary me-2"></i> Kukwaba, Along Express Bypass, Kubwa Village, Abuja</p>
+                        <a href="tel:08132706800"><i class="fas fa-phone me-2"></i> 0813 270 6800</a>
                     </div>
-                    <div class="branch-info">
-                        <div class="branch-icon-wrap"><i class="fas fa-building"></i></div>
-                        <h3>Kagini Branch</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> No 15 Nafada Road, Kukwaba, Kubwa-Abuja</p>
-                        <a href="tel:08038840260" class="branch-phone"><i class="fas fa-phone"></i> 0803 884 0260</a>
-                        <a href="admissions.html" class="branch-link">Enquire Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
+                    
+                    <a href="admissions.html" class="btn-primary-jms">Schedule a Tour</a>
                 </div>
-                <div class="branch-card reveal-up" style="animation-delay:.3s">
-                    <div class="branch-img">
-                        <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.56.jpeg" alt="Primary Branch">
-                        <div class="branch-badge">Primary</div>
-                    </div>
-                    <div class="branch-info">
-                        <div class="branch-icon-wrap"><i class="fas fa-child"></i></div>
-                        <h3>Primary Branch</h3>
-                        <p><i class="fas fa-map-marker-alt"></i> No 15 Nafada Road, Kukwaba, Kubwa-Abuja</p>
-                        <a href="tel:08169537716" class="branch-phone"><i class="fas fa-phone"></i> 0816 953 7716</a>
-                        <a href="admissions.html" class="branch-link">Enquire Now <i class="fas fa-arrow-right"></i></a>
-                    </div>
+            </div>
+
+            <!-- KAGINI BRANCH -->
+            <div class="branch-feature-row reveal-up">
+                <div class="branch-feature-img">
+                    <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.55 (1).jpeg" alt="Kagini Branch">
                 </div>
+                <div class="branch-feature-content">
+                    <span class="branch-feature-badge">Modern Extension</span>
+                    <h2>Kagini Branch</h2>
+                    <p class="text-muted">Designed for the future, the Kagini branch features modern architecture and is tailored to provide an intimate, focused learning environment. It integrates closely with the local community to foster holistic development.</p>
+                    
+                    <ul class="branch-details-list">
+                        <li><i class="fas fa-laptop-code"></i> Modern Smart Classrooms</li>
+                        <li><i class="fas fa-palette"></i> Dedicated Creative Arts & Tech Hubs</li>
+                        <li><i class="fas fa-shield-alt"></i> Highly Secure, Gated Environment</li>
+                    </ul>
+
+                    <div class="branch-contact-box">
+                        <p><i class="fas fa-map-marker-alt text-primary me-2"></i> No 15 Nafada Road, Kukwaba, Kubwa-Abuja</p>
+                        <a href="tel:08038840260"><i class="fas fa-phone me-2"></i> 0803 884 0260</a>
+                    </div>
+                    
+                    <a href="admissions.html" class="btn-primary-jms">Schedule a Tour</a>
+                </div>
+            </div>
+
+            <!-- PRIMARY BRANCH -->
+            <div class="branch-feature-row reveal-up">
+                <div class="branch-feature-img">
+                    <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.56.jpeg" alt="Primary Branch">
+                </div>
+                <div class="branch-feature-content">
+                    <span class="branch-feature-badge">Early Years</span>
+                    <h2>Primary Branch</h2>
+                    <p class="text-muted">Our Primary Branch is a child-centric paradise. We focus on foundational learning, creative play, and early character development, ensuring every child feels safe, loved, and inspired to learn.</p>
+                    
+                    <ul class="branch-details-list">
+                        <li><i class="fas fa-shapes"></i> Interactive Early Learning Zones</li>
+                        <li><i class="fas fa-tree"></i> Safe Outdoor Play & Nature Areas</li>
+                        <li><i class="fas fa-book-reader"></i> Cozy Children's Reading Nooks</li>
+                    </ul>
+
+                    <div class="branch-contact-box">
+                        <p><i class="fas fa-map-marker-alt text-primary me-2"></i> No 15 Nafada Road, Kukwaba, Kubwa-Abuja</p>
+                        <a href="tel:08169537716"><i class="fas fa-phone me-2"></i> 0816 953 7716</a>
+                    </div>
+                    
+                    <a href="admissions.html" class="btn-primary-jms">Schedule a Tour</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══ SHARED FACILITIES ═══ -->
+    <section class="facilities-section">
+        <div class="container">
+            <div class="text-center mb-5 reveal-up">
+                <p class="section-eyebrow">The JMS Standard</p>
+                <h2 class="section-heading">Shared Amenities</h2>
+            </div>
+            <div class="facilities-grid reveal-up">
+                <div class="facility-card">
+                    <div class="facility-icon"><i class="fas fa-microscope"></i></div>
+                    <h4>Science & Tech Labs</h4>
+                    <p>Fully equipped spaces for practical, hands-on scientific and digital discovery.</p>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-icon"><i class="fas fa-book"></i></div>
+                    <h4>Rich Libraries</h4>
+                    <p>Extensive collections of physical and digital resources to foster a love of reading.</p>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-icon"><i class="fas fa-bus"></i></div>
+                    <h4>School Transport</h4>
+                    <p>Safe, reliable, and comfortable bus services covering major routes in Abuja.</p>
+                </div>
+                <div class="facility-card">
+                    <div class="facility-icon"><i class="fas fa-user-shield"></i></div>
+                    <h4>24/7 Security</h4>
+                    <p>CCTV surveillance and professional security personnel ensuring a safe campus.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA SECTION ═══ -->
+    <section class="cta-section">
+        <div class="container reveal-up">
+            <h2>Ready to Join the JMS Family?</h2>
+            <p>Take the first step towards a future of excellence. Our admissions team is ready to welcome you to any of our campuses.</p>
+            <div class="cta-btns">
+                <a href="admissions.html" class="btn-hero-primary" style="font-size: 1.1rem; padding: 15px 40px; border-radius: 50px; display: inline-block; background: var(--accent-orange); color: white; text-decoration: none; font-weight: bold; transition: transform 0.3s ease;">Apply Now</a>
+                <a href="#footer" class="btn-hero-ghost" style="font-size: 1.1rem; padding: 15px 40px; border-radius: 50px; display: inline-block; border: 2px solid white; color: white; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">Contact Us</a>
             </div>
         </div>
     </section>
