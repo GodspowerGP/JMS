@@ -1540,6 +1540,39 @@ dl {
     transform: rotate(180deg);
 }
 
+.mobile-dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 10px 0;
+    font-weight: 800;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.mobile-dropdown-menu {
+    padding-left: 20px;
+    text-align: left;
+    list-style: none;
+}
+
+.mobile-dropdown-menu li {
+    margin-bottom: 10px !important;
+}
+
+.mobile-dropdown-menu li a {
+    font-size: 1.3rem !important;
+    padding: 10px 0 !important;
+    display: block;
+    color: rgba(255,255,255,0.8) !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    font-weight: 600 !important;
+}
+
 /* ══════════════════════════════════════════════
    LEADERSHIP SECTION
    ══════════════════════════════════════════════ */
