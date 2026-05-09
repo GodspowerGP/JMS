@@ -992,7 +992,7 @@ dl {
    AWARDS SECTION
    ══════════════════════════════════════════════ */
 .awards-section {
-  padding: 120px 0;
+  padding: 100px 0 20px 0;
   background: var(--primary-blue);
   color: white;
   position: relative;
@@ -1013,7 +1013,7 @@ dl {
 }
 
 .awards-layout {
-  display: grid;
+  /* display: grid; */
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   position: relative;
@@ -1845,6 +1845,7 @@ dl {
     color: white;
     text-align: center;
     overflow: hidden;
+    min-height: 40vh;
 }
 
 .branches-hero .section-eyebrow {
@@ -1987,6 +1988,7 @@ dl {
   padding: 20px 20px 20px 20px;
   margin-top: 40px;
   position: relative;
+  min-height: 400px;
   transition: var(--transition);
 }
 
@@ -1999,11 +2001,6 @@ dl {
 .info-card.active {
   background: #0A233C;
   color: #fff;
-}
-
-.info-card.inactive {
-  background: #fff;
-  border: 2px solid rgba(0,0,0,0.05);
 }
 
 .info-card.active p,
@@ -2045,6 +2042,7 @@ dl {
   background: #f0f0f0;
   border-radius: 20px;
   padding: 40px 35px;
+  max-width: 90%;
 }
 
 .form-section h2 {

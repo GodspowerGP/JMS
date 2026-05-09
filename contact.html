@@ -121,12 +121,17 @@
 
     <main>
         <!-- ═══ HERO SECTION ═══ -->
-        <section class="branches-hero">
+        <section class="admissions-hero">
             <div class="container">
-                <div class="branches-hero-content reveal-up">
-                    <span class="section-eyebrow rounded-pill px-3 py-1 d-inline-block mb-3">get in touch</span>
-                    <h1 class="display-3 fw-bold mb-4">Contact Us</h1>
-                    <p class="lead">Experience excellence across our diverse locations. One vision, multiple homes.</p>
+                <div class="reveal-up">
+                    <span class="section-eyebrow rounded-pill px-3 py-1 d-inline-block mb-3"
+                    style="color: var(--accent-gold); background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.2);">Get In Touch</span>
+                    <h1 class="display-3 fw-bold">Contact Us</h1>
+                    <p class="lead">We’re here to help with admissions, inquiries, and support.</p>
+                    <div class="cta-btns">
+                        <a href="#process" class="btn-hero-primary"
+                            style="font-size: 1.1rem; padding: 15px 40px; border-radius: 50px; display: inline-block; background: var(--accent-orange); color: white; text-decoration: none; font-weight: bold; transition: transform 0.3s ease;">Get Started</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -134,15 +139,13 @@
         <!-- ═══ CONTACT SECTION ═══ -->
         <section class="value-section">
             <div class="container">
-                <div class="row g-4 align-items-center">
-            
-                <!-- Left: Info Cards -->
-                <div class="col-12 col-md-5">
-            
-                    <!-- Visit a Office -->
-                    <div class="info-card inactive reveal-up">
+                <!-- Info Cards -->
+                <div>
+                    <!-- Send Email (active) -->
+                    <div class="info-card active reveal-up">
                         <div class="icon-box">
-                            <i class="fa-solid fa-school"></i>
+                            <!-- <i class="fa-solid fa-school"></i> -->
+                            <i class="fa-solid fa-graduation-cap"></i>
                         </div>
                         <h5>Primary Branch</h5>
                         <div>
@@ -152,13 +155,6 @@
                                 08169537716
                             </a>
                         </div>
-                    </div>
-            
-                    <!-- Send Email (active) -->
-                    <div class="info-card active reveal-up">
-                        <div class="icon-box">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                        </div>
                         <h5>Kubwa Branch</h5>
                         <div>
                             <i class="fa-solid fa-location-dot"></i> Kukwaba, Along Express Bypass Kubwa Village<br>
@@ -167,13 +163,9 @@
                                 08132706800
                             </a>
                         </div>
-                    </div>
-                    
-                    <!-- Make a Call -->
-                    <div class="info-card inactive reveal-up">
-                        <div class="icon-box">
+                        <!-- <div class="icon-box">
                             <i class="fa-solid fa-school"></i>
-                        </div>
+                        </div> -->
                         <h5>Kagini Branch</h5>
                         <div>
                             <i class="fa-solid fa-location-dot"></i> No 15 Nafada Road, Kukwaba, Kubwa-Abuja<br>
@@ -183,46 +175,94 @@
                             </a>
                         </div>
                     </div>
-            
+                    
+                </div>     
+
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; margin-bottom:3rem;">
+
+                    <div class="reveal-left" style="background:#fff; border-radius:12px; padding:28px; text-align:center; box-shadow:0 2px 16px rgba(0,0,0,.06);">
+                        <div style="width:60px; height:60px; background:#1a1a2e; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem;">
+                            <i class="fas fa-map-marker-alt" style="color:#c9a84c; font-size:1.4rem;"></i>
+                        </div>
+                        <h6 style="font-weight:700; margin-bottom:.4rem;">Our Address</h6>
+                        <p style="font-size:.85rem; color:#666; margin:0; line-height:1.7;">Kukwaba, Along Express Bypass<br>Kubwa Village, FCT Abuja</p>
+                    </div>
+
+                    <div style="background:#fff; border-radius:12px; padding:28px; text-align:center; box-shadow:0 2px 16px rgba(0,0,0,.06);">
+                        <div style="width:60px; height:60px; background:#1a1a2e; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem;">
+                            <i class="fas fa-phone-alt" style="color:#c9a84c; font-size:1.4rem;"></i>
+                        </div>
+                        <h6 style="font-weight:700; margin-bottom:.4rem;">Phone</h6>
+                        <p style="font-size:.85rem; color:#666; margin:0; line-height:1.7;">08132706800<br>08169537716</p>
+                    </div>
+
+                    <div class="reveal-right" style="background:#fff; border-radius:12px; padding:28px; text-align:center; box-shadow:0 2px 16px rgba(0,0,0,.06);">
+                        <div style="width:60px; height:60px; background:#1a1a2e; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem;">
+                            <i class="fas fa-clock" style="color:#c9a84c; font-size:1.4rem;"></i>
+                        </div>
+                        <h6 style="font-weight:700; margin-bottom:.4rem;">School Hours</h6>
+                        <p style="font-size:.85rem; color:#666; margin:0; line-height:1.7;">Mon – Fri: 7:30am – 3:30pm<br>Sat: 8:00am – 12:00pm</p>
+                    </div>
+
                 </div>
-            
-                <!-- Right: Contact Form -->
-                <div class="col-12 col-md-7 reveal-up">
+                
+                <!-- Contact Form -->
+                <div class="col-12 reveal-up py-5 d-flex align-items-center justify-content-center">
                     <div class="form-section">
-                    <h2>Drop Your Message</h2>
-                    <p class="subtitle">Please fill out the form and provide details of your inquiry.</p>
-            
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <input type="text" class="form-control" placeholder="Name">
-                        </div>
-                        <div class="col-6">
-                            <input type="email" class="form-control" placeholder="Email">
-                        </div>
-                        <div class="col-6">
-                            <input type="tel" class="form-control" placeholder="Phone">
-                        </div>
-                        <div class="col-6">
-                            <input type="text" class="form-control" placeholder="Address">
-                        </div>
-                        <div class="col-12">
-                            <textarea class="form-control" placeholder="Message..."></textarea>
-                        </div>
-                        <div class="col-12">
-                            <button class="btn-send">Send Message</button>
+                        <div class="row">
+                            <div class="col-md-5 col-sm-12 d-flex align-items-center">
+                                <div>
+                                    <h2>Drop Your Message</h2>
+                                    <p class="subtitle">Please fill out the form and provide details of your inquiry.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-sm-12">
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" placeholder="Name">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="email" class="form-control" placeholder="Email">
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="tel" class="form-control" placeholder="Phone">
+                                    </div>
+                                    <div class="col-6">
+                                        <select class="form-select">
+                                            <option selected disabled hidden value="">-- Select Branch --</option>
+                                            <option>Kubwa Primary</option>
+                                            <option>Kubwa Secondary</option>
+                                            <option>Kagini</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" placeholder="Address">
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea class="form-control" placeholder="Message..."></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn-send">Send Message</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-            
-                    </div>
-                </div>
-            
                 </div>
             </div>
         </section>
 
         <!-- ═══ MAP SECTION ═══ -->
-        <div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.1222606376077!2d7.3197634!3d9.143429200000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104dd8e54aef7543%3A0xac383f3031ffdd86!2sJewel%20Model%20School!5e0!3m2!1sen!2sng!4v1778349447923!5m2!1sen!2sng" height="500" style="border:0; width: 100vw;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.1222606376077!2d7.3197634!3d9.143429200000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104dd8e54aef7543%3A0xac383f3031ffdd86!2sJewel%20Model%20School!5e0!3m2!1sen!2sng!4v1778349447923!5m2!1sen!2sng" height="450" width="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="col-12 col-md-4">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.1222606376077!2d7.3197634!3d9.143429200000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104dd8e54aef7543%3A0xac383f3031ffdd86!2sJewel%20Model%20School!5e0!3m2!1sen!2sng!4v1778349447923!5m2!1sen!2sng" height="450" width="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="col-12 col-md-4">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.1222606376077!2d7.3197634!3d9.143429200000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104dd8e54aef7543%3A0xac383f3031ffdd86!2sJewel%20Model%20School!5e0!3m2!1sen!2sng!4v1778349447923!5m2!1sen!2sng" height="450" width="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
 
         <!-- ═══ CTA SECTION ═══ -->
@@ -231,7 +271,7 @@
             <div class="container reveal-up">
                 <h2>Looking to enroll your child?</h2>
                 <div class="cta-btns">
-                    <a href="mailto:jewelmodel1996@gmail.com" class="btn-hero-ghost"
+                    <a href="admissions.html" class="btn-hero-ghost"
                         style="font-size: 1.1rem; padding: 15px 40px; border-radius: 50px; display: inline-block; border: 2px solid white; color: white; text-decoration: none; font-weight: bold; transition: all 0.3s ease;"> Apply Now</a>
                     <a href="tel:08132706800" class="btn-hero-primary"
                         style="font-size: 1.1rem; padding: 15px 40px; border-radius: 50px; display: inline-block; background: var(--accent-orange); color: white; text-decoration: none; font-weight: bold; transition: transform 0.3s ease;"><i
