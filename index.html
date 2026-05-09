@@ -17,7 +17,7 @@
 
     <!-- Bootstrap & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css?v=2">
@@ -33,10 +33,12 @@
                     <a href="tel:08132706800"><i class="fas fa-phone"></i> 0813 270 6800</a>
                 </div>
                 <div class="top-bar-right">
-                    <a href="https://www.facebook.com/share/1YLq4dXVFD/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/jewel_model_schools_kubwa?igsh=cnc4Zmo4YzF0NXBs" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://x.com/JewelAbuja912" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.jewelmodelschools.sch.ng/" class="portal-link" target="_blank">Student Portal <i class="fas fa-arrow-right"></i></a>
+                    <div class="top-bar-socials">
+                        <a href="https://www.facebook.com/share/1YLq4dXVFD/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/jewel_model_schools_kubwa?igsh=cnc4Zmo4YzF0NXBs" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/JewelAbuja912" target="_blank" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                    <a href="admissions.html" class="portal-link">Enrol Now <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -49,6 +51,10 @@
                 <!-- Logo -->
                 <a href="index.html" class="nav-logo">
                     <img src="images/logo.png" alt="Jewel Model Schools Logo">
+                    <div class="logo-text">
+                        <h2 class="school-name">Jewel Model Schools</h2>
+                        <span class="school-tagline">Second to None</span>
+                    </div>
                 </a>
 
                 <!-- Desktop Nav Links -->
@@ -56,21 +62,19 @@
                     <li><a href="index.html" class="nav-item-link active">Home</a></li>
                     <li><a href="about.html" class="nav-item-link">About Us</a></li>
                     <li class="has-dropdown">
-                        <a href="branches.html" class="nav-item-link">Campuses <i class="fas fa-chevron-down"></i></a>
+                        <a href="#" class="nav-item-link">Academics <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-menu-custom">
-                            <a href="branches.html"><i class="fas fa-map-marker-alt"></i> Kubwa Branch</a>
-                            <a href="branches.html"><i class="fas fa-map-marker-alt"></i> Kagini Branch</a>
-                            <a href="branches.html"><i class="fas fa-map-marker-alt"></i> Primary Branch</a>
+                            <a href="branches.html"><i class="fas fa-campground"></i> Branches / Campuses</a>
+                            <a href="admissions.html"><i class="fas fa-info-circle"></i> Admission Info</a>
                         </div>
                     </li>
                     <li><a href="awards.html" class="nav-item-link">Achievements</a></li>
-                    <li><a href="gallery.html" class="nav-item-link">Gallery</a></li>
-                    <li><a href="admissions.html" class="nav-item-link">Admissions</a></li>
+                    <li><a href="#footer" class="nav-item-link">Contact Us</a></li>
                 </ul>
 
                 <!-- CTA -->
                 <div class="nav-cta">
-                    <a href="admissions.html" class="btn-enrol">Enrol Now</a>
+                    <a href="https://www.jewelmodelschools.sch.ng/" class="btn-enrol" target="_blank">School Portal</a>
                     <button class="hamburger" id="hamburger" aria-label="Menu">
                         <span></span><span></span><span></span>
                     </button>
@@ -80,14 +84,22 @@
 
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
+            <button class="mobile-close" id="mobileClose" aria-label="Close Menu">
+                <i class="fas fa-times"></i>
+            </button>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href="branches.html">Campuses</a></li>
+                <li class="mobile-dropdown">
+                    <span class="mobile-dropdown-toggle">Academics <i class="fas fa-chevron-down" style="font-size: 1rem;"></i></span>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="branches.html"><i class="fas fa-campground" style="margin-right: 10px; color: var(--accent-gold);"></i> Branches / Campuses</a></li>
+                        <li><a href="admissions.html"><i class="fas fa-user-plus" style="margin-right: 10px; color: var(--accent-gold);"></i> Admission Info</a></li>
+                    </ul>
+                </li>
                 <li><a href="awards.html">Achievements</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="admissions.html">Admissions</a></li>
-                <li><a href="https://www.jewelmodelschools.sch.ng/">Student Portal</a></li>
+                <li><a href="#footer">Contact Us</a></li>
+                <li><a href="https://www.jewelmodelschools.sch.ng/" class="mobile-portal-btn" target="_blank">School Portal</a></li>
             </ul>
         </div>
     </nav>
@@ -163,6 +175,22 @@
         </div>
     </section>
 
+    <div class="news-ticker">
+        <div class="ticker-label">Latest News</div>
+        <div class="ticker-track">
+            <div class="ticker-content">
+                <span>🏆 JMS wins Overall at HIASFEST 2026 &nbsp;·&nbsp;</span>
+                <span>📚 Admissions now open for 2026/2027 session &nbsp;·&nbsp;</span>
+                <span>🌟 Nigeria Teen Authors Prize – Poetry Winner 2026 &nbsp;·&nbsp;</span>
+                <span>🎨 Teen Artist of the Year 2025 – SEVHAGE Award &nbsp;·&nbsp;</span>
+                <span>📖 Korea-Nigeria Poetry Prize – Multiple Winners &nbsp;·&nbsp;</span>
+                <span>🏆 JMS wins Overall at HIASFEST 2026 &nbsp;·&nbsp;</span>
+                <span>📚 Admissions now open for 2026/2027 session &nbsp;·&nbsp;</span>
+                <span>🌟 Nigeria Teen Authors Prize – Poetry Winner 2026 &nbsp;·&nbsp;</span>
+            </div>
+        </div>
+    </div>
+
     <!-- ═══ STATS STRIP ═══ -->
     <section class="stats-strip">
         <div class="container">
@@ -237,22 +265,130 @@
         </div>
     </section>
 
-    <!-- ═══ NEWS TICKER ═══ -->
-    <div class="news-ticker">
-        <div class="ticker-label">Latest News</div>
-        <div class="ticker-track">
-            <div class="ticker-content">
-                <span>🏆 JMS wins Overall at HIASFEST 2026 &nbsp;·&nbsp;</span>
-                <span>📚 Admissions now open for 2026/2027 session &nbsp;·&nbsp;</span>
-                <span>🌟 Nigeria Teen Authors Prize – Poetry Winner 2026 &nbsp;·&nbsp;</span>
-                <span>🎨 Teen Artist of the Year 2025 – SEVHAGE Award &nbsp;·&nbsp;</span>
-                <span>📖 Korea-Nigeria Poetry Prize – Multiple Winners &nbsp;·&nbsp;</span>
-                <span>🏆 JMS wins Overall at HIASFEST 2026 &nbsp;·&nbsp;</span>
-                <span>📚 Admissions now open for 2026/2027 session &nbsp;·&nbsp;</span>
-                <span>🌟 Nigeria Teen Authors Prize – Poetry Winner 2026 &nbsp;·&nbsp;</span>
+
+
+    <!-- ═══ LEADERSHIP TESTIMONIAL SECTION ═══ -->
+    <section id="leadership" class="leadership-section">
+        <div class="container">
+            <div class="section-header text-center reveal-up">
+                <p class="section-eyebrow">Our Leadership</p>
+                <h2 class="section-heading">Dedicated to <em>Excellence</em></h2>
+            </div>
+            <div class="leadership-carousel">
+                <!-- Slide 1 -->
+                <div class="leadership-slide active">
+                    <div class="leader-photo-wrapper reveal-left">
+                        <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.50.jpeg" alt="Head of Primary" class="leader-photo">
+                    </div>
+                    <div class="leader-card reveal-right">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <div class="leader-info">
+                            <h4 class="leader-name">Mrs. Adebayo</h4>
+                            <p class="leader-title">Head of Primary</p>
+                        </div>
+                        <p class="leader-quote">"Jewel Model Schools is a community where students are known, challenged, and supported to reach their absolute full potential every single day."</p>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="leadership-slide">
+                    <div class="leader-photo-wrapper">
+                        <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.52 (1).jpeg" alt="Head of Secondary" class="leader-photo">
+                    </div>
+                    <div class="leader-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <div class="leader-info">
+                            <h4 class="leader-name">Mr. Chinedu</h4>
+                            <p class="leader-title">Head of Secondary</p>
+                        </div>
+                        <p class="leader-quote">"We believe in fostering an environment where academic excellence meets moral discipline, creating global leaders of tomorrow."</p>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="leadership-slide">
+                    <div class="leader-photo-wrapper">
+                        <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.31.02.jpeg" alt="HOD Science" class="leader-photo">
+                    </div>
+                    <div class="leader-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <div class="leader-info">
+                            <h4 class="leader-name">Mrs. Okoro</h4>
+                            <p class="leader-title">HOD Science</p>
+                        </div>
+                        <p class="leader-quote">"Our science programs are designed to spark curiosity and develop critical thinking, preparing students for a technologically advanced world."</p>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="leadership-slide">
+                    <div class="leader-photo-wrapper">
+                        <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.58.jpeg" alt="HOD Arts" class="leader-photo">
+                    </div>
+                    <div class="leader-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <div class="leader-info">
+                            <h4 class="leader-name">Ms. Fatima</h4>
+                            <p class="leader-title">HOD Arts</p>
+                        </div>
+                        <p class="leader-quote">"Creativity is at the heart of JMS. We nurture artistic talent and expression, helping students find their unique voices."</p>
+                    </div>
+                </div>
+                <!-- Slide 5 -->
+                <div class="leadership-slide">
+                    <div class="leader-photo-wrapper">
+                        <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.56 (1).jpeg" alt="HOD Junior School" class="leader-photo">
+                    </div>
+                    <div class="leader-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <div class="leader-info">
+                            <h4 class="leader-name">Mr. Ibrahim</h4>
+                            <p class="leader-title">HOD Junior School</p>
+                        </div>
+                        <p class="leader-quote">"The junior school years are foundational. We focus on building confidence and a love for learning that lasts a lifetime."</p>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="leadership-controls">
+                    <button class="lead-btn prev-lead" id="leadPrev" aria-label="Previous"><i class="fas fa-arrow-left"></i></button>
+                    <button class="lead-btn next-lead" id="leadNext" aria-label="Next"><i class="fas fa-arrow-right"></i></button>
+                </div>
+
+                <!-- HOD Thumbnails Navigation -->
+                <div class="leadership-thumbs">
+                    <div class="thumb-item active" data-index="0">
+                        <div class="thumb-photo">
+                            <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.50.jpeg" alt="Head of Primary">
+                        </div>
+                        <span class="thumb-label">Head of Primary</span>
+                    </div>
+                    <div class="thumb-item" data-index="1">
+                        <div class="thumb-photo">
+                            <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.52 (1).jpeg" alt="Head of Secondary">
+                        </div>
+                        <span class="thumb-label">Head of Secondary</span>
+                    </div>
+                    <div class="thumb-item" data-index="2">
+                        <div class="thumb-photo">
+                            <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.31.02.jpeg" alt="HOD Science">
+                        </div>
+                        <span class="thumb-label">HOD Science</span>
+                    </div>
+                    <div class="thumb-item" data-index="3">
+                        <div class="thumb-photo">
+                            <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.58.jpeg" alt="HOD Arts">
+                        </div>
+                        <span class="thumb-label">HOD Arts</span>
+                    </div>
+                    <div class="thumb-item" data-index="4">
+                        <div class="thumb-photo">
+                            <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.56 (1).jpeg" alt="HOD Junior School">
+                        </div>
+                        <span class="thumb-label">HOD Junior School</span>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- ═══ BRANCHES SECTION ═══ -->
     <section id="branches" class="branches-section">
@@ -316,6 +452,7 @@
                     <h2 class="section-heading light">Academic &amp;<br><em>Creative Excellence</em></h2>
                     <p class="awards-desc">Our students consistently rank among the best in national and international competitions, particularly in literature, poetry, prose, and the arts.</p>
                     <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.50.jpeg" alt="JMS Trophies" class="awards-trophy-img">
+                    <a href="awards.html" class="btn-primary-jms mt-4 d-inline-block">View All Achievements</a>
                 </div>
                 <div class="awards-right reveal-right">
                     <div class="award-card">
@@ -342,28 +479,13 @@
                             <p>Nigeria Teen Authors Prize</p>
                         </div>
                     </div>
-                    <div class="award-card">
-                        <div class="award-medal"><i class="fas fa-book"></i></div>
-                        <div class="award-details">
-                            <span class="award-year">2023</span>
-                            <h4>Winner – Prose</h4>
-                            <p>Nigeria Teen Authors Prize</p>
-                        </div>
-                    </div>
+                    
                     <div class="award-card">
                         <div class="award-medal"><i class="fas fa-palette"></i></div>
                         <div class="award-details">
                             <span class="award-year">2025</span>
                             <h4>Teen Artist of the Year</h4>
                             <p>SEVHAGE Teen Artist Award</p>
-                        </div>
-                    </div>
-                    <div class="award-card">
-                        <div class="award-medal"><i class="fas fa-globe-asia"></i></div>
-                        <div class="award-details">
-                            <span class="award-year">2019 · 2018</span>
-                            <h4>Multiple Winners</h4>
-                            <p>Korea-Nigeria Poetry Prize</p>
                         </div>
                     </div>
                 </div>
@@ -424,7 +546,7 @@
                     <div class="footer-socials">
                         <a href="https://www.facebook.com/share/1YLq4dXVFD/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/jewel_model_schools_kubwa?igsh=cnc4Zmo4YzF0NXBs" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://x.com/JewelAbuja912" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://x.com/JewelAbuja912" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                     </div>
                 </div>
                 <div class="footer-col">
@@ -443,6 +565,7 @@
                         <li><i class="fas fa-envelope"></i> jewelmodel1996@gmail.com</li>
                         <li><i class="fas fa-phone"></i> 0813 270 6800</li>
                         <li><i class="fas fa-phone"></i> 0803 884 0260</li>
+                        <li><i class="fas fa-phone"></i> 0816 953 7716</li>
                         <li><i class="fas fa-map-marker-alt"></i> Kukwaba, Kubwa Village, Abuja</li>
                     </ul>
                 </div>

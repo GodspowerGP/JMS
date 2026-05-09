@@ -27,12 +27,34 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
     });
 
-    // Close mobile menu on link click
-    mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
+    const mobileClose = document.getElementById('mobileClose');
+    if (mobileClose) {
+        mobileClose.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
             hamburger.classList.remove('open');
             document.body.style.overflow = '';
+        });
+    }
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Don't close if clicking a dropdown toggle
+            if (link.closest('.mobile-dropdown') && link.tagName === 'SPAN') return;
+            
+            mobileMenu.classList.remove('active');
+            hamburger.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Mobile Dropdown Toggle
+    const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
+    mobileDropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('span');
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdown.classList.toggle('open');
         });
     });
 
@@ -94,6 +116,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     startInterval();
+
+    /* ══════════════════════════════════════════════
+       LEADERSHIP CAROUSEL LOGIC
+       ══════════════════════════════════════════════ */
+    const leadSlides = document.querySelectorAll('.leadership-slide');
+    const leadThumbs = document.querySelectorAll('.thumb-item');
+    const leadPrevBtn = document.getElementById('leadPrev');
+    const leadNextBtn = document.getElementById('leadNext');
+    let currentLeadSlide = 0;
+
+    function showLeadSlide(index) {
+        if (!leadSlides.length) return;
+        leadSlides.forEach(slide => slide.classList.remove('active'));
+        leadThumbs.forEach(thumb => thumb.classList.remove('active'));
+        
+        leadSlides[index].classList.add('active');
+        leadThumbs[index].classList.add('active');
+        currentLeadSlide = index;
+
+        // Auto-scroll thumbnails into view on mobile
+        const activeThumb = leadThumbs[index];
+        const container = document.querySelector('.leadership-thumbs');
+        if (container && activeThumb) {
+            const scrollLeft = activeThumb.offsetLeft - (container.offsetWidth / 2) + (activeThumb.offsetWidth / 2);
+            container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        }
+    }
+
+    if (leadNextBtn && leadPrevBtn && leadSlides.length > 0) {
+        leadNextBtn.addEventListener('click', () => {
+            let index = (currentLeadSlide + 1) % leadSlides.length;
+            showLeadSlide(index);
+        });
+        
+        leadPrevBtn.addEventListener('click', () => {
+            let index = (currentLeadSlide - 1 + leadSlides.length) % leadSlides.length;
+            showLeadSlide(index);
+        });
+    }
+
+    leadThumbs.forEach((thumb, index) => {
+        thumb.addEventListener('click', () => {
+            showLeadSlide(index);
+        });
+    });
 
     /* ══════════════════════════════════════════════
        REVEAL ON SCROLL (Intersection Observer)
