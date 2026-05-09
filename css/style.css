@@ -1118,7 +1118,7 @@ dl {
    AWARDS SECTION
    ══════════════════════════════════════════════ */
 .awards-section {
-  padding: 120px 0;
+  padding: 100px 0 20px 0;
   background: var(--primary-blue);
   color: white;
   position: relative;
@@ -1139,7 +1139,7 @@ dl {
 }
 
 .awards-layout {
-  display: grid;
+  /* display: grid; */
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   position: relative;
@@ -1983,7 +1983,7 @@ dl {
 }
 
 /* ══════════════════════════════════════════════
-   BRANCHES PAGE PREMIUM STYLES
+    BRANCHES PAGE PREMIUM STYLES
    ══════════════════════════════════════════════ */
 .branches-hero {
     position: relative;
@@ -1992,6 +1992,7 @@ dl {
     color: white;
     text-align: center;
     overflow: hidden;
+    min-height: 40vh;
 }
 
 .branches-hero .section-eyebrow {
@@ -2144,6 +2145,121 @@ dl {
 
 .branch-contact-box a:hover {
     color: var(--primary-blue);
+}
+
+/* ── Info Cards ── */
+.info-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px 20px 20px 20px;
+  margin-top: 40px;
+  position: relative;
+  min-height: 400px;
+  transition: var(--transition);
+}
+
+.info-card:hover {
+  transform: translateX(6px) scale(1.02) !important;
+  /* box-shadow: 0 10px 30px rgba(0,0,0,0.2); */
+  will-change: auto;
+}
+
+.info-card.active {
+  background: #0A233C;
+  color: #fff;
+}
+
+.info-card.active p,
+.info-card.active h5 {
+  color: #fff;
+}
+
+.icon-box {
+  width: 60px;
+  height: 60px;
+  background: #F97316;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -28px;
+  left: 20px;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.info-card h5 {
+  margin-top: 26px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #1e2330;
+}
+
+.info-card p {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* ── Form Section ── */
+.form-section {
+  background: #f0f0f0;
+  border-radius: 20px;
+  padding: 40px 35px;
+  max-width: 90%;
+}
+
+.form-section h2 {
+  font-weight: 800;
+  font-size: 2rem;
+  color: #0A233C;
+  margin-bottom: 10px;
+}
+
+.form-section .subtitle {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 28px;
+  max-width: 380px;
+}
+
+.form-section .form-control,
+.form-section .form-select {
+  border-radius: 20px;
+  border: 1px solid #d8d8d8;
+  background: #fff;
+  font-size: 0.85rem;
+  color: #999;
+  padding: 12px 14px;
+}
+
+.form-section .form-control::placeholder,
+.form-section .form-select {
+  color: #999;
+}
+
+.form-section textarea.form-control {
+  height: 110px;
+  resize: none;
+}
+
+.btn-send {
+  background: #0A233C;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  width: 100%;
+}
+
+.btn-send:hover {
+  background: #0d2d4d;
+  color: #fff;
 }
 
 /* Facilities Grid */
