@@ -689,6 +689,26 @@ dl {
     box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
+.btn-branch-primary {
+    display: inline-block;
+    color: white !important;
+    padding: 5px 20px;
+    background: #112B45;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+    border: 2px solid #112B45;
+}
+
+.btn-branch-primary:hover {
+    background: transparent;
+    color: #112B45 !important;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
 .btn-hero-ghost {
     background: transparent;
     color: white !important;
@@ -2207,7 +2227,7 @@ dl {
 .form-section {
   background: #f0f0f0;
   border-radius: 20px;
-  padding: 40px 35px;
+  padding: 40px 20px;
   max-width: 90%;
 }
 
