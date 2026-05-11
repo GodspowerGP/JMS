@@ -428,24 +428,20 @@ document.addEventListener('DOMContentLoaded', () => {
     ═══════════════════════════════════════════════ */
     var ROW1 = [
         { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.50.jpeg', caption: 'Award Trophies',                   w: 370 },
-        { src: 'images/gallery/hiasfest-2026-winners.jpg',                  caption: 'HIASFEST 2026 — Overall Winners',  w: 490 },
-        { src: 'images/gallery/ntap-poetry.jpg',                            caption: 'Nigeria Teen Authors Prize',        w: 310 },
-        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.51.jpeg', caption: 'JMS Students',                    w: 440 },
-        { src: 'images/gallery/spoken-word.jpg',                            caption: 'Spoken Word Performance',          w: 360 },
-        { src: 'images/gallery/award-ceremony.jpg',                         caption: 'Award Ceremony',                   w: 420 },
-        { src: 'images/gallery/korea-nigeria.jpg',                          caption: 'Korea-Nigeria Poetry Prize',       w: 340 },
-        { src: 'images/gallery/literary-festival.jpg',                      caption: 'Literary Festival',                w: 400 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.56 (1).jpeg',                  caption: 'HIASFEST 2026 — Overall Winners',  w: 490 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.58.jpeg',                            caption: 'Nigeria Teen Authors Prize',        w: 310 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.53 (1).jpeg', caption: 'JMS Students',                    w: 440 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.47.jpeg',                            caption: 'Spoken Word Performance',          w: 360 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.56.jpeg',                         caption: 'Award Ceremony',                   w: 420 },
     ];
 
     var ROW2 = [
-        { src: 'images/gallery/drama-arts.jpg',                             caption: 'Drama & Theatre Arts',             w: 460 },
-        { src: 'images/gallery/poetry-competition.jpg',                     caption: 'Poetry Competition',               w: 320 },
-        { src: 'images/gallery/teen-authors.jpg',                           caption: 'Teen Authors Showcase',            w: 415 },
-        { src: 'images/gallery/craft-innovation.jpg',                       caption: 'Craft & Innovation',               w: 355 },
-        { src: 'images/gallery/hiasfest-stage.jpg',                         caption: 'HIASFEST Stage Performance',       w: 485 },
-        { src: 'images/gallery/sevhage-artist.jpg',                         caption: 'SEVHAGE Teen Artist Award',        w: 340 },
-        { src: 'images/gallery/feast-of-words.jpg',                         caption: 'Feast of Words 2021',              w: 395 },
-        { src: 'images/gallery/champions.jpg',                              caption: 'Champions of Excellence',          w: 370 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.48.jpeg',                             caption: 'Drama & Theatre Arts',             w: 460 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.31.02.jpeg',                     caption: 'ICT Competition - 2026',               w: 320 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.59 (1).jpeg',                           caption: 'Quiz Competition - 2026',            w: 415 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.48 (1).jpeg',                       caption: 'Craft & Innovation - 2022',               w: 355 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.31.07.jpeg',                         caption: 'Trophy cabinet',       w: 485 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.49.jpeg',                              caption: 'ICT Competition - 2025',          w: 370 },
     ];
 
     /* ═══════════════════════════════════════════════
