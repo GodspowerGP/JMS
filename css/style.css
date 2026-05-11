@@ -393,6 +393,11 @@ dl {
   font-size: 1.05rem;
   position: relative;
   transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 30px;
+  line-height: 1;
 }
 
 @media (max-width: 1200px) {
@@ -1639,9 +1644,6 @@ dl {
   right: 0;
 }
 
-.mobile-menu ul {
-  width: 100%;
-}
 
 .mobile-menu ul li {
   margin-bottom: 30px;
@@ -1718,6 +1720,11 @@ dl {
     text-transform: uppercase;
     letter-spacing: 2px;
     cursor: pointer;
+    transition: var(--transition);
+}
+
+.mobile-dropdown-toggle.active {
+    color: var(--accent-orange);
 }
 
 .mobile-dropdown-menu {
@@ -1738,6 +1745,10 @@ dl {
     text-transform: none !important;
     letter-spacing: 0 !important;
     font-weight: 600 !important;
+}
+
+.mobile-dropdown-menu li a.active {
+    color: var(--accent-orange) !important;
 }
 
 /* ══════════════════════════════════════════════
