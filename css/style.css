@@ -621,14 +621,32 @@ dl {
 
 .slide-content .container,
 .admissions-hero .container,
-.branches-hero .container {
+.branches-hero .container,
+.awards-section .container,
+.gallery-section .container,
+.carousel-slide .container,
+.about-section .container,
+.stats-strip .container,
+.leadership-section .container,
+.branches-section .container,
+.admissions-section .container,
+.site-footer .container {
     padding: 0 30px;
 }
 
 @media (max-width: 768px) {
     .slide-content .container,
     .admissions-hero .container,
-    .branches-hero .container {
+    .branches-hero .container,
+    .awards-section .container,
+    .gallery-section .container,
+    .carousel-slide .container,
+    .about-section .container,
+    .stats-strip .container,
+    .leadership-section .container,
+    .branches-section .container,
+    .admissions-section .container,
+    .site-footer .container {
         padding: 0 15px;
     }
 }
@@ -636,7 +654,7 @@ dl {
 .slide-content {
   position: relative;
   z-index: 3;
-  padding: 0 5%;
+  padding: 0;
   max-width: 800px;
   color: white;
 }
@@ -1031,6 +1049,7 @@ dl {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .branch-badge {
@@ -1077,6 +1096,7 @@ dl {
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   color: var(--accent-orange);
   font-size: 1.25rem;
+  transition: all 0.4s ease;
 }
 
 .branch-phone {
@@ -1759,7 +1779,9 @@ dl {
 
 .leader-photo-wrapper {
     flex: 0 0 450px;
+    max-width: 100%;
     height: 450px;
+    max-height: 450px;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
@@ -1804,7 +1826,7 @@ dl {
 }
 
 .leader-quote {
-    font-size: 1.4rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
     font-family: 'Playfair Display', serif;
     font-style: italic;
     color: var(--text-dark);
@@ -1853,42 +1875,80 @@ dl {
     color: white;
 }
 
-@media (max-width: 1024px) {
-    .leader-card {
-        margin-left: 0;
-        padding: 40px;
-    }
-    .leader-photo-wrapper {
-        flex: 0 0 300px;
-        height: 400px;
-    }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .leadership-slide {
-        flex-direction: column;
         gap: 30px;
     }
     .leader-photo-wrapper {
-        width: 300px;
-        height: 300px;
-        flex: none;
-        margin: 0 auto;
+        flex: 0 0 350px;
+        height: 350px;
     }
     .leader-card {
-        width: 100%;
-        padding: 40px 30px;
-        margin-top: -50px;
-        padding-top: 60px;
+        padding: 40px 40px 40px 60px;
+        margin-left: -50px;
     }
-    .leader-quote {
-        font-size: 1.2rem;
+}
+
+@media (max-width: 1024px) {
+    .leadership-slide {
+        flex-direction: column;
+        gap: 0;
+        text-align: center;
     }
     .leadership-carousel {
         min-height: auto;
     }
+    .leader-photo-wrapper {
+        width: 280px;
+        height: 280px;
+        flex: none;
+        margin: 0 auto;
+        border-width: 10px;
+    }
+    .leader-card {
+        width: 100%;
+        padding: 60px 30px 40px;
+        margin-top: -40px;
+        margin-left: 0;
+        text-align: center;
+        border-radius: 30px;
+    }
+    .leader-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .quote-icon {
+        font-size: 2.5rem;
+        top: 25px;
+        right: 25px;
+    }
+    .leader-quote {
+        font-size: 1.2rem;
+        line-height: 1.6;
+    }
     .leadership-controls {
         justify-content: center;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .leader-photo-wrapper {
+        width: 180px;
+        height: 180px;
+        border-width: 6px;
+    }
+    .leader-card {
+        padding: 40px 20px 25px;
+        margin-top: -30px;
+    }
+    .leader-quote {
+        font-size: 1rem;
+    }
+    .leader-name {
+        font-size: 1.3rem;
     }
 }
 
