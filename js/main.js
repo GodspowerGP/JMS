@@ -417,4 +417,193 @@ document.addEventListener('DOMContentLoaded', () => {
 
     })();
 
+    // GALLERY CAROUSEL JS
+    (function () {
+    'use strict';
+
+    /* ═══════════════════════════════════════════════
+        GALLERY DATA
+        Replace src values with your actual image paths.
+        w = display width in pixels (vary for visual rhythm).
+    ═══════════════════════════════════════════════ */
+    var ROW1 = [
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.50.jpeg', caption: 'Award Trophies',                   w: 370 },
+        { src: 'images/gallery/hiasfest-2026-winners.jpg',                  caption: 'HIASFEST 2026 — Overall Winners',  w: 490 },
+        { src: 'images/gallery/ntap-poetry.jpg',                            caption: 'Nigeria Teen Authors Prize',        w: 310 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.51.jpeg', caption: 'JMS Students',                    w: 440 },
+        { src: 'images/gallery/spoken-word.jpg',                            caption: 'Spoken Word Performance',          w: 360 },
+        { src: 'images/gallery/award-ceremony.jpg',                         caption: 'Award Ceremony',                   w: 420 },
+        { src: 'images/gallery/korea-nigeria.jpg',                          caption: 'Korea-Nigeria Poetry Prize',       w: 340 },
+        { src: 'images/gallery/literary-festival.jpg',                      caption: 'Literary Festival',                w: 400 },
+    ];
+
+    var ROW2 = [
+        { src: 'images/gallery/drama-arts.jpg',                             caption: 'Drama & Theatre Arts',             w: 460 },
+        { src: 'images/gallery/poetry-competition.jpg',                     caption: 'Poetry Competition',               w: 320 },
+        { src: 'images/gallery/teen-authors.jpg',                           caption: 'Teen Authors Showcase',            w: 415 },
+        { src: 'images/gallery/craft-innovation.jpg',                       caption: 'Craft & Innovation',               w: 355 },
+        { src: 'images/gallery/hiasfest-stage.jpg',                         caption: 'HIASFEST Stage Performance',       w: 485 },
+        { src: 'images/gallery/sevhage-artist.jpg',                         caption: 'SEVHAGE Teen Artist Award',        w: 340 },
+        { src: 'images/gallery/feast-of-words.jpg',                         caption: 'Feast of Words 2021',              w: 395 },
+        { src: 'images/gallery/champions.jpg',                              caption: 'Champions of Excellence',          w: 370 },
+    ];
+
+    /* ═══════════════════════════════════════════════
+        CONFIG
+    ═══════════════════════════════════════════════ */
+    var GAP          = 10;   /* px between items */
+    var BASE_SPEED   = 1.0;  /* px per frame at 1× */
+    var SPEED_STEPS  = [0.4, 0.7, 1.0, 1.5, 2.2, 3.2];
+    var speedIndex   = 2;    /* start at index 2 = 1.0× */
+    var isPaused     = false;
+    var isHovering   = false;
+
+    /* ═══════════════════════════════════════════════
+        BUILD TRACKS
+    ═══════════════════════════════════════════════ */
+    function buildTrack(trackEl, items) {
+        /* Duplicate array for seamless infinite loop */
+        var full = items.concat(items);
+        full.forEach(function (item) {
+        var el = document.createElement('div');
+        el.className = 'jgal-item';
+        el.style.width  = item.w + 'px';
+        el.style.marginRight = GAP + 'px';
+
+        var img = document.createElement('img');
+        img.alt     = item.caption;
+        img.loading = 'lazy';
+        img.src     = item.src;
+
+        /* Placeholder on error */
+        img.onerror = function () {
+            var ph = document.createElement('div');
+            ph.className = 'jgal-placeholder';
+            ph.innerHTML = '<i class="fas fa-image" style="font-size:1.8rem"></i>';
+            el.replaceChild(ph, img);
+        };
+
+        var cap = document.createElement('span');
+        cap.className   = 'jgal-caption';
+        cap.textContent = item.caption;
+
+        el.appendChild(img);
+        el.appendChild(cap);
+        trackEl.appendChild(el);
+        });
+    }
+
+    var track1 = document.getElementById('jgalTrack1');
+    var track2 = document.getElementById('jgalTrack2');
+
+    buildTrack(track1, ROW1);
+    buildTrack(track2, ROW2);
+
+    /* ═══════════════════════════════════════════════
+        POSITIONS
+        half = total width of ONE set (items + gaps),
+        which is exactly half of scrollWidth after duplication.
+    ═══════════════════════════════════════════════ */
+    var half1 = 0;
+    var half2 = 0;
+    var pos1  = 0;   /* track1 starts at 0, scrolls left (decreasing) */
+    var pos2  = 0;   /* track2 starts at -half2, scrolls right (increasing) */
+    var ready = false;
+
+    function calcHalves() {
+        half1 = track1.scrollWidth / 2;
+        half2 = track2.scrollWidth / 2;
+        pos2  = -half2; /* track2 begins showing the second copy, moves right */
+        ready = true;
+    }
+
+    /* Wait for layout paint before measuring */
+    requestAnimationFrame(function () {
+        requestAnimationFrame(calcHalves);
+    });
+
+    /* ═══════════════════════════════════════════════
+        ANIMATION LOOP
+    ═══════════════════════════════════════════════ */
+    function animate() {
+        if (ready && !isPaused && !isHovering) {
+        var spd = SPEED_STEPS[speedIndex];
+
+        /* Track 1: move left */
+        pos1 -= spd;
+        if (pos1 <= -half1) pos1 = 0;
+
+        /* Track 2: move right */
+        pos2 += spd;
+        if (pos2 >= 0) pos2 = -half2;
+
+        track1.style.transform = 'translateX(' + pos1 + 'px)';
+        track2.style.transform = 'translateX(' + pos2 + 'px)';
+        }
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    /* ═══════════════════════════════════════════════
+        CONTROLS
+    ═══════════════════════════════════════════════ */
+    var pauseBtn  = document.getElementById('jgalPauseBtn');
+    var pauseIcon = document.getElementById('jgalPauseIcon');
+    var speedLbl  = document.getElementById('jgalSpeedLabel');
+
+    function updateSpeedLabel() {
+        speedLbl.textContent = SPEED_STEPS[speedIndex].toFixed(1).replace('.0', '') + '×';
+    }
+
+    pauseBtn.addEventListener('click', function () {
+        isPaused = !isPaused;
+        pauseIcon.className = isPaused ? 'fas fa-play' : 'fas fa-pause';
+        pauseBtn.classList.toggle('jgal-active', isPaused);
+    });
+
+    document.getElementById('jgalSlower').addEventListener('click', function () {
+        if (speedIndex > 0) {
+        speedIndex--;
+        updateSpeedLabel();
+        }
+    });
+
+    document.getElementById('jgalFaster').addEventListener('click', function () {
+        if (speedIndex < SPEED_STEPS.length - 1) {
+        speedIndex++;
+        updateSpeedLabel();
+        }
+    });
+
+    /* ── Hover pause ── */
+    var section = document.getElementById('jmsGallerySection');
+
+    section.addEventListener('mouseenter', function () {
+        isHovering = true;
+    });
+    section.addEventListener('mouseleave', function () {
+        isHovering = false;
+    });
+
+    /* ── Touch: swipe to nudge speed ── */
+    var touchStartX = 0;
+    section.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        isHovering  = true;
+    }, { passive: true });
+
+    section.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) {
+        /* Swipe right = slow down, swipe left = speed up */
+        if (dx > 0 && speedIndex > 0)                      speedIndex--;
+        if (dx < 0 && speedIndex < SPEED_STEPS.length - 1) speedIndex++;
+        updateSpeedLabel();
+        }
+        isHovering = false;
+    }, { passive: true });
+
+    })();
+
 });

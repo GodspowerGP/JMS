@@ -179,34 +179,37 @@
             </div><!-- /container -->
         </section>
 
-        <!-- ═══ GALLERY ═══ -->
-        <section id="gallery" class="gallery-section">
-            <div class="container">
-                <div class="section-header text-center reveal-up">
-                    <h2 class="section-heading">Our <em>Gallery</em></h2>
+        <!-- ═══════════════════════════════════════════════════════════
+            GALLERY CAROUSEL
+        ═══════════════════════════════════════════════════════════ -->
+
+        <section class="jgal-section my-5" id="jmsGallerySection">
+            <!-- ── HEADER ── -->
+            <div class="jgal-header">
+                <span class="jgal-dash" aria-hidden="true"></span>
+                <h2 class="jgal-heading">Gallery</h2>
+                <div class="jgal-controls" role="group" aria-label="Gallery controls">
+                    <button class="jgal-ctrl-btn" id="jgalSlower" title="Slow down" aria-label="Slow down">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    Speed: <span class="jgal-speed-label" id="jgalSpeedLabel" aria-live="polite">1×</span>
+                    <button class="jgal-ctrl-btn" id="jgalFaster" title="Speed up" aria-label="Speed up">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="jgal-ctrl-btn" id="jgalPauseBtn" title="Pause / Play" aria-label="Pause or play gallery">
+                        <i class="fas fa-pause" id="jgalPauseIcon"></i>
+                    </button>
                 </div>
-                <div class="gallery-grid reveal-up">
-                    <div class="gallery-item"><img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.31.07.jpeg"
-                            alt="Students"></div>
-                    <div class="gallery-item"><img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.47.jpeg"
-                            alt="Campus"></div>
-                    <div class="gallery-item"><img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.48.jpeg"
-                            alt="Activities"></div>
-                    <div class="gallery-item"><img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.48 (1).jpeg"
-                            alt="Event"></div>
-                    <div class="gallery-item"><img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.49.jpeg"
-                            alt="Activities"></div>
-                    <div class="gallery-item"><img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.50.jpeg"
-                            alt="Event"></div>    
-                    <div class="gallery-item"><img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.56 (1).jpeg"
-                            alt="Learning"></div>
-                    <div class="gallery-item"><img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.59.jpeg"
-                            alt="Awards"></div>
-                    <div class="gallery-item"><img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.31.03.jpeg"
-                            alt="Events"></div>
-                    <div class="gallery-item"><img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.31.01 (1).jpeg"
-                            alt="Students"></div>
-                </div>
+            </div>
+
+            <!-- ── ROW 1: scrolls LEFT ── -->
+            <div class="jgal-row jgal-row-top">
+                <div class="jgal-track" id="jgalTrack1"></div>
+            </div>
+
+            <!-- ── ROW 2: scrolls RIGHT ── -->
+            <div class="jgal-row jgal-row-bottom">
+                <div class="jgal-track" id="jgalTrack2"></div>
             </div>
         </section>
 
