@@ -472,6 +472,18 @@ dl {
     padding-left: 30px;
 }
 
+.section-subtext{
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.dropdown-menu-custom a.active {
+    background: rgba(249, 115, 22, 0.08);
+    color: var(--accent-orange);
+    font-weight: 700;
+    padding-left: 30px;
+}
+
 .dropdown-menu-custom a i {
     width: 20px;
     color: var(--accent-gold);
