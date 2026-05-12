@@ -473,8 +473,9 @@ dl {
 }
 
 .section-subtext{
+  font-size: 1.1rem;
   margin-top: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 4rem;
 }
 
 .dropdown-menu-custom a.active {
@@ -912,6 +913,7 @@ dl {
    ══════════════════════════════════════════════ */
 .about-section {
   padding: 120px 0;
+  background: var(--primary-blue-2);
 }
 
 .about-grid {
@@ -923,6 +925,10 @@ dl {
 
 .about-images {
   position: relative;
+}
+
+.about-body {
+  color: white;
 }
 
 .img-main img {
@@ -978,6 +984,7 @@ dl {
   display: flex;
   gap: 20px;
   align-items: flex-start;
+  color: white;
 }
 
 .pillar-icon {
@@ -1038,6 +1045,11 @@ dl {
   100% {
     transform: translateX(-100%);
   }
+}
+
+.icon-orange {
+  color: #FB9D5B;
+  margin-right: 10px;
 }
 
 /* ══════════════════════════════════════════════
@@ -1175,7 +1187,7 @@ dl {
    AWARDS SECTION
    ══════════════════════════════════════════════ */
 .awards-section {
-  padding: 100px 0 20px 0;
+  padding: 120px 0;
   background: var(--primary-blue);
   color: white;
   position: relative;
@@ -1196,7 +1208,7 @@ dl {
 }
 
 .awards-layout {
-  /* display: grid; */
+  display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   position: relative;
@@ -1206,8 +1218,6 @@ dl {
 .awards-trophy-img {
   margin-top: 50px;
   border-radius: 20px;
-  max-width: 100%;
-  margin-bottom: 30px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
@@ -1229,15 +1239,15 @@ dl {
 }
 
 .award-card:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateX(10px) scale(1.02);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(10px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .award-card:hover .award-medal {
-  transform: rotate(15deg) scale(1.1);
-  background: var(--accent-gold);
-  color: var(--primary-blue);
+    transform: rotate(15deg) scale(1.1);
+    background: var(--accent-gold);
+    color: var(--primary-blue);
 }
 
 .award-medal {
@@ -1764,8 +1774,9 @@ dl {
 
 .mobile-dropdown-toggle {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 10px;
     color: white;
     padding: 10px 0;
     font-weight: 800;
@@ -1778,16 +1789,16 @@ dl {
 
 .mobile-dropdown-toggle.active {
     color: var(--accent-orange);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  padding: 10px 0;
-  font-weight: 800;
-  font-size: 1.8rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 10px 0;
+    font-weight: 800;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
 }
 
 .mobile-dropdown-menu {
@@ -1873,7 +1884,7 @@ dl {
 .leader-card {
   flex: 1;
   background: white;
-  padding: 60px 60px 60px 100px;
+  padding: 60px 60px 60px 60px;
   border-radius: 30px;
   box-shadow: var(--shadow-lg);
   position: relative;
@@ -3816,7 +3827,7 @@ GALLERY SECTION — scoped .jgal- prefix
 
 .ap-mv-card { padding: 44px 0; position: relative; }
 
-/* Big watermark letter */
+/* Big watermark icon */
 .ap-mv-wm {
   position: absolute;
   top: 16px; right: -8px;
@@ -4167,7 +4178,7 @@ GALLERY SECTION — scoped .jgal- prefix
 
 .ap-stat-num {
   display: block;
-  /* font-family: 'Playfair Display', serif; */
+  font-family: 'Playfair Display', serif;
   font-size: clamp(2.4rem, 4.5vw, 3.8rem);
   font-weight: 800;
   color: #111;
@@ -4372,11 +4383,11 @@ GALLERY SECTION — scoped .jgal- prefix
 /* Quote text side */
 .ap-quote-mark {
   font-family: 'Playfair Display', serif;
-  font-size: 11rem;
+  font-size: 6rem;
   font-weight: 800;
   color: rgba(201,162,39,.08);
   line-height: .55;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
   display: block;
   pointer-events: none;
   user-select: none;
