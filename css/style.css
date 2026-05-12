@@ -745,6 +745,38 @@ dl {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+.btn-contact-primary {
+  display: inline-block;
+  color: white !important;
+  padding: 5px 15px;
+  background: #112b45;
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border-radius: 50px;
+  border: 2px solid #112b45;
+}
+
+.btn-contact-primary:hover {
+  background: transparent;
+  color: #112b45 !important;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-contact-secondary {
+font-size: .85rem; padding: 5px 20px; border-radius: 50px; display: inline-block; background: var(--accent-orange); color: white; text-decoration: none; font-weight: bold; transition: transform 0.3s ease;
+}
+
+.btn-contact-secondary:hover {
+  background: transparent;
+  color: var(--accent-orange) !important;
+  border: 2px solid var(--accent-orange) !important;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
 .btn-hero-ghost {
   background: transparent;
   color: white !important;
