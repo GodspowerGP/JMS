@@ -3426,9 +3426,8 @@ GALLERY SECTION — scoped .jgal- prefix
 :root {
   --gold:       #c9a227;
   --gold-dim:   rgba(201,162,39,.15);
-  --dark:       #070d1a;
-  --dark-2:     #0b1220;
-  --dark-3:     #0f1829;
+  --primary-blue-2:     #0b1220;
+  --primary-blue-3:     #0f1829;
   --white:      #ffffff;
   --text-muted: rgba(255,255,255,.52);
   --text-body:  rgba(255,255,255,.70);
@@ -3451,7 +3450,7 @@ GALLERY SECTION — scoped .jgal- prefix
 ══════════════════════════════════════════ */
 .ap-hero {
   position: relative;
-  background: var(--dark);
+  background: var(--primary-blue);
   padding: 0;
   min-height: 92vh;
   display: flex;
@@ -3474,7 +3473,6 @@ GALLERY SECTION — scoped .jgal- prefix
   inset: 0;
   background:
     linear-gradient(135deg, rgba(7,13,26,.98) 0%, rgba(7,13,26,.7) 55%, rgba(7,13,26,.4) 100%),
-    linear-gradient(to top, var(--dark) 0%, transparent 40%);
 }
 
 /* Dot grid texture */
@@ -3546,28 +3544,7 @@ GALLERY SECTION — scoped .jgal- prefix
   max-width: 720px;
 }
 
-.ap-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  font-family: 'Montserrat', sans-serif;
-  font-size: .68rem;
-  font-weight: 700;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 26px;
-}
-.ap-eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 36px; height: 1.5px;
-  background: var(--gold);
-  flex-shrink: 0;
-}
-
 .ap-hero-title {
-  font-family: 'Playfair Display', serif;
   font-size: clamp(3.2rem, 8vw, 6.8rem);
   font-weight: 800;
   color: var(--white);
@@ -3641,7 +3618,7 @@ GALLERY SECTION — scoped .jgal- prefix
    §2  OUR STORY
 ══════════════════════════════════════════ */
 .ap-story {
-  background: var(--dark);
+  background: var(--primary-blue);
   padding: 120px 0;
   position: relative;
   overflow: hidden;
@@ -3727,7 +3704,7 @@ GALLERY SECTION — scoped .jgal- prefix
 .ap-img-ph {
   width: 100%;
   height: 520px;
-  background: var(--dark-3);
+  background: var(--primary-blue-3);
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -3772,7 +3749,7 @@ GALLERY SECTION — scoped .jgal- prefix
    §3  MISSION & VISION
 ══════════════════════════════════════════ */
 .ap-mv {
-  background: var(--dark-2);
+  background: var(--primary-blue-2);
   padding: 110px 0;
   position: relative;
   overflow: hidden;
@@ -3843,7 +3820,6 @@ GALLERY SECTION — scoped .jgal- prefix
 }
 
 .ap-mv-title {
-  font-family: 'Playfair Display', serif;
   font-size: 1.85rem;
   font-weight: 800;
   color: var(--white);
@@ -3863,7 +3839,7 @@ GALLERY SECTION — scoped .jgal- prefix
    §4  CORE VALUES
 ══════════════════════════════════════════ */
 .ap-values {
-  background: var(--dark);
+  background: var(--primary-blue);
   padding: 110px 0;
   position: relative;
   overflow: hidden;
@@ -3939,7 +3915,6 @@ GALLERY SECTION — scoped .jgal- prefix
 .ap-val-card:hover .ap-val-icon { background: rgba(201,162,39,.25); transform: scale(1.1); }
 
 .ap-val-title {
-  font-family: 'Playfair Display', serif;
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--white);
@@ -3958,7 +3933,7 @@ GALLERY SECTION — scoped .jgal- prefix
    §5  PICTURE GALLERY STRIP (static 3-up)
 ══════════════════════════════════════════ */
 .ap-photo-strip {
-  background: var(--dark-2);
+  background: var(--primary-blue-2);
   padding: 80px 0;
 }
 
@@ -4014,7 +3989,7 @@ GALLERY SECTION — scoped .jgal- prefix
    §6  MILESTONES / TIMELINE
 ══════════════════════════════════════════ */
 .ap-timeline {
-  background: var(--dark);
+  background: var(--primary-blue);
   padding: 110px 0 60px;
   overflow: hidden;
 }
@@ -4072,7 +4047,7 @@ GALLERY SECTION — scoped .jgal- prefix
   top: -8px; left: 50%;
   transform: translateX(-50%);
   width: 16px; height: 16px;
-  background: var(--dark);
+  background: var(--primary-blue);
   border: 2.5px solid var(--gold);
   border-radius: 50%;
   z-index: 2;
@@ -4159,7 +4134,7 @@ GALLERY SECTION — scoped .jgal- prefix
 
 .ap-stat-num {
   display: block;
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
   font-size: clamp(2.4rem, 4.5vw, 3.8rem);
   font-weight: 800;
   color: #111;
@@ -4180,7 +4155,7 @@ GALLERY SECTION — scoped .jgal- prefix
    §8  WHY CHOOSE JMS
 ══════════════════════════════════════════ */
 .ap-why {
-  background: var(--dark-2);
+  background: var(--primary-blue-2);
   padding: 110px 0;
   position: relative;
   overflow: hidden;
@@ -4227,7 +4202,6 @@ GALLERY SECTION — scoped .jgal- prefix
 }
 
 .ap-why-text h5 {
-  font-family: 'Playfair Display', serif;
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--white);
@@ -4266,12 +4240,12 @@ GALLERY SECTION — scoped .jgal- prefix
   height: 230px;
   object-fit: cover;
   border-radius: 3px;
-  border: 4px solid var(--dark-2);
+  border: 4px solid var(--primary-blue-2);
   display: block;
   box-shadow: 0 20px 60px rgba(0,0,0,.5);
 }
 
-.ap-why-img-accent.ap-img-ph { width: 55%; height: 230px; position: absolute; bottom: 0; left: 0; border: 4px solid var(--dark-2); }
+.ap-why-img-accent.ap-img-ph { width: 55%; height: 230px; position: absolute; bottom: 0; left: 0; border: 4px solid var(--primary-blue-2); }
 
 /* Gold stat callout over images */
 .ap-why-callout {
@@ -4309,7 +4283,7 @@ GALLERY SECTION — scoped .jgal- prefix
    §9  LEADERSHIP / QUOTE
 ══════════════════════════════════════════ */
 .ap-quote-section {
-  background: var(--dark);
+  background: var(--primary-blue);
   padding: 120px 0;
   position: relative;
   overflow: hidden;
@@ -4448,4 +4422,4 @@ GALLERY SECTION — scoped .jgal- prefix
   .ap-portrait-img, .ap-portrait-img.ap-img-ph { height: 320px; }
   .ap-why-img-stack { height: 260px; }
   .ap-quote-mark    { font-size: 6rem; }
-}
+} 
