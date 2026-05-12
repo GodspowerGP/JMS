@@ -1114,6 +1114,25 @@ dl {
   color: var(--primary-blue);
 }
 
+.branch-info {
+  padding: 40px 30px;
+  text-align: center;
+  position: relative;
+}
+
+.branch-info h3 {
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 12px;
+}
+
+.branch-info p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
 .branch-info2 {
   padding: 40px 30px 25px;
   text-align: center;
@@ -2151,7 +2170,7 @@ dl {
 .branches-hero-content {
   position: relative;
   z-index: 2;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -2159,14 +2178,6 @@ dl {
   padding: 80px 0;
   text-align: center;
   background: var(--bg-light);
-}
-
-.branches-overview .lead-text {
-  font-size: 1.25rem;
-  color: var(--text-light);
-  max-width: 900px;
-  margin: 0 auto;
-  line-height: 1.8;
 }
 
 /* Branch Feature Rows (Alternating) */
@@ -3608,6 +3619,14 @@ GALLERY SECTION — scoped .jgal- prefix
   line-height: 1.78;
   color: var(--text-muted);
   max-width: 540px;
+  margin-bottom: 48px;
+}
+
+.ap-hero-lead2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.78;
+  color: var(--text-muted);
   margin-bottom: 48px;
 }
 
