@@ -1114,19 +1114,19 @@ dl {
   color: var(--primary-blue);
 }
 
-.branch-info {
-  padding: 40px 30px;
+.branch-info2 {
+  padding: 40px 30px 25px;
   text-align: center;
   position: relative;
 }
 
-.branch-info h3 {
+.branch-info2 h3 {
     font-size: 1.5rem;
     color: var(--primary-blue);
     margin-bottom: 12px;
 }
 
-.branch-info p {
+.branch-info2 p {
     color: var(--text-light);
     font-size: 0.95rem;
     margin-bottom: 20px;
