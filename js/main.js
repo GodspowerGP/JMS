@@ -240,4 +240,366 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+
+    /* ══════════════════════════════════════════════
+    AWARDS & ACHIEVEMENTS GRID LOGIC
+       ══════════════════════════════════════════════ */
+    (function () {
+    /* ─── DATA ─── */
+    var data = [
+        /* 2026 */
+        { y: 2026, lv: 'overall',  t: 'Overall Winner',                          c: 'Hadiza Ibrahim Aliyu Schools Festival (HIASFEST)',      i: 'fa-trophy'        },
+        { y: 2026, lv: 'overall',  t: 'Star Prize',                              c: 'Hadiza Ibrahim Aliyu Schools Festival (HIASFEST)',      i: 'fa-star'          },
+        { y: 2026, lv: 'winner',   t: 'Winner — Poetry',                         c: 'Nigeria Teen Authors Prize',                            i: 'fa-pen-nib'       },
+        { y: 2026, lv: 'r2',       t: 'Second Runner-Up — Poetry',               c: 'Nigeria Teen Authors Prize',                            i: 'fa-pen-nib'       },
+        { y: 2026, lv: 'winner',   t: 'Winner — On-the-Spot Poetry',             c: 'HIASFEST 2026',                                         i: 'fa-pen-nib'       },
+        { y: 2026, lv: 'r2',       t: 'Second Runner-Up — On-the-Spot Poetry',   c: 'HIASFEST 2026',                                         i: 'fa-pen-nib'       },
+        { y: 2026, lv: 'winner',   t: 'Winner — Spoken Word Poetry',             c: 'HIASFEST 2026',                                         i: 'fa-microphone'    },
+        { y: 2026, lv: 'r1',       t: 'First Runner-Up — Drama',                 c: 'HIASFEST 2026',                                         i: 'fa-theater-masks' },
+        { y: 2026, lv: 'r1',       t: 'First Runner-Up — On-the-Spot Short Story', c: 'HIASFEST 2026',                                       i: 'fa-book-open'     },
+        /* 2025 */
+        { y: 2025, lv: 'overall',  t: 'Teen Artist of the Year',                 c: 'SEVHAGE Teen Artist Award',                             i: 'fa-palette'       },
+        { y: 2025, lv: 'overall',  t: 'Overall Second Place',                    c: 'HIASFEST 2025',                                         i: 'fa-trophy'        },
+        { y: 2025, lv: 'winner',   t: 'Winner — Literature',                     c: 'BCD-Utulu Prize for Literature',                        i: 'fa-feather'       },
+        { y: 2025, lv: 'winner',   t: 'Winner — On-the-Spot Poetry',             c: 'HIASFEST 2025',                                         i: 'fa-pen-nib'       },
+        { y: 2025, lv: 'winner',   t: 'Winner — Spoken Word Poetry',             c: 'HIASFEST 2025',                                         i: 'fa-microphone'    },
+        { y: 2025, lv: 'r1',       t: 'First Runner-Up — On-the-Spot Poetry',    c: 'HIASFEST 2025',                                         i: 'fa-pen-nib'       },
+        { y: 2025, lv: 'r1',       t: 'First Runner-Up — On-the-Spot Fiction',   c: 'HIASFEST 2025',                                         i: 'fa-book-open'     },
+        { y: 2025, lv: 'r2',       t: 'Second Runner-Up — Poetry',               c: 'Nigeria Teen Authors Prize',                            i: 'fa-pen-nib'       },
+        /* 2024 */
+        { y: 2024, lv: 'overall',  t: 'Overall Second Place',                    c: 'HIASFEST 2024',                                         i: 'fa-trophy'        },
+        { y: 2024, lv: 'winner',   t: 'Winner — On-the-Spot Poetry',             c: 'HIASFEST 2024',                                         i: 'fa-pen-nib'       },
+        { y: 2024, lv: 'winner',   t: 'Winner — Spoken Word Poetry',             c: 'HIASFEST 2024',                                         i: 'fa-microphone'    },
+        { y: 2024, lv: 'r1',       t: 'First Runner-Up — On-the-Spot Poetry',    c: 'HIASFEST 2024',                                         i: 'fa-pen-nib'       },
+        /* 2023 */
+        { y: 2023, lv: 'overall',  t: 'Overall Third Place',                     c: 'HIASFEST 2023',                                         i: 'fa-trophy'        },
+        { y: 2023, lv: 'winner',   t: 'Winner — Poetry',                         c: 'Nigeria Teen Authors Prize',                            i: 'fa-pen-nib'       },
+        { y: 2023, lv: 'winner',   t: 'Winner — Prose',                          c: 'Nigeria Teen Authors Prize',                            i: 'fa-book-open'     },
+        { y: 2023, lv: 'winner',   t: 'Winner — On-the-Spot Poetry',             c: 'HIASFEST 2023',                                         i: 'fa-pen-nib'       },
+        { y: 2023, lv: 'winner',   t: "Winner — Mona Faruk's Scholarship (MVC Female)", c: 'Mona Faruk Foundation',                          i: 'fa-graduation-cap'},
+        { y: 2023, lv: 'r2',       t: 'Second Runner-Up — Craft / Innovation',   c: 'HIASFEST 2023',                                         i: 'fa-robot'      },
+        /* 2022 */
+        { y: 2022, lv: 'winner',   t: "Winner — Mona Faruk's Scholarship (MVC Female)", c: 'Mona Faruk Foundation',                          i: 'fa-graduation-cap'},
+        { y: 2022, lv: 'winner',   t: 'Winner — Craft Category',                 c: 'HIASFEST 2022',                                         i: 'fa-robot'      },
+        { y: 2022, lv: 'winner',   t: 'Winner — Poetry Prize',                   c: 'Uzo-Udegbunam Chioma Poetry Prize',                     i: 'fa-feather'       },
+        { y: 2022, lv: 'r1',       t: 'First Runner-Up — Poetry',                c: 'Nigeria Teen Authors Prize',                            i: 'fa-pen-nib'       },
+        { y: 2022, lv: 'r1',       t: 'First Runner-Up — Spoken Word',           c: 'HIASFEST 2022',                                         i: 'fa-microphone'    },
+        { y: 2022, lv: 'r1',       t: 'First Runner-Up — Poetry Prize',          c: 'Uzo-Udegbunam Chioma Poetry Prize',                     i: 'fa-feather'       },
+        { y: 2022, lv: 'r2',       t: 'Second Runner-Up — Poetry',               c: 'Nigeria Teen Authors Prize',                            i: 'fa-pen-nib'       },
+        { y: 2022, lv: 'r2',       t: 'Second Runner-Up — Prose',                c: 'Nigeria Prize for Teen Authors',                        i: 'fa-book-open'     },
+        { y: 2022, lv: 'r2',       t: 'Second Runner-Up — On-the-Spot Poetry',   c: 'HIASFEST 2022',                                         i: 'fa-pen-nib'       },
+        /* 2021 */
+        { y: 2021, lv: 'winner',   t: 'Winner — On-the-Spot Poetry',             c: 'HIASFEST 2021',                                         i: 'fa-pen-nib'       },
+        { y: 2021, lv: 'winner',   t: 'Winner — Spot-Writing Contest',           c: 'Feast of Words 2021',                                   i: 'fa-pen'           },
+        { y: 2021, lv: 'winner',   t: 'Winner — Oral Poetry Contest',            c: 'Feast of Words 2021',                                   i: 'fa-microphone'    },
+        { y: 2021, lv: 'r1',       t: 'First Runner-Up — On-the-Spot Poetry',    c: 'HIASFEST 2021',                                         i: 'fa-pen-nib'       },
+        { y: 2021, lv: 'r1',       t: 'First Runner-Up — Spot-Writing Contest',  c: 'Feast of Words 2021',                                   i: 'fa-pen'           },
+        { y: 2021, lv: 'r1',       t: 'First Runner-Up — Oral Poetry Contest',   c: 'Feast of Words 2021',                                   i: 'fa-microphone'    },
+        { y: 2021, lv: 'r2',       t: 'Second Runner-Up — Spoken Word',          c: 'HIASFEST 2021',                                         i: 'fa-microphone'    },
+        { y: 2021, lv: 'r2',       t: 'Second Runner-Up — Spot-Writing Contest', c: 'Feast of Words 2021',                                   i: 'fa-pen'           },
+        { y: 2021, lv: 'r2',       t: 'Second Runner-Up — Oral Poetry Contest',  c: 'Feast of Words 2021',                                   i: 'fa-microphone'    },
+        /* 2020 */
+        { y: 2020, lv: 'winner',   t: 'Winner — Poetry Contest',                 c: 'Cradle Poetry Contest',                                 i: 'fa-feather'       },
+        { y: 2020, lv: 'r1',       t: 'First Runner-Up — Creative Writing',      c: 'National Creative Writing Competition (S.S.C)',         i: 'fa-book-open'     },
+        /* 2019 */
+        { y: 2019, lv: 'winner',   t: 'Winner — Poetry Prize',                   c: 'Korea-Nigeria Poetry Prize (Secondary School)',         i: 'fa-globe-asia'    },
+        { y: 2019, lv: 'r2',       t: 'Second Runner-Up — Poetry Prize',         c: 'Korea-Nigeria Poetry Prize (S.S.C)',                    i: 'fa-globe-asia'    },
+        /* 2018 */
+        { y: 2018, lv: 'finalist', t: 'Finalist',                                c: 'Korea-Nigeria Poetry Prize (S.S.C)',                    i: 'fa-globe-asia'    }
+    ];
+
+    var LABELS = {
+        overall:  'Overall Award',
+        winner:   'Winner',
+        r1:       '1st Runner-Up',
+        r2:       '2nd Runner-Up',
+        finalist: 'Finalist'
+    };
+
+    /* ─── BUILD CARDS ─── */
+    function buildCards() {
+        var grid = document.getElementById('achGrid');
+        var html = '';
+        for (var i = 0; i < data.length; i++) {
+        var a = data[i];
+        var isOverall = a.lv === 'overall';
+        html += '<div class="ach-card lv-' + a.lv + ' ach-reveal" data-year="' + a.y + '">'
+                + (isOverall ? '<div class="ach-shimmer"></div>' : '')
+                + '<div class="ach-card-icon"><i class="fas ' + a.i + '"></i></div>'
+                + '<span class="ach-badge">' + LABELS[a.lv] + '</span>'
+                + '<h4 class="ach-card-title">' + a.t + '</h4>'
+                + '<p class="ach-card-comp">' + a.c + '</p>'
+                + '<div class="ach-card-year">' + a.y + '</div>'
+                + (isOverall ? '<span class="ach-ghost-year">' + a.y + '</span>' : '')
+                + '</div>';
+        }
+        grid.innerHTML = html;
+        document.getElementById('achTotalCount').textContent  = data.length;
+        document.getElementById('achVisibleCount').textContent = data.length;
+    }
+
+    /* ─── FILTER ─── */
+    function applyFilter(year) {
+        var cards = document.querySelectorAll('.ach-card');
+        var i, count = 0;
+
+        /* Quick fade-out pass */
+        for (i = 0; i < cards.length; i++) {
+        cards[i].classList.add('ach-fading');
+        }
+
+        setTimeout(function () {
+        for (i = 0; i < cards.length; i++) {
+            var c = cards[i];
+            c.classList.remove('ach-fading');
+            var match = (year === 'all' || c.getAttribute('data-year') === year);
+            if (match) {
+            c.classList.remove('ach-hidden');
+            count++;
+            } else {
+            c.classList.add('ach-hidden');
+            }
+        }
+        document.getElementById('achVisibleCount').textContent = count;
+        }, 230);
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    function setupReveal() {
+        var cards = document.querySelectorAll('.ach-card.ach-reveal');
+        if (!('IntersectionObserver' in window)) {
+        /* Fallback for old browsers */
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].classList.remove('ach-reveal');
+            cards[i].classList.add('ach-revealed');
+        }
+        return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+        var visible = [];
+        for (var j = 0; j < entries.length; j++) {
+            if (entries[j].isIntersecting) visible.push(entries[j].target);
+        }
+        for (var k = 0; k < visible.length; k++) {
+            (function (el, delay) {
+            setTimeout(function () {
+                el.classList.remove('ach-reveal');
+                el.classList.add('ach-revealed');
+            }, delay);
+            })(visible[k], k * 55);
+            observer.unobserve(visible[k]);
+        }
+        }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+
+        for (var n = 0; n < cards.length; n++) {
+        observer.observe(cards[n]);
+        }
+    }
+
+    /* ─── FILTER BUTTONS ─── */
+    function setupFilterButtons() {
+        var btns = document.querySelectorAll('#achFilters .ach-filter');
+        for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', function () {
+            var active = document.querySelector('#achFilters .ach-filter.active');
+            if (active) active.classList.remove('active');
+            this.classList.add('active');
+            applyFilter(this.getAttribute('data-filter'));
+        });
+        }
+    }
+
+    /* ─── INIT ─── */
+    buildCards();
+    setupFilterButtons();
+    setTimeout(setupReveal, 80); /* slight delay so layout is painted first */
+
+    })();
+
+    // GALLERY CAROUSEL JS
+    (function () {
+    'use strict';
+
+    /* ═══════════════════════════════════════════════
+        GALLERY DATA
+        Replace src values with your actual image paths.
+        w = display width in pixels (vary for visual rhythm).
+    ═══════════════════════════════════════════════ */
+    var ROW1 = [
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.50.jpeg', caption: 'Award Trophies',                   w: 370 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.56 (1).jpeg',                  caption: 'HIASFEST 2026 — Overall Winners',  w: 490 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.58.jpeg',                            caption: 'Nigeria Teen Authors Prize',        w: 310 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.53 (1).jpeg', caption: 'JMS Students',                    w: 440 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.47.jpeg',                            caption: 'Spoken Word Performance',          w: 360 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.56.jpeg',                         caption: 'Award Ceremony',                   w: 420 },
+    ];
+
+    var ROW2 = [
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.48.jpeg',                             caption: 'Drama & Theatre Arts',             w: 460 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.31.02.jpeg',                     caption: 'ICT Competition - 2026',               w: 320 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.59 (1).jpeg',                           caption: 'Quiz Competition - 2026',            w: 415 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.48 (1).jpeg',                       caption: 'Craft & Innovation - 2022',               w: 355 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.31.07.jpeg',                         caption: 'Trophy cabinet',       w: 485 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.49.jpeg',                              caption: 'ICT Competition - 2025',          w: 370 },
+    ];
+
+    /* ═══════════════════════════════════════════════
+        CONFIG
+    ═══════════════════════════════════════════════ */
+    var GAP          = 10;   /* px between items */
+    var BASE_SPEED   = 1.0;  /* px per frame at 1× */
+    var SPEED_STEPS  = [0.4, 0.7, 1.0, 1.5, 2.2, 3.2];
+    var speedIndex   = 2;    /* start at index 2 = 1.0× */
+    var isPaused     = false;
+    var isHovering   = false;
+
+    /* ═══════════════════════════════════════════════
+        BUILD TRACKS
+    ═══════════════════════════════════════════════ */
+    function buildTrack(trackEl, items) {
+        /* Duplicate array for seamless infinite loop */
+        var full = items.concat(items);
+        full.forEach(function (item) {
+        var el = document.createElement('div');
+        el.className = 'jgal-item';
+        el.style.width  = item.w + 'px';
+        el.style.marginRight = GAP + 'px';
+
+        var img = document.createElement('img');
+        img.alt     = item.caption;
+        img.loading = 'lazy';
+        img.src     = item.src;
+
+        /* Placeholder on error */
+        img.onerror = function () {
+            var ph = document.createElement('div');
+            ph.className = 'jgal-placeholder';
+            ph.innerHTML = '<i class="fas fa-image" style="font-size:1.8rem"></i>';
+            el.replaceChild(ph, img);
+        };
+
+        var cap = document.createElement('span');
+        cap.className   = 'jgal-caption';
+        cap.textContent = item.caption;
+
+        el.appendChild(img);
+        el.appendChild(cap);
+        trackEl.appendChild(el);
+        });
+    }
+
+    var track1 = document.getElementById('jgalTrack1');
+    var track2 = document.getElementById('jgalTrack2');
+
+    buildTrack(track1, ROW1);
+    buildTrack(track2, ROW2);
+
+    /* ═══════════════════════════════════════════════
+        POSITIONS
+        half = total width of ONE set (items + gaps),
+        which is exactly half of scrollWidth after duplication.
+    ═══════════════════════════════════════════════ */
+    var half1 = 0;
+    var half2 = 0;
+    var pos1  = 0;   /* track1 starts at 0, scrolls left (decreasing) */
+    var pos2  = 0;   /* track2 starts at -half2, scrolls right (increasing) */
+    var ready = false;
+
+    function calcHalves() {
+        half1 = track1.scrollWidth / 2;
+        half2 = track2.scrollWidth / 2;
+        pos2  = -half2; /* track2 begins showing the second copy, moves right */
+        ready = true;
+    }
+
+    /* Wait for layout paint before measuring */
+    requestAnimationFrame(function () {
+        requestAnimationFrame(calcHalves);
+    });
+
+    /* ═══════════════════════════════════════════════
+        ANIMATION LOOP
+    ═══════════════════════════════════════════════ */
+    function animate() {
+        if (ready && !isPaused && !isHovering) {
+        var spd = SPEED_STEPS[speedIndex];
+
+        /* Track 1: move left */
+        pos1 -= spd;
+        if (pos1 <= -half1) pos1 = 0;
+
+        /* Track 2: move right */
+        pos2 += spd;
+        if (pos2 >= 0) pos2 = -half2;
+
+        track1.style.transform = 'translateX(' + pos1 + 'px)';
+        track2.style.transform = 'translateX(' + pos2 + 'px)';
+        }
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    /* ═══════════════════════════════════════════════
+        CONTROLS
+    ═══════════════════════════════════════════════ */
+    var pauseBtn  = document.getElementById('jgalPauseBtn');
+    var pauseIcon = document.getElementById('jgalPauseIcon');
+    var speedLbl  = document.getElementById('jgalSpeedLabel');
+
+    function updateSpeedLabel() {
+        speedLbl.textContent = SPEED_STEPS[speedIndex].toFixed(1).replace('.0', '') + '×';
+    }
+
+    pauseBtn.addEventListener('click', function () {
+        isPaused = !isPaused;
+        pauseIcon.className = isPaused ? 'fas fa-play' : 'fas fa-pause';
+        pauseBtn.classList.toggle('jgal-active', isPaused);
+    });
+
+    document.getElementById('jgalSlower').addEventListener('click', function () {
+        if (speedIndex > 0) {
+        speedIndex--;
+        updateSpeedLabel();
+        }
+    });
+
+    document.getElementById('jgalFaster').addEventListener('click', function () {
+        if (speedIndex < SPEED_STEPS.length - 1) {
+        speedIndex++;
+        updateSpeedLabel();
+        }
+    });
+
+    /* ── Hover pause ── */
+    var section = document.getElementById('jmsGallerySection');
+
+    section.addEventListener('mouseenter', function () {
+        isHovering = true;
+    });
+    section.addEventListener('mouseleave', function () {
+        isHovering = false;
+    });
+
+    /* ── Touch: swipe to nudge speed ── */
+    var touchStartX = 0;
+    section.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        isHovering  = true;
+    }, { passive: true });
+
+    section.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) {
+        /* Swipe right = slow down, swipe left = speed up */
+        if (dx > 0 && speedIndex > 0)                      speedIndex--;
+        if (dx < 0 && speedIndex < SPEED_STEPS.length - 1) speedIndex++;
+        updateSpeedLabel();
+        }
+        isHovering = false;
+    }, { passive: true });
+
+    })();
+
 });
