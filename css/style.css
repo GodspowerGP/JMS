@@ -1063,18 +1063,18 @@ dl {
 }
 
 .branch-card:hover {
-  transform: translateY(-15px) scale(1.02);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
 }
 
 .branch-card:hover .branch-img img {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .branch-card:hover .branch-icon-wrap {
-  background: var(--accent-orange);
-  color: white;
-  transform: rotate(10deg);
+    background: var(--accent-orange);
+    color: white;
+    transform: rotate(10deg);
 }
 
 .branch-img {
@@ -1109,16 +1109,16 @@ dl {
 }
 
 .branch-info h3 {
-  font-size: 1.5rem;
-  color: var(--primary-blue);
-  margin-bottom: 12px;
+    font-size: 1.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 12px;
 }
 
 .branch-info p {
-  color: var(--text-light);
-  font-size: 0.95rem;
-  margin-bottom: 20px;
-  line-height: 1.5;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
 }
 
 .branch-icon-wrap {
@@ -1130,7 +1130,7 @@ dl {
   align-items: center;
   justify-content: center;
   margin: -70px auto 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   color: var(--accent-orange);
   font-size: 1.25rem;
   transition: all 0.4s ease;
@@ -1146,13 +1146,13 @@ dl {
 }
 
 .branch-phone i {
-  color: var(--accent-orange);
-  opacity: 0.7;
-  margin-right: 5px;
+    color: var(--accent-orange);
+    opacity: 0.7;
+    margin-right: 5px;
 }
 
 .branch-phone:hover {
-  color: var(--primary-blue);
+    color: var(--primary-blue);
 }
 
 .branch-link {
@@ -1167,8 +1167,8 @@ dl {
 }
 
 .branch-link:hover {
-  opacity: 1;
-  transform: translateX(5px);
+    opacity: 1;
+    transform: translateX(5px);
 }
 
 /* ══════════════════════════════════════════════
