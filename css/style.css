@@ -476,6 +476,7 @@ dl {
   font-size: 1.1rem;
   margin-top: 0;
   margin-bottom: 4rem;
+  color: gray;
 }
 
 .dropdown-menu-custom a.active {
@@ -2901,6 +2902,14 @@ font-size: .85rem; padding: 5px 20px; border-radius: 50px; display: inline-block
   line-height: 1.75;
 }
 
+.ach-header-desc2 {
+  color: rgba(255, 255, 255, 0.55);
+  max-width: 800px;
+  margin: 0 auto 44px;
+  font-size: 0.97rem;
+  line-height: 1.75;
+}
+
 /* Stats row */
 .ach-stats {
   display: flex;
@@ -3491,7 +3500,7 @@ GALLERY SECTION — scoped .jgal- prefix
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 80px;
+  width: 50px;
   z-index: 10;
   pointer-events: none;
 }

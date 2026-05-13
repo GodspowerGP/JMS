@@ -1,7 +1,100 @@
 document.addEventListener('DOMContentLoaded', () => {
+    "use strict";
+
+    // ABOUT PAGE JS
+    (function () {
+        'use strict';
+
+        /* ── Proper Scroll Reveal ─────────────────────────── */
+        var revealEls = document.querySelectorAll('.ap-up, .ap-left, .ap-right');
+        var revealObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(function (el) { revealObs.observe(el); });
+
+        /* Trigger hero elements immediately after paint */
+        requestAnimationFrame(function () {
+            document.querySelectorAll('.ap-hero .ap-up').forEach(function (el) { el.classList.add('visible'); });
+        });
+
+        /* ── Counter Animation ─────────────────────── */
+        var statEls = document.querySelectorAll('.ap-stat-num[data-target]');
+        var counted = false;
+
+        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+        function animateCounters() {
+            if (counted) return;
+            counted = true;
+            var DURATION = 1800;
+            var t0 = performance.now();
+            (function tick(now) {
+            var p = Math.min((now - t0) / DURATION, 1);
+            var e = easeOut(p);
+            statEls.forEach(function (el) {
+                var tgt = parseInt(el.getAttribute('data-target'), 10);
+                var suffix = el.getAttribute('data-suffix') || '';
+                el.textContent = (tgt >= 1000)
+                ? Math.round(e * (tgt / 1000)) + 'K' + suffix
+                : Math.round(e * tgt) + suffix;
+            });
+            if (p < 1) requestAnimationFrame(tick);
+            })(t0);
+        }
+
+        var statsEl = document.getElementById('apStatsSection');
+        if (statsEl) {
+            new IntersectionObserver(function (entries) {
+            if (entries[0].isIntersecting) { animateCounters(); }
+            }, { threshold: 0.3 }).observe(statsEl);
+        }
+
+        /* ── Timeline Drag Scroll ──────────────────── */
+        var tml = document.getElementById('apTmlScroll');
+        var STEP = 250;
+        var dragging = false;
+        var startX = 0;
+        var scrollL = 0;
+
+        if (tml) {
+            tml.addEventListener('mousedown', function (e) {
+            dragging = true; startX = e.clientX; scrollL = tml.scrollLeft;
+            tml.style.cursor = 'grabbing';
+            });
+            window.addEventListener('mousemove', function (e) {
+            if (!dragging) return;
+            tml.scrollLeft = scrollL - (e.clientX - startX);
+            });
+            window.addEventListener('mouseup', function () {
+            dragging = false; tml.style.cursor = 'grab';
+            });
+            tml.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; scrollL = tml.scrollLeft; }, { passive: true });
+            tml.addEventListener('touchmove', function (e) { tml.scrollLeft = scrollL - (e.touches[0].clientX - startX); }, { passive: true });
+        }
+
+        function smoothScroll(container, to, ms) {
+            var from = container.scrollLeft;
+            var diff = to - from;
+            var t0 = performance.now();
+            (function step(now) {
+            var p = Math.min((now - t0) / ms, 1);
+            var e = p < .5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
+            container.scrollLeft = from + diff * e;
+            if (p < 1) requestAnimationFrame(step);
+            })(t0);
+        }
+
+        var btnPrev = document.getElementById('apTmlPrev');
+        var btnNext = document.getElementById('apTmlNext');
+        if (btnPrev && tml) btnPrev.addEventListener('click', function () { smoothScroll(tml, tml.scrollLeft - STEP, 420); });
+        if (btnNext && tml) btnNext.addEventListener('click', function () { smoothScroll(tml, tml.scrollLeft + STEP, 420); });
+
+    })();
     
     /* ══════════════════════════════════════════════
-       NAVBAR SCROLL EFFECT
+        NAVBAR SCROLL EFFECT
        ══════════════════════════════════════════════ */
     const mainNav = document.getElementById('mainNav');
     
@@ -14,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ══════════════════════════════════════════════
-       MOBILE MENU TOGGLE
+        MOBILE MENU TOGGLE
        ══════════════════════════════════════════════ */
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -59,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ══════════════════════════════════════════════
-       HERO CAROUSEL LOGIC
+        HERO CAROUSEL LOGIC
        ══════════════════════════════════════════════ */
     const slides = document.querySelectorAll('.carousel-slide');
     const dots = document.querySelectorAll('.dot');
@@ -118,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startInterval();
 
     /* ══════════════════════════════════════════════
-       LEADERSHIP CAROUSEL LOGIC
+        LEADERSHIP CAROUSEL LOGIC
        ══════════════════════════════════════════════ */
     const leadSlides = document.querySelectorAll('.leadership-slide');
     const leadThumbs = document.querySelectorAll('.thumb-item');
@@ -163,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ══════════════════════════════════════════════
-       REVEAL ON SCROLL (Intersection Observer)
+        REVEAL ON SCROLL (Intersection Observer)
        ══════════════════════════════════════════════ */
     const revealElements = document.querySelectorAll('[class*="reveal-"]');
     
@@ -181,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => revealObserver.observe(el));
 
     /* ══════════════════════════════════════════════
-       STATS COUNTER ANIMATION
+        STATS COUNTER ANIMATION
        ══════════════════════════════════════════════ */
     const stats = document.querySelectorAll('.stat-number');
     let statsStarted = false;
@@ -218,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ══════════════════════════════════════════════
-       SMOOTH ANCHOR SCROLLING
+        SMOOTH ANCHOR SCROLLING
        ══════════════════════════════════════════════ */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -430,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.50.jpeg', caption: 'Award Trophies',                   w: 370 },
         { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.56 (1).jpeg',                  caption: 'HIASFEST 2026 — Overall Winners',  w: 490 },
         { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.58.jpeg',                            caption: 'Nigeria Teen Authors Prize',        w: 310 },
-        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.53 (1).jpeg', caption: 'JMS Students',                    w: 440 },
+        { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.53 (1).jpeg', caption: 'Lab experiments',                    w: 440 },
         { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.47.jpeg',                            caption: 'Spoken Word Performance',          w: 360 },
         { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.56.jpeg',                         caption: 'Award Ceremony',                   w: 420 },
     ];
