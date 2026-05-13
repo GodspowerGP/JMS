@@ -3832,7 +3832,7 @@ GALLERY SECTION — scoped .jgal- prefix
 /* Story text */
 .ap-story-body p {
   font-family: 'Inter', sans-serif;
-  color: var(--text-muted);
+  color: gray;
   font-size: .96rem;
   line-height: 1.88;
   margin-bottom: 18px;
@@ -3845,7 +3845,7 @@ GALLERY SECTION — scoped .jgal- prefix
   font-family: 'Playfair Display', serif;
   font-size: 1.12rem;
   font-style: italic;
-  color: rgba(255,255,255,.78);
+  color: rgba(54, 54, 54, 0.78);
   line-height: 1.6;
 }
 
