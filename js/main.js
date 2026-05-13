@@ -2,24 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     "use strict";
 
     /* ══════════════════════════════════════════════
-        PRELOADER LOGIC
-       ══════════════════════════════════════════════ */
-    // add class to prevent scroll during loading
-    document.documentElement.classList.add('preloading');
-    document.addEventListener('DOMContentLoaded', function(){
-        document.body.classList.add('preloading');
-    });
-
-    // remove preloader after all resources have loaded
-    window.addEventListener('load', function(){
-        var pre = document.getElementById('preloader');
-        if(!pre) return;
-        pre.classList.add('hidden');
-        document.body.classList.remove('preloading');
-        setTimeout(function(){ if(pre && pre.parentNode) pre.parentNode.removeChild(pre); }, 500);
-    });
-
-    /* ══════════════════════════════════════════════
         ABOUT PAGE JS
        ══════════════════════════════════════════════ */
     (function () {

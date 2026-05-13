@@ -216,7 +216,7 @@ dl {
   color: white;
 }
 .footer-brand-name {
-  font-family: "Playfair Display", serif;
+  /* font-family: "Playfair Display", serif; */
   font-size: 1.2rem;
   font-weight: 800;
   color: #fff;
@@ -3246,7 +3246,7 @@ font-size: .85rem; padding: 5px 20px; border-radius: 50px; display: inline-block
   position: absolute;
   right: -6px;
   bottom: -18px;
-  font-family: "Playfair Display", serif;
+  /* font-family: "Playfair Display", serif; */
   font-size: 4.5rem;
   font-weight: 800;
   color: rgba(201, 162, 39, 0.05);
@@ -3595,7 +3595,7 @@ GALLERY SECTION — scoped .jgal- prefix
 .ap-hero-wm {
   position: absolute;
   right: -30px; bottom: -60px;
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
   font-size: clamp(180px, 26vw, 360px);
   font-weight: 800;
   line-height: 1;
@@ -3798,7 +3798,7 @@ GALLERY SECTION — scoped .jgal- prefix
   color: rgba(0,0,0,.65);
 }
 .ap-since span:last-child {
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
   font-size: 1.55rem;
   font-weight: 800;
   color: #111;
@@ -3843,7 +3843,7 @@ GALLERY SECTION — scoped .jgal- prefix
   border-left: 3px solid var(--gold);
   padding: 6px 0 6px 22px;
   margin: 32px 0 0;
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
   font-size: 1.12rem;
   font-style: italic;
   color: rgba(54, 54, 54, 0.78);
@@ -3910,7 +3910,7 @@ GALLERY SECTION — scoped .jgal- prefix
 .ap-mv-wm {
   position: absolute;
   top: 16px; right: -8px;
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
   font-size: 9rem;
   font-weight: 800;
   color: rgba(201,162,39,.04);
@@ -4014,7 +4014,7 @@ GALLERY SECTION — scoped .jgal- prefix
 .ap-val-num {
   position: absolute;
   top: 12px; right: 18px;
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
   font-size: 3.8rem;
   font-weight: 800;
   color: rgba(201,162,39,.06);
@@ -4157,7 +4157,7 @@ GALLERY SECTION — scoped .jgal- prefix
   position: absolute;
   top: -46px; left: 50%;
   transform: translateX(-50%);
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
   font-size: 1.2rem;
   font-weight: 800;
   color: var(--gold);
@@ -4257,7 +4257,7 @@ GALLERY SECTION — scoped .jgal- prefix
 
 .ap-stat-num {
   display: block;
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
   font-size: clamp(2.4rem, 4.5vw, 3.8rem);
   font-weight: 800;
   color: #111;
@@ -4385,7 +4385,7 @@ GALLERY SECTION — scoped .jgal- prefix
 }
 .ap-why-callout strong {
   display: block;
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
   font-size: 2.2rem;
   font-weight: 800;
   color: #111;
@@ -4559,7 +4559,7 @@ GALLERY SECTION — scoped .jgal- prefix
 }
 
 .blog-title {
-  font-family: 'Playfair Display', serif;
+  /* font-family: 'Playfair Display', serif; */
   font-size: clamp(3rem, 7vw, 5rem);
   line-height: 1;
   font-weight: 800;
