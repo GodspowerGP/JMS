@@ -1,7 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
     "use strict";
 
-    // ABOUT PAGE JS
+    /* ══════════════════════════════════════════════
+        PRELOADER LOGIC
+       ══════════════════════════════════════════════ */
+    // add class to prevent scroll during loading
+    document.documentElement.classList.add('preloading');
+    document.addEventListener('DOMContentLoaded', function(){
+        document.body.classList.add('preloading');
+    });
+
+    // remove preloader after all resources have loaded
+    window.addEventListener('load', function(){
+        var pre = document.getElementById('preloader');
+        if(!pre) return;
+        pre.classList.add('hidden');
+        document.body.classList.remove('preloading');
+        setTimeout(function(){ if(pre && pre.parentNode) pre.parentNode.removeChild(pre); }, 500);
+    });
+
+    /* ══════════════════════════════════════════════
+        ABOUT PAGE JS
+       ══════════════════════════════════════════════ */
     (function () {
         'use strict';
 
@@ -254,24 +274,6 @@ document.addEventListener('DOMContentLoaded', () => {
             showLeadSlide(index);
         });
     });
-
-    /* ══════════════════════════════════════════════
-        REVEAL ON SCROLL (Intersection Observer)
-       ══════════════════════════════════════════════ */
-    const revealElements = document.querySelectorAll('[class*="reveal-"]');
-    
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('reveal-visible');
-            }
-        });
-    }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    revealElements.forEach(el => revealObserver.observe(el));
 
     /* ══════════════════════════════════════════════
         STATS COUNTER ANIMATION
