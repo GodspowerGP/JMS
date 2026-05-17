@@ -4056,7 +4056,7 @@ GALLERY SECTION — scoped .jgal- prefix
    §5  PICTURE GALLERY STRIP (static 3-up)
 ══════════════════════════════════════════ */
 .ap-photo-strip {
-  background: var(--primary-blue-2);
+  /* background: var(--primary-blue-1); */
   padding: 80px 0;
 }
 
