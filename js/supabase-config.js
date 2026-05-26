@@ -12,8 +12,8 @@
  *  ⚠️  NEVER commit your service_role key here — anon key only!
  */
 
-const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL';       // e.g. https://xyzxyz.supabase.co
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';     // starts with eyJh...
+const SUPABASE_URL = 'https://puofqlazzsjcbsiucuie.supabase.co';       // e.g. https://xyzxyz.supabase.co
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB1b2ZxbGF6enNqY2JzaXVjdWllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3OTc1NzMsImV4cCI6MjA5NTM3MzU3M30.fxuOs0MukHeWqKB-RgMevjgdmE30-dMyMmDPr4Abrm0';     // starts with eyJh...
 
 // ─── Create the shared Supabase client (loaded via CDN) ───────────────────────
 const { createClient } = supabase;

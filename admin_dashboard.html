@@ -3,394 +3,767 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Admin Dashboard | Jewel Model Schools</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Quill Editor -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --primary-color: #0a2540;
-            --secondary-color: #f97316;
-            --success-color: #198754;
-            --danger-color: #dc3545;
-            --warning-color: #ffc107;
-            --info-color: #0dcaf0;
+            --primary:   #0a2540;
+            --orange:    #f97316;
+            --gold:      #fbbf24;
+            --success:   #22c55e;
+            --danger:    #ef4444;
+            --warning:   #f59e0b;
+            --info:      #06b6d4;
+            --bg:        #f0f4f9;
+            --card-bg:   #ffffff;
+            --border:    #e2e8f0;
+            --text:      #1e293b;
+            --muted:     #64748b;
+            --sidebar-w: 260px;
         }
-        
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: var(--bg);
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
             min-height: 100vh;
-            padding: 2rem 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .header {
-            margin-bottom: 2rem;
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        .header h1 {
-            color: #2c3e50;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .header p {
-            color: #7f8c8d;
-            font-size: 0.95rem;
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            border-left: 4px solid var(--primary-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-        }
-
-        .stat-card.success {
-            border-left-color: var(--success-color);
-        }
-
-        .stat-card.warning {
-            border-left-color: var(--warning-color);
-        }
-
-        .stat-card.danger {
-            border-left-color: var(--danger-color);
-        }
-
-        .stat-card.info {
-            border-left-color: var(--info-color);
-        }
-
-        .stat-card-label {
-            color: #7f8c8d;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
+        /* ══ TOP NAV ══════════════════════════════════════ */
+        .top-nav {
+            background: var(--primary);
+            color: white;
+            padding: 0 24px;
+            height: 64px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
         }
 
-        .stat-card-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #2c3e50;
-        }
-
-        .form-section {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        .form-section h2 {
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
+        .top-nav-brand {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 12px;
         }
 
-        .form-section h2 i {
-            color: var(--primary-color);
+        .top-nav-brand img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.3);
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            color: #2c3e50;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .form-control,
-        .form-select,
-        textarea {
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 0.75rem;
-            font-size: 0.95rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-control:focus,
-        .form-select:focus,
-        textarea:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
-            outline: none;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 200px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .btn-custom {
-            padding: 0.75rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary-custom {
-            background: var(--primary-color);
+        .top-nav-brand-text h2 {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1;
             color: white;
         }
 
-        .btn-primary-custom:hover {
-            background: #0b5ed7;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+        .top-nav-brand-text span {
+            font-size: 11px;
+            color: rgba(255,255,255,0.55);
+            font-weight: 400;
         }
 
-        .btn-secondary-custom {
-            background: #f0f0f0;
-            color: #2c3e50;
-        }
-
-        .btn-secondary-custom:hover {
-            background: #e0e0e0;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .success-message {
-            display: none;
-            background: #d4edda;
-            color: #155724;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--success-color);
-        }
-
-        .success-message.show {
-            display: block;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .badge-custom {
-            display: inline-block;
-            padding: 0.35rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
-        .badge-primary {
-            background: rgba(13, 110, 253, 0.1);
-            color: var(--primary-color);
-        }
-
-        .recent-blogs {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            margin-top: 2rem;
-        }
-
-        .recent-blogs h3 {
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .blog-item {
-            padding: 1rem;
-            border-bottom: 1px solid #f0f0f0;
+        .top-nav-right {
             display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .admin-chip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 40px;
+            padding: 6px 14px 6px 6px;
+        }
+
+        .admin-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange), var(--gold));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            color: white;
+        }
+
+        .admin-chip-info { line-height: 1.2; }
+        .admin-chip-name { font-size: 13px; font-weight: 600; color: white; }
+        .admin-chip-role {
+            font-size: 11px;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .btn-logout {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.8);
+            border-radius: 8px;
+            padding: 7px 14px;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-logout:hover {
+            background: rgba(239,68,68,0.2);
+            border-color: rgba(239,68,68,0.4);
+            color: #fca5a5;
+        }
+
+        /* ══ PAGE BODY ════════════════════════════════════ */
+        .page-body {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 28px 20px 60px;
+        }
+
+        .page-header {
+            margin-bottom: 28px;
+        }
+
+        .page-header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .page-header p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        /* ══ STAT CARDS ═══════════════════════════════════ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.09); }
+        .stat-card.s-success { border-left-color: var(--success); }
+        .stat-card.s-warning { border-left-color: var(--warning); }
+        .stat-card.s-info    { border-left-color: var(--info);    }
+
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .stat-card .stat-icon         { background: rgba(10,37,64,0.08);  color: var(--primary); }
+        .stat-card.s-success .stat-icon { background: rgba(34,197,94,0.1);  color: var(--success); }
+        .stat-card.s-warning .stat-icon { background: rgba(245,158,11,0.1); color: var(--warning); }
+        .stat-card.s-info    .stat-icon { background: rgba(6,182,212,0.1);  color: var(--info);    }
+
+        .stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); font-weight: 600; }
+        .stat-value { font-size: 28px; font-weight: 700; color: var(--text); line-height: 1; margin-top: 2px; }
+
+        /* ══ SECTION CARD ═════════════════════════════════ */
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            margin-bottom: 24px;
+        }
+
+        .section-card-header {
+            display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: start;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .blog-item:last-child {
-            border-bottom: none;
+        .section-card-header h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .blog-info h4 {
-            color: #2c3e50;
-            font-size: 0.95rem;
-            margin: 0 0 0.5rem 0;
+        .section-card-header h2 i { color: var(--orange); }
+
+        /* ══ FORM ELEMENTS ════════════════════════════════ */
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        @media (max-width: 640px) { .form-grid-2 { grid-template-columns: 1fr; } }
+
+        .form-group { margin-bottom: 18px; }
+
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .form-control, .form-select {
+            width: 100%;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: #fafafa;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(249,115,22,0.12);
+            background: white;
+            outline: none;
+        }
+
+        /* ── Quill Editor ── */
+        .quill-wrapper {
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .quill-wrapper:focus-within { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(249,115,22,0.12); }
+
+        .quill-wrapper .ql-toolbar { border: none; border-bottom: 1px solid var(--border); background: #f8fafc; }
+        .quill-wrapper .ql-container { border: none; font-family: 'Inter', sans-serif; font-size: 14px; }
+        .quill-wrapper .ql-editor { min-height: 240px; padding: 16px; }
+        .quill-wrapper .ql-editor.ql-blank::before { color: #9ca3af; font-style: normal; }
+
+        /* Image preview */
+        .img-preview-wrap { margin-top: 10px; }
+        #image-preview {
+            max-width: 200px;
+            max-height: 140px;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            display: none;
+            object-fit: cover;
+        }
+
+        /* ── Form error ── */
+        #form-error {
+            display: none;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-left: 4px solid var(--danger);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--danger);
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+        /* ── Buttons ── */
+        .btn-jms-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
+            background: linear-gradient(135deg, var(--primary), #1a4f80);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-jms-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(10,37,64,0.25); }
+        .btn-jms-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .btn-jms-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
+            background: #f1f5f9;
+            color: var(--muted);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-jms-secondary:hover { background: #e2e8f0; color: var(--text); }
+
+        /* ── Toggle / Checkbox ── */
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 0;
+        }
+
+        .form-check-input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--orange);
+        }
+
+        /* ══ POSTS TABLE ══════════════════════════════════ */
+        .posts-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .search-box {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 9px 12px 9px 36px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+            transition: border-color 0.2s;
+        }
+        .search-box input:focus { border-color: var(--orange); outline: none; background: white; }
+
+        .post-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            margin-bottom: 8px;
+            background: #fafafa;
+            transition: background 0.15s, box-shadow 0.15s;
+        }
+        .post-row:hover { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+
+        .post-row-main { flex: 1; min-width: 0; }
+
+        .post-row-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .post-row-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .post-row-meta span { display: flex; align-items: center; gap: 4px; }
+        .post-row-meta em { color: var(--orange); font-style: normal; font-weight: 600; }
+
+        .blog-tag-sm {
+            background: rgba(249,115,22,0.1);
+            color: var(--orange);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 11px;
             font-weight: 600;
         }
 
-        .blog-info p {
-            color: #7f8c8d;
-            font-size: 0.85rem;
-            margin: 0;
-        }
-
-        .blog-tag {
-            background: rgba(13, 110, 253, 0.1);
-            color: var(--primary-color);
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
+        .badge-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 11px;
             font-weight: 600;
         }
+        .badge-status.published { background: rgba(34,197,94,0.1); color: var(--success); }
+        .badge-status.published i { font-size: 8px; }
+        .badge-status.draft     { background: rgba(245,158,11,0.1); color: var(--warning); }
+        .badge-status.draft     i { font-size: 8px; }
+
+        .featured-star { color: #d1d5db; cursor: pointer; font-size: 14px; }
+        .featured-star.active { color: var(--gold); }
+
+        .post-row-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.15s;
+            color: var(--muted);
+        }
+        .action-btn:hover        { transform: translateY(-1px); }
+        .action-btn.edit-btn:hover   { background: var(--primary); color: white; border-color: var(--primary); }
+        .action-btn.feat-btn:hover   { background: #fef3c7; color: var(--gold); border-color: var(--gold); }
+        .action-btn.delete-btn:hover { background: #fef2f2; color: var(--danger); border-color: var(--danger); }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+        }
+        .empty-state i { font-size: 36px; margin-bottom: 12px; opacity: 0.4; display: block; }
+        .empty-state p { font-size: 14px; }
+
+        /* ══ TOAST ════════════════════════════════════════ */
+        .toast-notification {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            transform: translateY(80px);
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 9999;
+            max-width: 340px;
+        }
+        .toast-notification.show { transform: translateY(0); opacity: 1; }
+        .toast-notification.success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; }
+        .toast-notification.error   { background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; }
+        .toast-notification::before {
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            font-size: 15px;
+        }
+        .toast-notification.success::before { content: '\f058'; }
+        .toast-notification.error::before   { content: '\f06a'; }
+
+        /* ══ DELETE MODAL ════════════════════════════════ */
+        .modal-content { border-radius: 16px; border: none; }
+        .modal-header  { border-bottom: 1px solid var(--border); padding: 20px 24px; }
+        .modal-body    { padding: 24px; }
+        .modal-footer  { border-top: 1px solid var(--border); padding: 16px 24px; }
+        .btn-danger-jms {
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 22px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-danger-jms:hover { background: #dc2626; transform: translateY(-1px); }
 
         @media (max-width: 768px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .stat-card-value {
-                font-size: 1.5rem;
-            }
+            .top-nav { padding: 0 16px; }
+            .admin-chip-info { display: none; }
+            .page-body { padding: 20px 14px 60px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <!-- Header -->
-        <div class="header">
-            <h1><i class="fas fa-pen-fancy"></i>Admin Dashboard</h1>
-            <p>Manage and publish your blog content</p>
-        </div>
 
-        <!-- Dashboard Stats -->
-        <div class="dashboard-grid">
-            <div class="stat-card">
-                <div class="stat-card-label">
-                    <i class="fas fa-file-alt"></i> Total Posts
-                </div>
-                <div class="stat-card-value" id="total-posts">0</div>
-            </div>
-            <div class="stat-card success">
-                <div class="stat-card-label">
-                    <i class="fas fa-check-circle"></i> Published
-                </div>
-                <div class="stat-card-value" id="published-posts">0</div>
-            </div>
-            <div class="stat-card warning">
-                <div class="stat-card-label">
-                    <i class="fas fa-clock"></i> Drafts
-                </div>
-                <div class="stat-card-value" id="draft-posts">0</div>
-            </div>
-            <div class="stat-card info">
-                <div class="stat-card-label">
-                    <i class="fas fa-tag"></i> Total Tags
-                </div>
-                <div class="stat-card-value" id="total-tags">0</div>
+<!-- ══ TOP NAVIGATION ══════════════════════════════════════════════════════ -->
+<nav class="top-nav">
+    <div class="top-nav-brand">
+        <img src="images/logo.png" alt="JMS Logo">
+        <div class="top-nav-brand-text">
+            <h2>Jewel Model Schools</h2>
+            <span>Admin Dashboard</span>
+        </div>
+    </div>
+    <div class="top-nav-right">
+        <!-- Admin info chip -->
+        <div class="admin-chip">
+            <div class="admin-avatar" id="admin-avatar">A</div>
+            <div class="admin-chip-info">
+                <div class="admin-chip-name" id="admin-name">Loading…</div>
+                <div class="admin-chip-role" id="admin-role">Admin</div>
             </div>
         </div>
+        <!-- Logout -->
+        <button class="btn-logout" id="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="d-none d-sm-inline">Logout</span>
+        </button>
+    </div>
+</nav>
 
-        <!-- Blog Form Section -->
-        <div class="form-section">
-            <h2><i class="fas fa-plus-circle"></i> Add New Blog Post</h2>
-            
-            <div class="success-message" id="success-message">
-                <i class="fas fa-check-circle"></i> Blog post added successfully!
+<!-- ══ PAGE BODY ═══════════════════════════════════════════════════════════ -->
+<div class="page-body">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1><i class="fas fa-tachometer-alt" style="color:var(--orange); margin-right:8px;"></i>Dashboard</h1>
+        <p>Manage blog posts, view stats, and update site content.</p>
+    </div>
+
+    <!-- ── Stats Grid ─────────────────────────────────────── -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+            <div>
+                <div class="stat-label">Total Posts</div>
+                <div class="stat-value" id="total-posts">—</div>
             </div>
-
-            <form id="blog-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="blog-title">Blog Title *</label>
-                        <input type="text" class="form-control" id="blog-title" placeholder="Enter blog title" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="blog-tag">Tag *</label>
-                        <input type="text" class="form-control" id="blog-tag" placeholder="e.g., Technology, Business">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="blog-body">Blog Body *</label>
-                    <textarea class="form-control" id="blog-body" placeholder="Write your blog content here..." required></textarea>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="formFile" class="form-label">Upload Picture *</label>
-                        <input class="form-control" type="file" id="formFile" required accept="image/*">
-                    </div>
-                    <div class="form-group">
-                        <label for="blog-author">Author Name *</label>
-                        <input type="text" class="form-control" id="blog-author" required placeholder="Your name">
-                    </div>
-                </div>
-
-                <div style="display: flex; gap: 1rem;">
-                    <button type="submit" class="btn-custom btn-primary-custom">
-                        <i class="fas fa-save"></i> Publish Post
-                    </button>
-                    <button type="reset" class="btn-custom btn-secondary-custom">
-                        <i class="fas fa-redo"></i> Clear Form
-                    </button>
-                </div>
-            </form>
         </div>
-
-        <!-- Recent Blogs -->
-        <div class="recent-blogs">
-            <h3><i class="fas fa-history"></i> Recent Posts</h3>
-            <div id="recent-blogs-list">
-                <p style="color: #7f8c8d; text-align: center; padding: 2rem;">No posts yet. Create your first blog post!</p>
+        <div class="stat-card s-success">
+            <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+            <div>
+                <div class="stat-label">Published</div>
+                <div class="stat-value" id="published-posts">—</div>
+            </div>
+        </div>
+        <div class="stat-card s-warning">
+            <div class="stat-icon"><i class="fas fa-clock"></i></div>
+            <div>
+                <div class="stat-label">Drafts</div>
+                <div class="stat-value" id="draft-posts">—</div>
+            </div>
+        </div>
+        <div class="stat-card s-info">
+            <div class="stat-icon"><i class="fas fa-tag"></i></div>
+            <div>
+                <div class="stat-label">Unique Tags</div>
+                <div class="stat-value" id="total-tags">—</div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- ── Blog Post Form ─────────────────────────────────── -->
+    <div class="section-card">
+        <div class="section-card-header">
+            <h2 id="form-heading"><i class="fas fa-plus-circle"></i> Add New Blog Post</h2>
+            <a href="blog.html" target="_blank" class="btn-jms-secondary" style="font-size:12px; padding:7px 14px;">
+                <i class="fas fa-external-link-alt"></i> View Blog
+            </a>
+        </div>
+
+        <!-- Form Error -->
+        <div id="form-error"></div>
+
+        <!-- Hidden field for current image when editing -->
+        <input type="hidden" id="current-image-url">
+
+        <form id="blog-form" novalidate>
+
+            <!-- Row 1: Title + Tag -->
+            <div class="form-grid-2">
+                <div class="form-group">
+                    <label class="form-label" for="blog-title">Blog Title *</label>
+                    <input type="text" class="form-control" id="blog-title" placeholder="Enter an engaging title…" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="blog-tag">Category / Tag</label>
+                    <input type="text" class="form-control" id="blog-tag" placeholder="e.g. Achievements, Events, Academics">
+                </div>
+            </div>
+
+            <!-- Blog Body — Quill Editor -->
+            <div class="form-group">
+                <label class="form-label">Blog Content *</label>
+                <div class="quill-wrapper">
+                    <div id="quill-editor"></div>
+                </div>
+            </div>
+
+            <!-- Row 2: Image + Status -->
+            <div class="form-grid-2">
+                <div class="form-group">
+                    <label class="form-label" for="formFile">Cover Image</label>
+                    <input class="form-control" type="file" id="formFile" accept="image/*">
+                    <div class="img-preview-wrap">
+                        <img id="image-preview" src="" alt="Preview">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="blog-status">Status</label>
+                    <select class="form-select" id="blog-status">
+                        <option value="published">Published</option>
+                        <option value="draft">Save as Draft</option>
+                    </select>
+
+                    <div class="toggle-row mt-3">
+                        <input type="checkbox" class="form-check-input" id="blog-featured">
+                        <label class="form-label mb-0" for="blog-featured">
+                            <i class="fas fa-star" style="color:var(--gold);"></i>
+                            Mark as Featured Post
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+                <button type="submit" class="btn-jms-primary" id="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Publish Post
+                </button>
+                <button type="button" class="btn-jms-secondary" id="cancel-edit-btn" style="display:none;">
+                    <i class="fas fa-times"></i> Cancel Edit
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ── Recent Posts ───────────────────────────────────── -->
+    <div class="section-card">
+        <div class="section-card-header">
+            <h2><i class="fas fa-list-ul"></i> All Blog Posts</h2>
+        </div>
+
+        <!-- Search -->
+        <div class="posts-toolbar">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="posts-search" placeholder="Search posts by title or tag…">
+            </div>
+        </div>
+
+        <!-- Posts List -->
+        <div id="recent-blogs-list">
+            <div class="empty-state">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading posts…</p>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /page-body -->
+
+<!-- ══ DELETE CONFIRMATION MODAL ══════════════════════════════════════════ -->
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="font-weight:700; color:var(--danger);">
+                    <i class="fas fa-exclamation-triangle me-2"></i>Delete Post?
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p style="color:var(--muted); font-size:14px; margin:0;">
+                    You are about to permanently delete:
+                </p>
+                <p id="delete-post-title" style="font-weight:600; margin-top:8px; color:var(--text);"></p>
+                <p style="color:var(--danger); font-size:13px; margin-top:8px;">
+                    <i class="fas fa-info-circle"></i>
+                    This action cannot be undone. The post and its image will be removed.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-jms-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn-danger-jms" id="confirm-delete-btn">
+                    <i class="fas fa-trash me-1"></i> Delete Permanently
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ══ TOAST NOTIFICATION ════════════════════════════════════════════════ -->
+<div class="toast-notification" id="toast-notification">
+    <span id="toast-msg"></span>
+</div>
+
+<!-- ══ SCRIPTS ════════════════════════════════════════════════════════════ -->
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<!-- Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Quill JS -->
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+<!-- JMS Scripts -->
+<script src="js/supabase-config.js"></script>
+<script src="js/admin.js"></script>
+
 </body>
 </html>
