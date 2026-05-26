@@ -4806,3 +4806,8 @@ GALLERY SECTION — scoped .jgal- prefix
     padding: 50px 25px;
   }
 }
+
+/* button interactivity */
+button:active, a:active {
+  scale: 0.98;
+}
