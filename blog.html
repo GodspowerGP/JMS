@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jewel Model Schools | Second to None</title>
-    <meta name="description"
-        content="Jewel Model Schools - Raising academically sound, morally upright, and globally competitive students since 1996. Located in Kubwa, Abuja.">
-    <meta name="keywords" content="Jewel Model Schools, JMS, Kubwa, Abuja, best school Nigeria, private school Abuja">
+    <title>The Jewel Blog | Jewel Model Schools</title>
+    <meta name="description" content="Stay updated with school events, student achievements, academic insights, and inspiring stories from Jewel Model Schools, Kubwa, Abuja.">
+    <meta name="keywords" content="Jewel Model Schools blog, JMS news, Kubwa Abuja school updates">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/logo.png">
@@ -15,9 +14,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700;800&family=Montserrat:wght@600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 
     <!-- Bootstrap & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,6 +22,108 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css?v=2">
+
+    <style>
+        /* ── Skeleton Loaders ──────────────────────────────────── */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 6px;
+        }
+        @keyframes shimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .skeleton-card { overflow: hidden; }
+        .skeleton-img  { height: 200px; border-radius: 12px 12px 0 0; width: 100%; margin-bottom: 0; }
+        .skeleton-line { height: 14px; margin-bottom: 10px; }
+        .skeleton-line.short  { width: 40%; }
+        .skeleton-line.medium { width: 70%; }
+
+        /* ── Featured Meta ─────────────────────────────────────── */
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 13px;
+            color: #64748b;
+        }
+        .featured-meta span { display: flex; align-items: center; gap: 5px; }
+        .featured-meta .blog-tag { margin: 0; }
+
+        /* ── Featured Image Placeholder ────────────────────────── */
+        .featured-img-placeholder {
+            width: 100%;
+            height: 300px;
+            background: #f0f4f9;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #cbd5e1;
+            font-size: 48px;
+        }
+
+        /* ── Blog Image Placeholder ────────────────────────────── */
+        .blog-img-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #f0f4f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #cbd5e1;
+            font-size: 36px;
+        }
+
+        /* ── Empty / Error States ──────────────────────────────── */
+        .blog-empty,
+        .blog-error {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+            grid-column: 1 / -1;
+            width: 100%;
+        }
+        .blog-empty i, .blog-error i {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 14px;
+            opacity: 0.4;
+        }
+        .blog-error { color: #ef4444; }
+
+        /* ── Load More ─────────────────────────────────────────── */
+        .load-more-wrap {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0 40px;
+        }
+
+        #load-more-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 32px;
+            border-radius: 50px;
+            background: #0a2540;
+            color: white;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+            font-family: 'Inter', sans-serif;
+        }
+        #load-more-btn:hover {
+            background: #f97316;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249,115,22,0.3);
+        }
+    </style>
 </head>
 
 <body>
@@ -34,18 +133,15 @@
         <div class="container">
             <div class="top-bar-inner">
                 <div class="top-bar-left">
-                    <a href="mailto:jewelmodel1996@gmail.com"><i class="fas fa-envelope"></i>
-                        jewelmodel1996@gmail.com</a>
-                    <a href="tel:07031586881"><i class="fas fa-phone"></i> 0703 158 6881</a>
+                    <a href="mailto:jewelmodel1996@gmail.com"><i class="fas fa-envelope"></i> jewelmodel1996@gmail.com</a>
+                    <a href="tel:+2348037251044"><i class="fas fa-phone"></i> +234 803 725 1044</a>
+                    <a href="tel:+2348077158439"><i class="fas fa-phone"></i> +234 807 715 8439</a>
                 </div>
                 <div class="top-bar-right">
                     <div class="top-bar-socials">
-                        <a href="https://www.facebook.com/share/1YLq4dXVFD/" target="_blank" aria-label="Facebook"><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/jewel_model_schools_kubwa?igsh=cnc4Zmo4YzF0NXBs"
-                            target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://x.com/JewelAbuja912" target="_blank" aria-label="Twitter"><i
-                                class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.facebook.com/share/1YLq4dXVFD/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/jewel_model_schools_kubwa?igsh=cnc4Zmo4YzF0NXBs" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/JewelAbuja912" target="_blank" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                     </div>
                     <a href="admissions.html" class="portal-link">Enrol Now <i class="fas fa-arrow-right"></i></a>
                 </div>
@@ -53,11 +149,10 @@
         </div>
     </div>
 
-    <!-- ═══ MAIN NAVBAR (Westbourne-style) ═══ -->
+    <!-- ═══ MAIN NAVBAR ═══ -->
     <nav class="main-nav" id="mainNav">
         <div class="container">
             <div class="nav-inner">
-                <!-- Logo -->
                 <a href="index.html" class="nav-logo">
                     <img src="images/logo.png" alt="Jewel Model Schools Logo">
                     <div class="logo-text">
@@ -65,14 +160,11 @@
                         <span class="school-tagline">Second to None</span>
                     </div>
                 </a>
-
-                <!-- Desktop Nav Links -->
                 <ul class="nav-links" id="navLinks">
                     <li><a href="index.html" class="nav-item-link">Home</a></li>
                     <li><a href="about.html" class="nav-item-link">About Us</a></li>
                     <li class="has-dropdown">
-                        <a href="#" class="nav-item-link active">Academics <i class="fas fa-chevron-down"
-                                style="font-size: 0.7rem;"></i></a>
+                        <a href="#" class="nav-item-link active">Academics <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></a>
                         <div class="dropdown-menu-custom">
                             <a href="branches.html">Branches</a>
                             <a href="admissions.html">Admission Info</a>
@@ -82,10 +174,8 @@
                     <li><a href="awards.html" class="nav-item-link">Achievements</a></li>
                     <li><a href="contact.html" class="nav-item-link">Contact Us</a></li>
                 </ul>
-
-                <!-- CTA -->
                 <div class="nav-cta">
-                    <a href="https://www.jewelmodelschools.sch.ng/" class="btn-enrol" target="_blank">School Portal</a>
+                    <a href="https://www.jewelmodelschools.sch.ng/" class="btn-enrol" target="_blank">Result Portal</a>
                     <button class="hamburger" id="hamburger" aria-label="Menu">
                         <span></span><span></span><span></span>
                     </button>
@@ -95,15 +185,12 @@
 
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
-            <button class="mobile-close" id="mobileClose" aria-label="Close Menu">
-                <i class="fas fa-times"></i>
-            </button>
+            <button class="mobile-close" id="mobileClose" aria-label="Close Menu"><i class="fas fa-times"></i></button>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li class="mobile-dropdown">
-                    <span class="mobile-dropdown-toggle active">Academics <i class="fas fa-chevron-down"
-                            style="font-size: 1rem;"></i></span>
+                    <span class="mobile-dropdown-toggle active">Academics <i class="fas fa-chevron-down" style="font-size:1rem;"></i></span>
                     <ul class="mobile-dropdown-menu">
                         <li><a href="branches.html">Branches</a></li>
                         <li><a href="admissions.html">Admission Info</a></li>
@@ -112,327 +199,61 @@
                 </li>
                 <li><a href="awards.html">Achievements</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
-                <li><a href="https://www.jewelmodelschools.sch.ng/" class="mobile-portal-btn" target="_blank">School
-                        Portal</a></li>
+                <li><a href="https://www.jewelmodelschools.sch.ng/" class="mobile-portal-btn" target="_blank">School Portal</a></li>
             </ul>
         </div>
     </nav>
 
     <main>
-
         <!-- ═══ HERO SECTION ═══ -->
         <section class="branches-hero">
             <div class="container">
                 <div class="branches-hero-content">
-                    <span class="section-eyebrow rounded-pill px-3 py-1 d-inline-block mb-3 ap-up">JMS Insights &
-                        Stories</span>
-                    <h2 class="ach-main-title ap-up d1">The Jewel <em>Blog</em></h2>
-                    <p class="ach-header-desc2 ap-up d2">Stay updated with school events, student achievements, academic
-                        insights, competitions, excursions, and inspiring stories from the Jewel Model Schools
-                        community.</p>
+                    <span class="section-eyebrow rounded-pill px-3 py-1 d-inline-block mb-3 ap-up">JMS Insights &amp; Stories</span>
+                    <h1 class="ach-main-title ap-up d1">The Jewel <em>Blog</em></h1>
+                    <p class="ach-header-desc2 ap-up d2">Stay updated with school events, student achievements, academic insights, competitions, excursions, and inspiring stories from the Jewel Model Schools community.</p>
                 </div>
             </div>
         </section>
 
-        <!-- BLOG SECTION -->
+        <!-- ═══ BLOG SECTION ═══ -->
         <section class="blog-section">
             <div class="container">
 
-                <!-- FEATURED POST -->
-                <div class="featured-post ap-mv2 ap-up d1">
-                    <div class="row g-0 align-items-center">
+                <!-- FEATURED POST — injected dynamically -->
+                <div id="featured-post-container"></div>
 
-                        <div class="col-lg-6">
-                            <div class="featured-img d-flex justify-content-center align-items-center p-4">
-                                <img class="img-fluid rounded-5"
-                                    src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.50.jpeg" alt="🖼️">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6">
-                            <div class="featured-content">
-
-                                <span class="featured-badge">
-                                    <i class="fas fa-star"></i>
-                                    Featured Story
-                                </span>
-
-                                <h2 class="featured-title">
-                                    JMS Students Win Big at HIASFEST 2026 🎊
-                                </h2>
-
-                                <p class="featured-text">
-                                    Jewel Model Schools emerged as the overall winner at HIASFEST
-                                    2026, securing multiple awards in poetry, spoken word, drama,
-                                    and creative writing categories.
-                                </p>
-
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <a href="#" class="btn-primary-jms gap-2">Read Full Story</a>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <h2 class="featured-title ap-up d1">
+                <h2 class="featured-title ap-up d1" id="more-stories-heading" style="display:none;">
                     <em>More Stories</em>
                 </h2>
 
-                <!-- BLOG GRID -->
-                <div class="row g-4 py-5">
+                <!-- BLOG GRID — injected dynamically -->
+                <div class="row g-4 py-4" id="blog-grid"></div>
 
-                    <!-- CARD -->
-                    <div class="col-md-6 col-xl-4 ap-up">
-                        <article class="blog-card">
-
-                            <div class="blog-img-wrap">
-                                <span class="blog-tag">Achievements</span>
-                                <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.58 (1).jpeg" alt="">
-                            </div>
-
-                            <div class="blog-content">
-
-                                <div class="blog-meta">
-                                    <span><i class="fas fa-calendar"></i> May 10, 2026</span>
-                                    <span><i class="fas fa-user"></i> Admin</span>
-                                </div>
-
-                                <h3 class="blog-card-title">
-                                    <a href="#">
-                                        JMS Students Sweep National Poetry Competition
-                                    </a>
-                                </h3>
-
-                                <p class="blog-desc">
-                                    Our talented students secured 1st, 2nd, and 3rd positions in the
-                                    National Poetry Showcase held in Abuja.
-                                </p>
-
-                                <a href="#" class="blog-read">
-                                    Read More
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
-
-                            </div>
-
-                        </article>
-                    </div>
-
-                    <!-- CARD -->
-                    <div class="col-md-6 col-xl-4 ap-up d1">
-                        <article class="blog-card">
-
-                            <div class="blog-img-wrap">
-                                <span class="blog-tag">Academics</span>
-                                <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.51.jpeg" alt="">
-                            </div>
-
-                            <div class="blog-content">
-
-                                <div class="blog-meta">
-                                    <span><i class="fas fa-calendar"></i> April 28, 2026</span>
-                                    <span><i class="fas fa-user"></i> Principal</span>
-                                </div>
-
-                                <h3 class="blog-card-title">
-                                    <a href="#">
-                                        How JMS is Preparing Students for a Global Future
-                                    </a>
-                                </h3>
-
-                                <p class="blog-desc">
-                                    Discover how our ICT, leadership, and innovation programmes are
-                                    equipping students for tomorrow's opportunities.
-                                </p>
-
-                                <a href="#" class="blog-read">
-                                    Read More
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
-
-                            </div>
-
-                        </article>
-                    </div>
-
-                    <!-- CARD -->
-                    <div class="col-md-6 col-xl-4 ap-up d2">
-                        <article class="blog-card">
-
-                            <div class="blog-img-wrap">
-                                <span class="blog-tag">Events</span>
-                                <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.31.07.jpeg" alt="">
-                            </div>
-
-                            <div class="blog-content">
-
-                                <div class="blog-meta">
-                                    <span><i class="fas fa-calendar"></i> April 15, 2026</span>
-                                    <span><i class="fas fa-user"></i> Media Team</span>
-                                </div>
-
-                                <h3 class="blog-card-title">
-                                    <a href="#">
-                                        Highlights from the 2026 Inter-House Sports Festival
-                                    </a>
-                                </h3>
-
-                                <p class="blog-desc">
-                                    From relay races to cultural displays, this year's sports festival
-                                    was packed with excitement and unforgettable memories.
-                                </p>
-
-                                <a href="#" class="blog-read">
-                                    Read More
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
-
-                            </div>
-
-                        </article>
-                    </div>
-
-                    <!-- CARD -->
-                    <div class="col-md-6 col-xl-4 ap-up">
-                        <article class="blog-card">
-
-                            <div class="blog-img-wrap">
-                                <span class="blog-tag">Student Life</span>
-                                <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.50 (1).jpeg" alt="">
-                            </div>
-
-                            <div class="blog-content">
-
-                                <div class="blog-meta">
-                                    <span><i class="fas fa-calendar"></i> March 30, 2026</span>
-                                    <span><i class="fas fa-user"></i> Admin</span>
-                                </div>
-
-                                <h3 class="blog-card-title">
-                                    <a href="#">
-                                        A Day in the Life of a JMS Student
-                                    </a>
-                                </h3>
-
-                                <p class="blog-desc">
-                                    Step inside the daily experience of students at Jewel Model
-                                    Schools — academics, creativity, sports, and leadership.
-                                </p>
-
-                                <a href="#" class="blog-read">
-                                    Read More
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
-
-                            </div>
-
-                        </article>
-                    </div>
-
-                    <!-- CARD -->
-                    <div class="col-md-6 col-xl-4 ap-up d1">
-                        <article class="blog-card">
-                            
-                            <div class="blog-img-wrap">
-                                <span class="blog-tag">Competitions</span>
-                                <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.59 (1).jpeg" alt="">
-                            </div>
-                            
-                            <div class="blog-content">
-                                
-                                <div class="blog-meta">
-                                    <span><i class="fas fa-calendar"></i> March 12, 2026</span>
-                                    <span><i class="fas fa-user"></i> Media Team</span>
-                                </div>
-                                
-                                <h3 class="blog-card-title">
-                                    <a href="#">
-                                        JMS Debate Team Advances to National Finals
-                                    </a>
-                                </h3>
-                                
-                                <p class="blog-desc">
-                                    Our debate team delivered an outstanding performance at the Abuja
-                                    regional qualifiers to secure a national finals spot.
-                                </p>
-                                
-                                <a href="#" class="blog-read">
-                                    Read More
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
-
-                            </div>
-
-                        </article>
-                    </div>
-                    
-                    <!-- CARD -->
-                    <div class="col-md-6 col-xl-4 ap-up d2">
-                        <article class="blog-card">
-                            
-                            <div class="blog-img-wrap">
-                                <span class="blog-tag">Achievements</span>
-                                <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.50.jpeg" alt="">
-                            </div>
-                            
-                            <div class="blog-content">
-
-                                <div class="blog-meta">
-                                    <span><i class="fas fa-calendar"></i> February 18, 2026</span>
-                                    <span><i class="fas fa-user"></i> Admin</span>
-                                </div>
-
-                                <h3 class="blog-card-title">
-                                    <a href="#">
-                                        Celebrating Excellence Across All Campuses
-                                    </a>
-                                </h3>
-
-                                <p class="blog-desc">
-                                    Students and teachers were recognised for exceptional performance,
-                                    leadership, innovation, and discipline this term.
-                                </p>
-
-                                <a href="#" class="blog-read">
-                                    Read More
-                                    <i class="fas fa-arrow-right"></i>
-                                </a>
-
-                            </div>
-
-                        </article>
-                    </div>
-
+                <!-- LOAD MORE -->
+                <div class="load-more-wrap">
+                    <button id="load-more-btn" style="display:none;">
+                        <i class="fas fa-plus-circle"></i> Load More Stories
+                    </button>
                 </div>
 
                 <hr>
 
                 <!-- NEWSLETTER -->
                 <div class="newsletter-box ap-up d2">
-
-                    <h2 class="newsletter-title">
-                        Never Miss an Update
-                    </h2>
-
+                    <h2 class="newsletter-title">Never Miss an Update</h2>
                     <p class="newsletter-text">
                         Subscribe to receive the latest news, announcements, school events,
                         achievements, and blog stories directly from Jewel Model Schools.
                     </p>
-
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Enter your email address">
+                    <form class="newsletter-form" id="newsletter-form">
+                        <input type="email" placeholder="Enter your email address" required>
                         <button type="submit" class="btn-primary-jms gap-2">Subscribe Now</button>
                     </form>
-
                 </div>
 
             </div>
         </section>
-
     </main>
 
     <!-- ═══ FOOTER ═══ -->
@@ -441,15 +262,11 @@
             <div class="row">
                 <div class="footer-brand col-12 col-xl-4 mb-5 mb-xl-0">
                     <img src="images/logo.png" alt="JMS Logo">
-                    <p>Jewel Model Schools is dedicated to providing a holistic education that prepares students for
-                        leadership and global success since 1996.</p>
+                    <p>Jewel Model Schools is dedicated to providing a holistic education that prepares students for leadership and global success since 1996.</p>
                     <div class="footer-socials">
-                        <a href="https://www.facebook.com/share/1YLq4dXVFD/" aria-label="Facebook"><i
-                                class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/jewel_model_schools_kubwa?igsh=cnc4Zmo4YzF0NXBs"
-                            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://x.com/JewelAbuja912" aria-label="Twitter"><i
-                                class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.facebook.com/share/1YLq4dXVFD/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/jewel_model_schools_kubwa?igsh=cnc4Zmo4YzF0NXBs" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/JewelAbuja912" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
                     </div>
                 </div>
                 <div class="footer-col col-12 col-md-6 col-xl-2">
@@ -458,7 +275,6 @@
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="branches.html">Our Campuses</a></li>
                         <li><a href="awards.html">Achievements</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="admissions.html">Admissions</a></li>
                     </ul>
                 </div>
@@ -473,10 +289,9 @@
                     </ul>
                 </div>
                 <div class="footer-col col-12 col-xl-3 mt-3 mt-xl-0">
-                    <h4>School Portal</h4>
+                    <h4>Result Portal</h4>
                     <p>Access grades, results, and school updates via our online portal.</p>
-                    <a href="https://www.jewelmodelschools.sch.ng/" class="portal-btn" target="_blank">Login to Portal
-                        <i class="fas fa-external-link-alt"></i></a>
+                    <a href="https://www.jewelmodelschools.sch.ng/" class="portal-btn" target="_blank">Login to Portal <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
             <div class="footer-bottom d-flex flex-wrap">
@@ -488,7 +303,22 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- JMS Scripts -->
+    <script src="js/supabase-config.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/blog.js"></script>
+
+    <script>
+        // Show "More Stories" heading after featured post loads
+        document.addEventListener('DOMContentLoaded', () => {
+            const heading = document.getElementById('more-stories-heading');
+            if (heading) setTimeout(() => heading.style.display = 'block', 600);
+        });
+    </script>
 </body>
 
 </html>

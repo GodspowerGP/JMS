@@ -3,140 +3,279 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Admin Login</title>
+    <title>Admin Login | Jewel Model Schools</title>
+    <meta name="robots" content="noindex, nofollow">
 
     <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
     <!-- Font Awesome -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-        --primary-blue: #0a2540;
-        --accent-orange: #f97316;
-        --accent-gold: #fbbf24;
-        --light-bg: #f4f7fb;
+            --primary-blue: #0a2540;
+            --accent-orange: #f97316;
+            --accent-gold: #fbbf24;
+            --light-bg: #f4f7fb;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             min-height: 100vh;
-            background: linear-gradient(
-                135deg,
-                var(--primary-blue),
-                #133b63
-            );
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #133b63 60%, #1a4f80 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: "Montserrat", sans-serif;
             padding: 20px;
+            position: relative;
+            overflow: hidden;
         }
 
+        /* Decorative background circles */
+        body::before,
+        body::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.07;
+            background: white;
+            pointer-events: none;
+        }
+        body::before { width: 500px; height: 500px; top: -150px; right: -150px; }
+        body::after  { width: 350px; height: 350px; bottom: -100px; left: -100px; }
+
+        /* ── Card ── */
         .login-card {
-        width: 100%;
-        max-width: 520px;
-        background: #fff;
-        border-radius: 20px;
-        padding: 40px 35px;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        border: none;
+            width: 100%;
+            max-width: 520px;
+            background: #fff;
+            border-radius: 24px;
+            padding: 48px 40px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+            position: relative;
+            z-index: 1;
+            animation: cardIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
         }
 
-        .logo-circle {
-        width: 75px;
-        height: 75px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 20px;
-        color: white;
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
         }
 
+        /* ── Logo ── */
+        .logo-wrap {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), #1a4f80);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            box-shadow: 0 8px 24px rgba(10,37,64,0.25);
+        }
+
+        .logo-wrap img { width: 100%; border-radius: 50%; object-fit: cover; }
+
+        /* ── Title ── */
         .login-title {
-            font-size: clamp(1.4rem, 3vw, 2.4rem);
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
             font-weight: 800;
             color: var(--primary-blue);
             letter-spacing: -0.01em;
+            margin-bottom: 4px;
         }
-        
+
         .login-subtitle {
             color: #6b7280;
+            font-size: 13px;
+            letter-spacing: 0.03em;
+        }
+
+        /* ── Form Inputs ── */
+        .input-wrapper { position: relative; }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
             font-size: 14px;
-            letter-spacing: 0.05em;
+            z-index: 2;
+            pointer-events: none;
         }
 
         .form-control {
-        height: 52px;
-        border-radius: 12px;
-        border: 1px solid #dbe2ea;
-        padding-left: 45px;
-        transition: 0.3s ease;
+            height: 52px;
+            border-radius: 12px;
+            border: 1.5px solid #e5e7eb;
+            padding-left: 44px;
+            padding-right: 44px;
+            font-size: 14px;
+            font-family: "Montserrat", sans-serif;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background: #fafafa;
         }
 
         .form-control:focus {
-        border-color: var(--accent-orange);
-        box-shadow: 0 0 0 0.15rem rgba(249, 115, 22, 0.2);
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 0 3px rgba(249,115,22,0.15);
+            background: #fff;
+            outline: none;
         }
 
-        .input-group-text {
-        position: absolute;
-        z-index: 10;
-        height: 52px;
-        background: transparent;
-        border: none;
-        color: #6b7280;
-        padding-left: 15px;
+        .form-control.is-invalid {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
         }
 
-        .input-wrapper {
-        position: relative;
+        /* Password toggle */
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 2;
+            transition: color 0.2s;
         }
+        .toggle-password:hover { color: var(--primary-blue); }
 
+        /* ── Remember / Forgot ── */
+        .form-check-input:checked { background-color: var(--accent-orange); border-color: var(--accent-orange); }
+
+        .forgot-link {
+            color: var(--accent-orange);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .forgot-link:hover { color: var(--primary-blue); }
+
+        /* ── Login Button ── */
         .btn-login {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
             height: 52px;
             border-radius: 12px;
-            background: linear-gradient(
-                135deg,
-                var(--accent-orange),
-                var(--accent-gold)
-            );
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
             border: none;
             color: white;
-            font-weight: 600;
-            transition: 0.3s ease;
+            font-weight: 700;
+            font-family: "Montserrat", sans-serif;
+            font-size: 15px;
+            letter-spacing: 0.02em;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s;
+            box-shadow: 0 4px 20px rgba(249,115,22,0.35);
         }
-    
-        .btn-login:hover {
-        transform: translateY(-2px);
-        opacity: 0.95;
-        color: white;
+        .btn-login:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(249,115,22,0.45);
+            color: white;
+        }
+        .btn-login:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
         }
 
-        .forgot-link {
-        color: var(--accent-orange);
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 500;
+        /* Spinner inside button */
+        .btn-login .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2.5px solid rgba(255,255,255,0.4);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.75s linear infinite;
+            display: none;
+        }
+        .btn-login.loading .spinner { display: block; }
+        .btn-login.loading .btn-text { display: none; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── Error Alert ── */
+        .alert-error {
+            display: none;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-left: 4px solid #ef4444;
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #dc2626;
+            font-size: 13px;
+            font-weight: 500;
+            gap: 10px;
+            align-items: center;
+        }
+        .alert-error.show { display: flex; animation: fadeIn 0.3s ease; }
+
+        /* ── Success / Redirect ── */
+        .alert-success {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid #22c55e;
+            border-radius: 10px;
+            padding: 12px 16px;
+            color: #15803d;
+            font-size: 13px;
+            font-weight: 500;
+            gap: 10px;
+            align-items: center;
+        }
+        .alert-success.show { display: flex; animation: fadeIn 0.3s ease; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        .forgot-link:hover {
-        color: var(--primary-blue);
+        /* ── Divider ── */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #d1d5db;
+            font-size: 12px;
+            margin: 4px 0;
         }
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        /* ── Security badge ── */
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: #9ca3af;
+            font-size: 11px;
+            margin-top: 20px;
+        }
+        .security-badge i { color: #22c55e; }
 
         @media (max-width: 576px) {
-        .login-card {
-            padding: 30px 22px;
-        }
+            .login-card { padding: 36px 24px; }
         }
     </style>
 </head>
@@ -145,78 +284,202 @@
 
     <div class="login-card">
 
-        <div class="logo-circle">
-            <img src="images/logo.png" class="w-100" alt="">
+        <!-- Logo -->
+        <div class="logo-wrap">
+            <img src="images/logo.png" alt="JMS Logo">
         </div>
 
+        <!-- Heading -->
         <div class="text-center mb-4">
-            <h2 class="login-title mb-2">Admin Login</h2>
-            <p class="login-subtitle mb-0">
-                Sign in to access the dashboard
-            </p>
+            <h1 class="login-title">Admin Login</h1>
+            <p class="login-subtitle">Jewel Model Schools · Staff Portal</p>
         </div>
 
-        <form action="" method="">
+        <!-- Error Alert -->
+        <div class="alert-error mb-3" id="errorAlert" role="alert">
+            <i class="fas fa-exclamation-circle flex-shrink-0"></i>
+            <span id="errorMsg">Invalid email or password. Please try again.</span>
+        </div>
+
+        <!-- Success Alert -->
+        <div class="alert-success mb-3" id="successAlert" role="alert">
+            <i class="fas fa-check-circle flex-shrink-0"></i>
+            <span>Login successful! Redirecting to dashboard…</span>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" novalidate>
 
             <!-- Email -->
             <div class="mb-3 input-wrapper">
-                <span class="input-group-text">
-                <i class="fas fa-envelope"></i>
-                </span>
-
+                <span class="input-icon"><i class="fas fa-envelope"></i></span>
                 <input
-                type="email"
-                class="form-control"
-                placeholder="Email Address"
-                required
+                    type="email"
+                    class="form-control"
+                    id="loginEmail"
+                    placeholder="Email Address"
+                    autocomplete="email"
+                    required
                 />
             </div>
 
             <!-- Password -->
             <div class="mb-3 input-wrapper">
-                <span class="input-group-text">
-                <i class="fas fa-lock"></i>
-                </span>
-
+                <span class="input-icon"><i class="fas fa-lock"></i></span>
                 <input
-                type="password"
-                class="form-control"
-                placeholder="Password"
-                required
+                    type="password"
+                    class="form-control"
+                    id="loginPassword"
+                    placeholder="Password"
+                    autocomplete="current-password"
+                    required
                 />
+                <button type="button" class="toggle-password" id="togglePwd" aria-label="Toggle password visibility">
+                    <i class="fas fa-eye" id="eyeIcon"></i>
+                </button>
             </div>
 
             <!-- Remember + Forgot -->
             <div class="d-flex justify-content-between align-items-center mb-4">
-
                 <div class="form-check">
-                <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="remember"
-                />
-                <label class="form-check-label small" for="remember">
-                    Remember me
-                </label>
+                    <input class="form-check-input" type="checkbox" id="rememberMe"/>
+                    <label class="form-check-label small" for="rememberMe" style="font-size:13px;">
+                        Remember me
+                    </label>
                 </div>
-
-                <a href="#" class="forgot-link">
-                Forgot Password?
-                </a>
-
+                <a href="#" class="forgot-link">Forgot Password?</a>
             </div>
 
-            <!-- Button -->
-            <!-- remove "a" tag and un-commit button tag after backend integration -->
-            <a href="admin_dashboard.html" class="btn btn-login w-100">
-                <!-- <button type="submit" class="btn btn-login w-100"> -->
-                    Login
-                <!-- </button> -->
-            </a>
+            <!-- Submit -->
+            <button type="submit" class="btn btn-login w-100" id="loginBtn">
+                <div class="spinner" aria-hidden="true"></div>
+                <span class="btn-text"><i class="fas fa-sign-in-alt"></i> Sign In</span>
+            </button>
 
         </form>
 
+        <!-- Security Badge -->
+        <div class="security-badge">
+            <i class="fas fa-shield-alt"></i>
+            Secured by Supabase Auth · Staff only
+        </div>
+
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- JMS Supabase Config -->
+    <script src="js/supabase-config.js"></script>
+
+    <script>
+        'use strict';
+
+        // ── Redirect immediately if already logged in ─────────────────────────
+        (async () => {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (session) window.location.href = 'admin_dashboard.html';
+        })();
+
+        // ── DOM References ────────────────────────────────────────────────────
+        const loginForm    = document.getElementById('loginForm');
+        const loginBtn     = document.getElementById('loginBtn');
+        const loginEmail   = document.getElementById('loginEmail');
+        const loginPassword= document.getElementById('loginPassword');
+        const errorAlert   = document.getElementById('errorAlert');
+        const errorMsg     = document.getElementById('errorMsg');
+        const successAlert = document.getElementById('successAlert');
+        const togglePwd    = document.getElementById('togglePwd');
+        const eyeIcon      = document.getElementById('eyeIcon');
+
+        // ── Password Toggle ───────────────────────────────────────────────────
+        togglePwd.addEventListener('click', () => {
+            const isPassword = loginPassword.type === 'password';
+            loginPassword.type = isPassword ? 'text' : 'password';
+            eyeIcon.className  = isPassword ? 'fas fa-eye-slash' : 'fas fa-eye';
+        });
+
+        // ── Hide alerts on input ──────────────────────────────────────────────
+        [loginEmail, loginPassword].forEach(el => {
+            el.addEventListener('input', () => {
+                errorAlert.classList.remove('show');
+                el.classList.remove('is-invalid');
+            });
+        });
+
+        // ── Form Submit ───────────────────────────────────────────────────────
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email    = loginEmail.value.trim();
+            const password = loginPassword.value;
+
+            // Basic client-side validation
+            if (!email || !password) {
+                showError('Please enter both your email and password.');
+                if (!email) loginEmail.classList.add('is-invalid');
+                if (!password) loginPassword.classList.add('is-invalid');
+                return;
+            }
+
+            setLoading(true);
+            errorAlert.classList.remove('show');
+
+            try {
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+                if (error) {
+                    // Map common Supabase error messages to friendly ones
+                    const friendlyMsg = mapError(error.message);
+                    showError(friendlyMsg);
+                    loginEmail.classList.add('is-invalid');
+                    loginPassword.classList.add('is-invalid');
+                    return;
+                }
+
+                // Success
+                successAlert.classList.add('show');
+                loginBtn.querySelector('.btn-text').innerHTML = '<i class="fas fa-check"></i> Logged in!';
+
+                // Redirect after brief delay
+                setTimeout(() => {
+                    window.location.href = 'admin_dashboard.html';
+                }, 1000);
+
+            } catch (err) {
+                showError('An unexpected error occurred. Please try again.');
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        });
+
+        // ── Helpers ───────────────────────────────────────────────────────────
+        function setLoading(state) {
+            loginBtn.disabled = state;
+            loginBtn.classList.toggle('loading', state);
+        }
+
+        function showError(message) {
+            errorMsg.textContent = message;
+            errorAlert.classList.add('show');
+            setLoading(false);
+        }
+
+        function mapError(msg) {
+            if (msg.includes('Invalid login credentials')) return 'Incorrect email or password. Please check and try again.';
+            if (msg.includes('Email not confirmed'))       return 'Your email has not been confirmed. Check your inbox.';
+            if (msg.includes('Too many requests'))         return 'Too many login attempts. Please wait a moment and try again.';
+            if (msg.includes('User not found'))            return 'No account found with this email address.';
+            return 'Login failed. Please check your credentials and try again.';
+        }
+    </script>
 
 </body>
 </html>
