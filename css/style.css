@@ -321,8 +321,8 @@ dl {
 }
 
 .nav-logo {
-  display: flex;
-  align-items: center;
+  display: flex !important;
+  align-items: center !important;
   gap: 15px;
   text-decoration: none;
 }
@@ -341,8 +341,8 @@ dl {
 .school-name {
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
-  font-size: 1.2rem;
-  color: var(--primary-blue);
+  font-size: 1.2rem !important;
+  /* color: var(--primary-blue); */
   line-height: 1;
   margin: 0;
   white-space: nowrap;
@@ -1531,6 +1531,21 @@ font-size: .85rem; padding: 5px 20px; border-radius: 50px; display: inline-block
 .footer-col ul li i {
   color: #fff;
   margin-right: 10px;
+}
+
+.footer-col ul li a {
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+  color: var(--accent-gold);
+  transform: translateX(5px) !important;
+}
+
+.footer-col ul li a:hover i {
+  color: var(--accent-gold);
 }
 
 .portal-btn {
