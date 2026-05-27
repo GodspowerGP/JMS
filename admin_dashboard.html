@@ -582,10 +582,30 @@
 <div class="page-body">
 
     <!-- Page Header -->
-    <div class="page-header">
-        <h1><i class="fas fa-tachometer-alt" style="color:var(--orange); margin-right:8px;"></i>Dashboard</h1>
-        <p>Manage blog posts, view stats, and update site content.</p>
+    <div class="page-header" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
+        <div>
+            <h1><i class="fas fa-tachometer-alt" style="color:var(--orange); margin-right:8px;"></i>Dashboard</h1>
+            <p>Manage blog posts, view stats, and read contact messages.</p>
+        </div>
     </div>
+
+    <!-- ── Navigation Tabs ─────────────────────────────────── -->
+    <ul class="nav nav-pills mb-4" id="adminTabs" role="tablist" style="gap: 10px; border-bottom: 2px solid var(--border); padding-bottom: 16px;">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="blog-tab" data-bs-toggle="tab" data-bs-target="#blog-panel" type="button" role="tab" style="font-weight:600; border-radius: 8px;">
+                <i class="fas fa-pen-nib me-2"></i>Blog Management
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="inbox-tab" data-bs-toggle="tab" data-bs-target="#inbox-panel" type="button" role="tab" style="font-weight:600; border-radius: 8px;">
+                <i class="fas fa-inbox me-2"></i>Inbox <span class="badge bg-danger rounded-pill ms-1 d-none" id="unread-count" style="font-size:11px;">0</span>
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="adminTabsContent">
+        <!-- ══ BLOG PANEL ══════════════════════════════════════════════════ -->
+        <div class="tab-pane fade show active" id="blog-panel" role="tabpanel">
 
     <!-- ── Stats Grid ─────────────────────────────────────── -->
     <div class="stats-grid">
@@ -716,8 +736,82 @@
             </div>
         </div>
     </div>
+    </div><!-- /blog-panel -->
+
+    <!-- ══ INBOX PANEL ═════════════════════════════════════════════════ -->
+    <div class="tab-pane fade" id="inbox-panel" role="tabpanel">
+        <div class="section-card">
+            <div class="section-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <h2><i class="fas fa-envelope-open-text"></i> Messages</h2>
+                <button class="btn-jms-secondary" id="refresh-inbox-btn" style="font-size:12px; padding:7px 14px;">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+
+            <!-- Inbox Table -->
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0" style="font-size: 14px;">
+                    <thead style="background: #f8fafc; color: var(--muted); font-size: 13px; font-weight: 600;">
+                        <tr>
+                            <th style="padding: 12px 16px; border-bottom: 2px solid var(--border);">Status</th>
+                            <th style="padding: 12px 16px; border-bottom: 2px solid var(--border);">Sender</th>
+                            <th style="padding: 12px 16px; border-bottom: 2px solid var(--border);">Branch</th>
+                            <th style="padding: 12px 16px; border-bottom: 2px solid var(--border);">Date</th>
+                            <th style="padding: 12px 16px; border-bottom: 2px solid var(--border); text-align: right;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inbox-list">
+                        <tr>
+                            <td colspan="5">
+                                <div class="empty-state">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <p>Loading messages…</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div><!-- /inbox-panel -->
+
+    </div><!-- /tab-content -->
 
 </div><!-- /page-body -->
+
+<!-- ══ MESSAGE VIEW MODAL ═══════════════════════════════════════════════ -->
+<div class="modal fade" id="message-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-between align-items-center">
+                <h5 class="modal-title" style="font-weight:700; color:var(--primary);">
+                    <i class="fas fa-envelope-open me-2"></i>View Message
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" style="font-size: 14px; line-height: 1.6;">
+                <div class="row mb-3">
+                    <div class="col-sm-6 mb-2"><strong>Name:</strong> <span id="msg-view-name"></span></div>
+                    <div class="col-sm-6 mb-2"><strong>Email:</strong> <a href="#" id="msg-view-email" style="color:var(--orange);"></a></div>
+                    <div class="col-sm-6 mb-2"><strong>Phone:</strong> <span id="msg-view-phone"></span></div>
+                    <div class="col-sm-6 mb-2"><strong>Branch:</strong> <span class="badge bg-light text-dark border" id="msg-view-branch"></span></div>
+                    <div class="col-sm-12 mb-2"><strong>Address:</strong> <span id="msg-view-address"></span></div>
+                </div>
+                <hr>
+                <div class="mt-3">
+                    <strong>Message:</strong>
+                    <div id="msg-view-body" class="p-3 mt-2 rounded" style="background: #f8fafc; border: 1px solid var(--border); white-space: pre-wrap; font-family: 'Inter', sans-serif;"></div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-between">
+                <button class="btn-danger-jms" id="delete-msg-btn">
+                    <i class="fas fa-trash me-1"></i> Delete Message
+                </button>
+                <button class="btn-jms-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- ══ DELETE CONFIRMATION MODAL ══════════════════════════════════════════ -->
 <div class="modal fade" id="delete-modal" tabindex="-1" aria-hidden="true">

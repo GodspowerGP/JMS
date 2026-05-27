@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 4. Load dashboard data
     await loadStats();
     await loadRecentPosts();
+    await loadInbox();
 
     // 5. Wire up events
     bindEvents();
@@ -274,6 +275,17 @@ function bindEvents() {
                 (p.tag || '').toLowerCase().includes(q)
             );
             renderPostsTable(filtered);
+        });
+    }
+
+    // Refresh inbox
+    const refreshInboxBtn = document.getElementById('refresh-inbox-btn');
+    if (refreshInboxBtn) {
+        refreshInboxBtn.addEventListener('click', () => {
+            refreshInboxBtn.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Refreshing...';
+            loadInbox().then(() => {
+                refreshInboxBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh';
+            });
         });
     }
 }
@@ -551,4 +563,150 @@ function showSuccessToast(msg, isError = false) {
 function escHtml(str) {
     if (!str) return '';
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INBOX LOGIC
+═══════════════════════════════════════════════════════════════════════════ */
+let allMessages = [];
+
+async function loadInbox() {
+    const { data: messages, error } = await supabaseClient
+        .from('contact_messages')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Error loading inbox:', error.message);
+        return;
+    }
+
+    allMessages = messages || [];
+    renderInboxTable();
+    updateUnreadCount();
+}
+
+function updateUnreadCount() {
+    const unreadCount = allMessages.filter(m => m.status === 'unread').length;
+    const badge = document.getElementById('unread-count');
+    if (badge) {
+        if (unreadCount > 0) {
+            badge.textContent = unreadCount;
+            badge.classList.remove('d-none');
+        } else {
+            badge.classList.add('d-none');
+        }
+    }
+}
+
+function renderInboxTable() {
+    const container = document.getElementById('inbox-list');
+    if (!container) return;
+
+    if (!allMessages.length) {
+        container.innerHTML = `
+            <tr>
+                <td colspan="5">
+                    <div class="empty-state">
+                        <i class="fas fa-envelope-open"></i>
+                        <p>Your inbox is empty!</p>
+                    </div>
+                </td>
+            </tr>`;
+        return;
+    }
+
+    const rows = allMessages.map(msg => {
+        const date = new Date(msg.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        const isUnread = msg.status === 'unread';
+        
+        return `
+        <tr style="${isUnread ? 'font-weight: 700; background: #fff;' : 'color: var(--muted);'}">
+            <td>
+                ${isUnread ? '<span class="badge bg-orange text-white" style="background:var(--orange);">New</span>' : '<span class="badge bg-light text-dark border">Read</span>'}
+            </td>
+            <td>
+                <div style="font-size:14px; color:var(--text);">${escHtml(msg.name)}</div>
+                <div style="font-size:12px; color:var(--muted);">${escHtml(msg.email)}</div>
+            </td>
+            <td>
+                <span class="badge bg-light text-dark border">${escHtml(msg.branch)}</span>
+            </td>
+            <td>${date}</td>
+            <td style="text-align: right;">
+                <button class="action-btn edit-btn d-inline-flex" onclick="viewMessage('${msg.id}')" title="View Message">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </td>
+        </tr>`;
+    }).join('');
+
+    container.innerHTML = rows;
+}
+
+async function viewMessage(id) {
+    const msg = allMessages.find(m => m.id === id);
+    if (!msg) return;
+
+    // Populate modal
+    document.getElementById('msg-view-name').textContent = msg.name;
+    document.getElementById('msg-view-email').textContent = msg.email;
+    document.getElementById('msg-view-email').href = `mailto:${msg.email}`;
+    document.getElementById('msg-view-phone').textContent = msg.phone || 'N/A';
+    document.getElementById('msg-view-branch').textContent = msg.branch;
+    document.getElementById('msg-view-address').textContent = msg.address || 'N/A';
+    document.getElementById('msg-view-body').textContent = msg.message;
+
+    // Attach delete handler
+    const delBtn = document.getElementById('delete-msg-btn');
+    const newDelBtn = delBtn.cloneNode(true);
+    delBtn.parentNode.replaceChild(newDelBtn, delBtn);
+    newDelBtn.addEventListener('click', () => deleteMessage(msg.id));
+
+    // Show modal
+    const modalEl = document.getElementById('message-modal');
+    const bsModal = new bootstrap.Modal(modalEl);
+    bsModal.show();
+
+    // Mark as read in DB if it is unread
+    if (msg.status === 'unread') {
+        const { error } = await supabaseClient
+            .from('contact_messages')
+            .update({ status: 'read' })
+            .eq('id', id);
+
+        if (!error) {
+            msg.status = 'read';
+            renderInboxTable();
+            updateUnreadCount();
+        }
+    }
+}
+
+async function deleteMessage(id) {
+    if (!confirm('Are you sure you want to permanently delete this message?')) return;
+
+    try {
+        const { error } = await supabaseClient
+            .from('contact_messages')
+            .delete()
+            .eq('id', id);
+
+        if (error) throw error;
+
+        // Hide modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('message-modal'));
+        if (modal) modal.hide();
+
+        showSuccessToast('Message deleted.');
+        
+        // Remove from UI array
+        allMessages = allMessages.filter(m => m.id !== id);
+        renderInboxTable();
+        updateUnreadCount();
+
+    } catch (err) {
+        showSuccessToast('Error deleting message: ' + err.message, true);
+        console.error(err);
+    }
 }
