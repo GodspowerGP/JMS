@@ -171,6 +171,21 @@
             </div>
         </div>
     </div>
+    
+    <!-- Modal 4 -->
+    <div class="modal fade" id="Modal4" tabindex="-1" aria-labelledby="ModalLabel4" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Makurdi Branch</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d506066.2187042792!2d8.567644539470098!3d7.721469462309617!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1050818b48ac96ab%3A0xd9581688e1df3d16!2sJewel%20Model%20Schools%2C%20Makurdi!5e0!3m2!1sen!2sng!4v1779818784040!5m2!1sen!2sng" width="100%" height="450" style="border:0; display:block;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <main>
         <!-- ═══ HERO SECTION ═══ -->
@@ -180,16 +195,15 @@
                     <span class="section-eyebrow rounded-pill px-3 py-1 d-inline-block mb-3 ap-up"
                         style="color: var(--accent-gold); background: rgba(255, 215, 0, 0.1); border: 1px solid rgba(255, 215, 0, 0.2);">Get
                         In Touch</span>
-                    <h2 class="ach-main-title ap-up d1">Contact Us</h2>
+                    <h2 class="ach-main-title ap-up d1" style="font-size: 3em;">Contact Us</h2>
                     <p class="ach-header-desc2 ap-up d2">
                         We’re here to help with admissions, inquiries, and support. From Abuja to Seoul — a complete
                         record of every recognition our students
                         have earned in literary, creative, and spoken-word competitions since 2018.
                     </p>
                     <div class="cta-btns ap-left">
-                        <a href="#process" class="btn-hero-primary"
-                            style="font-size: 1.1rem; padding: 15px 40px; border-radius: 50px; display: inline-block; background: var(--accent-orange); color: white; text-decoration: none; font-weight: bold; transition: transform 0.3s ease;">Get
-                            Started</a>
+                        <a href="#process" class="btn-primary-jms">Get
+                        Started</a>
                     </div>
                 </div>
             </div>
@@ -200,12 +214,13 @@
             <div class="container">
                 <div class="section-header text-center ap-up">
                     <!-- <p class="section-eyebrow">Contact Details</p> -->
-                    <h1 class="fs-1">Contact <em>Details</em></h1>
+                    <h1 style="font-size: 2.5em;">Contact <em>Details</em></h1>
                     <p class="section-subtext">Reach out to any of our campuses for admissions inquiries, support, or to
                         schedule a tour.</p>
                 </div>
-                <div class="branches-grid">
-                    <div class="branch-card ap-up">
+                <div class="row g-0 gap-4" style="justify-content: center;">
+                    <!-- card 1 -->
+                    <div class="col-lg-4 col-12 branch-card ap-up">
                         <div class="branch-img">
                             <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.52 (1).jpeg" alt="Kubwa Branch">
                             <div class="branch-badge">Main Campus</div>
@@ -214,14 +229,16 @@
                             <div class="branch-icon-wrap"><i class="fas fa-school"></i></div>
                             <h3>Kubwa Branch</h3>
                             <div class="pt-2">
-                                <p><i class="fas fa-map-marker-alt icon-orange"></i> Kukwaba, Along Express Bypass,
-                                    Kubwa Village, Abuja</p>
+                                <p><i class="fas fa-map-marker-alt icon-orange"></i> Plot 177B Kukwaba</p>
                                 <a href="tel:07031586881" class="branch-phone"><i class="fas fa-phone"></i> 0703 158
                                     6881</a>
                             </div>
-                            <div class="d-flex justify-content-start gap-2 flex-column flex-xl-row">
-                                <a href="https://wa.me/7031586881" class="btn-contact-primary"><i
-                                        class="fa-brands fa-whatsapp me-1"></i> WhatsApp</a>
+                            <div class="d-flex justify-content-start gap-2 flex-column flex-md-row">
+                                <button type="button" class="btn-contact-primary">
+                                    <a href="https://wa.me/7031586881" target="_blank">
+                                        <i class="fa-brands fa-whatsapp me-1"></i> WhatsApp
+                                    </a>
+                                </button>
                                 <!-- Button trigger modal 2 -->
                                 <button type="button" class="btn btn-contact-secondary" data-bs-toggle="modal"
                                     data-bs-target="#Modal2">
@@ -231,7 +248,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="branch-card ap-up d1" style="animation-delay:.15s">
+                    <!-- card 2 -->
+                    <div class="col-lg-4 col-12 branch-card ap-up d1" style="animation-delay:.15s">
                         <div class="branch-img">
                             <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.55 (1).jpeg"
                                 alt="Kagini Branch">
@@ -241,13 +259,16 @@
                             <div class="branch-icon-wrap"><i class="fas fa-building"></i></div>
                             <h3>Kagini Branch</h3>
                             <div class="pt-2">
-                                <p><i class="fas fa-map-marker-alt icon-orange"></i> Plot 177B Kukwaba</p>
+                                <p><i class="fas fa-map-marker-alt icon-orange"></i> Kaba, Kagini</p>
                                 <a href="tel:08038840260" class="branch-phone"><i class="fas fa-phone"></i> 0803 884
                                     0260</a>
                             </div>
-                            <div class="d-flex justify-content-start gap-2 flex-column flex-xl-row">
-                                <a href="https://wa.me/8038840260" target="_blank" class="btn-contact-primary"><i
-                                        class="fa-brands fa-whatsapp me-1"></i> WhatsApp</a>
+                            <div class="d-flex justify-content-start gap-2 flex-column flex-md-row">
+                                <button type="button" class="btn-contact-primary">
+                                    <a href="https://wa.me/8038840260" target="_blank">
+                                        <i class="fa-brands fa-whatsapp me-1"></i> WhatsApp
+                                    </a>
+                                </button>
                                 <!-- Button trigger modal 3 -->
                                 <button type="button" class="btn btn-contact-secondary" data-bs-toggle="modal"
                                     data-bs-target="#Modal3">
@@ -257,7 +278,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="branch-card ap-up d2" style="animation-delay:.3s">
+                    <!-- card 3 -->
+                    <div class="col-lg-4 col-12 branch-card ap-up d2" style="animation-delay:.3s">
                         <div class="branch-img">
                             <img src="images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.52.jpeg" alt="Primary Branch">
                             <div class="branch-badge">Primary</div>
@@ -271,12 +293,43 @@
                                 <a href="tel:08169537716" class="branch-phone"><i class="fas fa-phone"></i> 0816 953
                                     7716</a>
                             </div>
-                            <div class="d-flex justify-content-start gap-2 flex-column flex-xl-row">
-                                <a href="https://wa.me/8169537716" target="_blank" class="btn-contact-primary"><i
-                                        class="fa-brands fa-whatsapp me-1"></i> WhatsApp</a>
+                            <div class="d-flex justify-content-start gap-2 flex-column flex-md-row">
+                                <button type="button" class="btn-contact-primary">
+                                    <a href="https://wa.me/8169537716" target="_blank">
+                                        <i class="fa-brands fa-whatsapp me-1"></i> WhatsApp
+                                    </a>
+                                </button>
                                 <!-- Button trigger modal 1 -->
                                 <button type="button" class="btn btn-contact-secondary" data-bs-toggle="modal"
                                     data-bs-target="#Modal">
+                                    <i class="fa-solid fa-map-location-dot me-1"></i>
+                                    View Map
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- card 4 -->
+                    <div class="col-lg-4 col-12 branch-card ap-up d2" style="animation-delay:.3s">
+                        <div class="branch-img">
+                            <img src="images/JMS_img/makurdi_branch.jpg" alt="Primary Branch">
+                            <div class="branch-badge">Makurdi</div>
+                        </div>
+                        <div class="branch-info2 text-start">
+                            <div class="branch-icon-wrap"><i class="fas fa-graduation-cap"></i></div>
+                            <h3>Makurdi Branch</h3>
+                            <div class="pt-2">
+                                <p><i class="fas fa-map-marker-alt icon-orange"></i> Makurdi Gboko Road, opposite Benue State University Teaching Hospital, Makurdi.</p>
+                                <a href="tel:07062664419" class="branch-phone"><i class="fas fa-phone"></i> 07062664419</a>
+                            </div>
+                            <div class="d-flex justify-content-start gap-2 flex-column flex-md-row">
+                                <button type="button" class="btn-contact-primary">
+                                    <a href="https://wa.me/7062664419" target="_blank">
+                                        <i class="fa-brands fa-whatsapp me-1"></i> WhatsApp
+                                    </a>
+                                </button>
+                                <!-- Button trigger modal 1 -->
+                                <button type="button" class="btn btn-contact-secondary" data-bs-toggle="modal"
+                                    data-bs-target="#Modal4">
                                     <i class="fa-solid fa-map-location-dot me-1"></i>
                                     View Map
                                 </button>
@@ -293,14 +346,14 @@
                 <div class="col-12 ap-up py-5 d-flex align-items-center justify-content-center">
                     <div class="form-section ap-up d2">
                         <div class="row">
-                            <div class="col-md-5 col-12 d-flex align-items-center">
+                            <div class="col-lg-5 col-12 d-flex align-items-center">
                                 <div class="ps-4">
                                     <h2>Drop Your Message</h2>
                                     <p class="subtitle">Please fill out the form and provide details of your inquiry.
                                     </p>
                                 </div>
                             </div>
-                            <div class="col-md-7 col-12">
+                            <div class="col-lg-7 col-12">
                                 <div class="row g-3">
                                     <div class="col-12 col-md-6">
                                         <input type="text" class="form-control" placeholder="Name">
@@ -344,7 +397,7 @@
         <section class="cta-section"
             style="background: linear-gradient(rgba(10, 37, 64, 0.95), rgba(10, 37, 64, 0.95)); padding: 100px 0;">
             <div class="container ap-up py-5">
-                <h2>Looking to enroll your child?</h2>
+                <h2 style="font-size: 3em;">Looking to enroll your child?</h2>
                 <div class="cta-btns">
                     <a href="admissions.html" class="btn-hero-ghost"
                         style="font-size: 1.1rem; padding: 15px 40px; border-radius: 50px; display: inline-block; border: 2px solid white; color: white; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">
