@@ -508,6 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.47.jpeg',                            caption: 'Spoken Word Performance',          w: 360 },
         { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.56.jpeg',                         caption: 'Award Ceremony',                   w: 420 },
         { src: 'images/JMS_img/2026-05-27 at 8.27.04 PM.jpeg',                         caption: 'Powerline Excursion',                   w: 420 },
+        { src: 'images/JMS_img/2026-05-27 at 8.32.46 PM.jpeg',                         caption: 'Inter House Sports',                   w: 420 },
     ];
 
     var ROW2 = [
@@ -518,6 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.31.07.jpeg',                         caption: 'Trophy cabinet',       w: 485 },
         { src: 'images/JMS_img/WhatsApp Image 2026-05-07 at 15.30.49.jpeg',                              caption: 'ICT Competition - 2025',          w: 370 },
         { src: 'images/JMS_img/2026-05-27 at 8.32.45 PM.jpeg',                              caption: 'Cultural Day',          w: 370 },
+        { src: 'images/JMS_img/2026-05-27 at 8.32.31 PM.jpeg',                              caption: 'State Child Ambassador, Benue',          w: 370 },
     ];
 
     /* ═══════════════════════════════════════════════
