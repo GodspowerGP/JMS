@@ -3535,7 +3535,7 @@ GALLERY SECTION — scoped .jgal- prefix
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 50px;
+  width: 40px;
   z-index: 10;
   pointer-events: none;
 }
