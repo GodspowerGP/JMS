@@ -349,7 +349,7 @@
                 <!-- Contact Form -->
                 <div class="col-12 ap-up py-5 d-flex align-items-center justify-content-center">
                     <div class="form-section ap-up d2">
-                        <div class="row">
+                        <div class="row p-3">
                             <div class="col-lg-5 col-12 d-flex align-items-center">
                                 <div class="ps-4">
                                     <h2>Drop Your Message</h2>
@@ -357,39 +357,47 @@
                                     </p>
                                 </div>
                             </div>
-                                <form id="contactForm" class="row g-3">
-                                    <div class="col-12 col-md-6">
-                                        <input type="text" id="cf-name" class="form-control" placeholder="Name" required>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <input type="email" id="cf-email" class="form-control" placeholder="Email" required>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <input type="tel" id="cf-phone" class="form-control" placeholder="Phone">
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <select id="cf-branch" class="form-select" style="cursor: pointer;" required>
-                                            <option selected disabled hidden value="">-- Select Branch --</option>
-                                            <option value="Kubwa Primary">Kubwa Primary</option>
-                                            <option value="Kubwa Secondary">Kubwa Secondary</option>
-                                            <option value="Kagini">Kagini</option>
-                                            <option value="Makurdi">Makurdi</option>
-                                            <option value="General Inquiry">General Inquiry</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12">
-                                        <input type="text" id="cf-address" class="form-control" placeholder="Address">
-                                    </div>
-                                    <div class="col-12">
-                                        <textarea id="cf-message" class="form-control" placeholder="Message..." required></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="submit" id="cf-submit" class="btn-branch-primary w-100 d-flex justify-content-center align-items-center gap-2" style="height: 50px; border:none;">
-                                            <span id="cf-submit-text">Send Message <i class="fa-solid fa-paper-plane me-1"></i></span>
-                                        </button>
-                                        <div id="cf-error" class="text-danger mt-2 d-none" style="font-size:14px; font-weight:500;"></div>
-                                    </div>
-                                </form>
+                            <form id="contactForm" class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <input type="text" id="cf-name" class="form-control" placeholder="Name" required>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <input type="email" id="cf-email" class="form-control" placeholder="Email" required>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <input type="tel" id="cf-phone" class="form-control" placeholder="Phone">
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <select id="cf-branch" class="form-select" style="cursor: pointer;" required>
+                                        <option selected disabled hidden value="">-- Select Branch --</option>
+                                        <option value="Kubwa Primary">Kubwa Primary</option>
+                                        <option value="Kubwa Secondary">Kubwa Secondary</option>
+                                        <option value="Kagini">Kagini</option>
+                                        <option value="Makurdi">Makurdi</option>
+                                        <option value="General Inquiry">General Inquiry</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" id="cf-address" class="form-control" placeholder="Address">
+                                </div>
+                                <div class="col-12">
+                                    <textarea id="cf-message" class="form-control" placeholder="Message..." required></textarea>
+                                </div>
+                                <div class="col-12 d-flex justify-content-center pt-3">
+                                    <button 
+                                        type="submit" 
+                                        id="cf-submit" 
+                                        class="btn-branch-primary d-flex justify-content-center align-items-center gap-2 px-4"
+                                        style="height: 50px; border:none;"
+                                    >
+                                        <span id="cf-submit-text">
+                                            Send Message <i class="fa-solid fa-paper-plane me-1"></i>
+                                        </span>
+                                    </button>
+
+                                    <div id="cf-error" class="text-danger mt-2 d-none" style="font-size:14px; font-weight:500;"></div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -406,8 +414,8 @@
                         style="font-size: 1.1rem; padding: 15px 40px; border-radius: 50px; display: inline-block; border: 2px solid white; color: white; text-decoration: none; font-weight: bold; transition: all 0.3s ease;">
                         Apply Now</a>
                     <a href="tel:07031586881" class="btn-hero-primary"
-                        style="font-size: 1.1rem; padding: 15px 40px; border-radius: 50px; display: inline-block; background: var(--accent-orange); color: white; text-decoration: none; font-weight: bold; transition: transform 0.3s ease;"><i
-                            class="fas fa-phone me-2"></i> Call Admissions Office
+                        style="font-size: 1.1rem; padding: 15px 40px; border-radius: 50px; display: inline-block; background: var(--accent-orange); color: white; text-decoration: none; font-weight: bold; transition: transform 0.3s ease;">
+                        <i class="fas fa-phone me-2"></i> Call Admissions Office
                     </a>
                 </div>
             </div>
