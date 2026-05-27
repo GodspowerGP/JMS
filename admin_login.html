@@ -138,6 +138,12 @@
             box-shadow: 0 0 0 3px rgba(239,68,68,0.12);
         }
 
+        /* Move Bootstrap validation icon left so it doesn't overlap the eye icon */
+        .form-control.is-invalid[type="password"],
+        .input-wrapper:has(.toggle-password) .form-control.is-invalid {
+            background-position: right 40px center;
+        }
+
         /* Password toggle */
         .toggle-password {
             position: absolute;
