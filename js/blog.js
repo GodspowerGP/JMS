@@ -57,7 +57,7 @@ async function loadFeaturedPost() {
     const excerpt = stripHtml(post.body).slice(0, 200) + (post.body.length > 200 ? '…' : '');
 
     container.innerHTML = `
-        <div class="featured-post ap-mv2 ap-up d1">
+        <div class="featured-post ap-mv2">
             <div class="row g-0 align-items-center">
                 <div class="col-lg-6">
                     <div class="featured-img d-flex justify-content-center align-items-center p-4">
@@ -146,10 +146,9 @@ function buildCard(post, index) {
     const author  = post.admin_profiles?.full_name || 'Admin';
     const role    = post.admin_profiles?.role_tag  || '';
     const excerpt = stripHtml(post.body).slice(0, 140) + '…';
-    const delay   = ['', 'd1', 'd2'][index % 3];
 
     return `
-    <div class="col-md-6 col-xl-4 ap-up ${delay}">
+    <div class="col-md-6 col-xl-4" style="animation: fadeIn 0.6s ease forwards;">
         <article class="blog-card">
             <div class="blog-img-wrap">
                 ${post.tag ? `<span class="blog-tag">${escHtml(post.tag)}</span>` : ''}

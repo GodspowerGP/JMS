@@ -40,10 +40,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             const author  = post.admin_profiles?.full_name || 'Admin';
             const role    = post.admin_profiles?.role_tag  || '';
             const excerpt = stripHtml(post.body).slice(0, 130) + '…';
-            const delays  = ['', 'd1', 'd2'];
-
             return `
-            <div class="col-md-6 col-xl-4 ap-up ${delays[i]}">
+            <div class="col-md-6 col-xl-4" style="animation: fadeIn 0.6s ease forwards;">
                 <article class="blog-card">
                     <div class="blog-img-wrap">
                         ${post.tag ? `<span class="blog-tag">${esc(post.tag)}</span>` : ''}
