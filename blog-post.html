@@ -39,30 +39,7 @@
             overflow: hidden;
         }
 
-        .post-hero.has-image::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center;
-            background-image: inherit;
-            filter: brightness(0.35);
-            z-index: 0;
-        }
-
-        /* Pass bg-image via inline style instead */
-        .post-hero[style*="backgroundImage"] {
-            background-size: cover;
-            background-position: center;
-        }
-
-        .post-hero[style*="backgroundImage"]::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(10, 37, 64, 0.95) 0%, rgba(10, 37, 64, 0.5) 60%, rgba(10, 37, 64, 0.2) 100%);
-            z-index: 1;
-        }
+        /* No background image overrides for post-hero anymore, standard gradient applies */
 
         .post-hero .container {
             position: relative;
@@ -109,7 +86,7 @@
         }
 
         #post-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: clamp(1.8rem, 4vw, 3rem);
             font-weight: 800;
             color: white;
@@ -328,11 +305,11 @@
         .share-btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 18px;
             border: none;
             cursor: pointer;
             text-decoration: none;
@@ -670,32 +647,24 @@
                 <hr class="post-divider">
 
                 <!-- Author Card -->
-                <div class="author-card-wrap">
-                    <div id="author-card">
-                        <div class="author-avatar">A</div>
-                    </div>
-                    <div style="margin-left:4px;">
-                        <div
-                            style="font-size:11px;text-transform:uppercase;letter-spacing:0.6px;color:#94a3b8;font-weight:600;margin-bottom:4px;">
-                            Written by</div>
-                        <div id="author-card"></div>
-                    </div>
+                <div class="author-card-wrap" id="author-card">
+                    <!-- Populated dynamically by blog-post.js -->
                 </div>
 
                 <!-- Share Bar -->
                 <div class="share-bar">
                     <span class="share-label"><i class="fas fa-share-alt"></i> Share:</span>
-                    <a id="share-fb" href="#" target="_blank" rel="noopener" class="share-btn fb">
-                        <i class="fab fa-facebook-f"></i> Facebook
+                    <a id="share-fb" href="#" target="_blank" rel="noopener" class="share-btn fb" title="Share on Facebook">
+                        <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a id="share-tw" href="#" target="_blank" rel="noopener" class="share-btn tw">
-                        <i class="fa-brands fa-x-twitter"></i> X
+                    <a id="share-tw" href="#" target="_blank" rel="noopener" class="share-btn tw" title="Share on X">
+                        <i class="fa-brands fa-x-twitter"></i>
                     </a>
-                    <a id="share-wa" href="#" target="_blank" rel="noopener" class="share-btn wa">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    <a id="share-wa" href="#" target="_blank" rel="noopener" class="share-btn wa" title="Share on WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
                     </a>
-                    <button class="share-btn copy" id="copy-link-btn" onclick="copyLink()">
-                        <i class="fas fa-link"></i> Copy Link
+                    <button class="share-btn copy" id="copy-link-btn" onclick="copyLink()" title="Copy Link">
+                        <i class="fas fa-link"></i>
                     </button>
                 </div>
 
@@ -803,7 +772,7 @@
             navigator.clipboard.writeText(window.location.href).then(() => {
                 const btn = document.getElementById('copy-link-btn');
                 const orig = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                btn.innerHTML = '<i class="fas fa-check"></i>';
                 btn.style.background = '#dcfce7';
                 btn.style.color = '#15803d';
                 setTimeout(() => {

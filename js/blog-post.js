@@ -64,15 +64,10 @@ function renderPost(post) {
     setMeta('og:description', excerpt);
     if (post.image_url) setMeta('og:image', post.image_url);
 
-    // ── Hero image ──
+    // ── Hero section ──
     const heroEl = document.getElementById('post-hero');
     if (heroEl) {
-        if (post.image_url) {
-            heroEl.style.backgroundImage = `url('${post.image_url}')`;
-            heroEl.classList.add('has-image');
-        } else {
-            heroEl.classList.add('no-image');
-        }
+        heroEl.classList.add('no-image');
     }
 
     // ── Cover image inside article ──
@@ -123,7 +118,8 @@ function renderPost(post) {
         authorCardEl.innerHTML = `
             <div class="author-avatar">${author.charAt(0).toUpperCase()}</div>
             <div class="author-info">
-                <span class="author-name">${escHtml(author)}</span>
+                <div class="author-label">Written by</div>
+                <div class="author-name">${escHtml(author)}</div>
                 ${role ? `<span class="author-role">${escHtml(role)}</span>` : ''}
             </div>`;
     }
