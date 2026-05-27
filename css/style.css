@@ -4854,6 +4854,23 @@ GALLERY SECTION — scoped .jgal- prefix
 }
 
 /* button interactivity */
-button:active, a:active {
-  scale: 0.98;
+button:active {
+  scale: 0.98 !important;
+}
+
+a.btn-branch-primary:active, 
+a.btn-contact-primary:active, 
+a.btn-contact-secondary:active,
+a.btn-enrol:active,
+a.btn-ghost-jms:active,
+a.btn-hero-ghost:active,
+a.btn-hero-primary:active,
+a.btn-login:active,
+a.btn-primary-jms:active,
+a.portal-btn:active,
+a.lead-btn:active,
+a.ap-tml-btn:active,
+a.btn
+a.btn-send:active {
+  scale: 0.98 !important;
 }
