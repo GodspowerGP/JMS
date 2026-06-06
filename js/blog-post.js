@@ -112,17 +112,6 @@ function renderPost(post) {
         });
     }
 
-    // ── Author card ──
-    const authorCardEl = document.getElementById('author-card');
-    if (authorCardEl) {
-        authorCardEl.innerHTML = `
-            <div class="author-avatar">${author.charAt(0).toUpperCase()}</div>
-            <div class="author-info">
-                <div class="author-label">Written by</div>
-                <div class="author-name">${escHtml(author)}</div>
-                ${role ? `<span class="author-role">${escHtml(role)}</span>` : ''}
-            </div>`;
-    }
 
     // ── Remove loading skeleton ──
     document.getElementById('post-loading')?.remove();
