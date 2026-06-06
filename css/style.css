@@ -18,6 +18,12 @@
   --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Override Bootstrap's .font-serif to use our Montserrat instead of browser-default Times New Roman */
+.font-serif {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -516,7 +522,7 @@ dl {
 }
 
 .btn-enrol {
-  background: var(--primary-blue);
+  background: var(--accent-orange);
   color: white;
   padding: 10px 25px;
   border-radius: 30px;
@@ -524,21 +530,23 @@ dl {
   transition: var(--transition);
   text-decoration: none;
   display: inline-block;
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.25);
 }
 
 .btn-enrol:hover {
-  background: var(--accent-orange);
+  background: #ea580c;
   color: white;
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
 }
 
 .main-nav.scrolled .btn-enrol {
   background: var(--accent-orange);
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
 }
 
 .main-nav.scrolled .btn-enrol:hover {
-  background: var(--primary-blue);
+  background: #ea580c;
 }
 
 /* Adjust breakpoint to match site's responsive breakpoint if needed */
@@ -4877,7 +4885,493 @@ a.btn-primary-jms:active,
 a.portal-btn:active,
 a.lead-btn:active,
 a.ap-tml-btn:active,
-a.btn
+a.btn:active,
 a.btn-send:active {
   scale: 0.98 !important;
+}
+
+/* ==========================================================================
+   LITERARY REVIEW SUB-NAV & GRID
+   ========================================================================== */
+
+/* ── DEFAULT STATE: page at top, main nav is glass-white pill ───────────────
+   Sub-nav is dark so they contrast immediately                              */
+.lr-subnav-wrapper {
+  position: sticky;
+  top: 75px;
+  z-index: 99;
+  background: #0c2038;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+  padding: 10px 0;
+  border-bottom: 3px solid rgba(249, 115, 22, 0.45);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+/* ── SCROLLED STATE: main nav is now dark glass → sub-nav flips to light ───
+   Warm off-white keeps it premium while being clearly different             */
+.lr-subnav-wrapper.scrolled {
+  background: #f5f0e8;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+  border-bottom: 3px solid rgba(249, 115, 22, 0.6);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Brand label colour flips on scroll */
+.lr-subnav-wrapper.scrolled .lr-subnav-brand {
+  color: var(--primary-blue);
+  border-left-color: var(--accent-orange);
+}
+
+.lr-subnav-wrapper.scrolled .lr-subnav-brand i {
+  color: var(--accent-orange);
+}
+
+/* Links flip to dark text on light background */
+.lr-subnav-wrapper.scrolled .lr-subnav-link {
+  color: rgba(10, 37, 64, 0.65) !important;
+}
+
+.lr-subnav-wrapper.scrolled .lr-subnav-link:hover {
+  color: var(--primary-blue) !important;
+  background: rgba(10, 37, 64, 0.07);
+  border-color: rgba(10, 37, 64, 0.2);
+}
+
+.lr-subnav-wrapper.scrolled .lr-subnav-link.active {
+  color: var(--primary-blue) !important;
+  border-color: var(--primary-blue);
+  font-weight: 700;
+}
+
+.lr-subnav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.lr-subnav-brand {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--bg-white);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.5px;
+  /* Left border accent anchors it visually as a section owner */
+  padding-left: 14px;
+  border-left: 3px solid var(--accent-gold);
+  white-space: nowrap;
+}
+
+.lr-subnav-brand i {
+  color: var(--accent-gold);
+}
+
+.lr-subnav-links {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.lr-subnav-links::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.lr-subnav-links {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.lr-subnav-link {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 7px 18px;
+  border-radius: 30px;
+  border: 1.5px solid transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none !important;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.lr-subnav-link:hover {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.lr-subnav-link.active {
+  /* Ghost/outline style — doesn't compete with the orange Result Portal CTA */
+  background: transparent;
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.55);
+  font-weight: 700;
+}
+
+@media (max-width: 991px) {
+  .lr-subnav-wrapper {
+    top: 70px;
+    padding: 10px 0;
+  }
+  .lr-subnav-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .lr-subnav-brand {
+    justify-content: center;
+    font-size: 1rem;
+  }
+  .lr-subnav-links {
+    justify-content: flex-start;
+    padding-bottom: 2px;
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   LITERARY REVIEW SECTION & CARDS
+   ========================================================================== */
+.lr-hero {
+  background: linear-gradient(rgba(10, 37, 64, 0.85), rgba(10, 37, 64, 0.95)), url('../images/branches-hero.jpg') no-repeat center center/cover;
+  padding: 120px 0 60px;
+  text-align: center;
+  color: white;
+}
+
+.lr-section {
+  padding: 80px 0;
+  background: var(--bg-light);
+}
+
+.lr-card {
+  background: var(--bg-white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.lr-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.07);
+  border-color: rgba(249, 115, 22, 0.15);
+}
+
+.lr-card-img-wrap {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lr-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.lr-card-img-placeholder {
+  font-size: 3rem;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.lr-card:hover .lr-card-img-wrap img {
+  transform: scale(1.05);
+}
+
+.lr-card-tag {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 10;
+  color: white;
+}
+
+.lr-card-tag.poetry {
+  background: var(--accent-orange);
+}
+
+.lr-card-tag.fiction {
+  background: #3b82f6;
+}
+
+.lr-card-tag.nonfiction {
+  background: #10b981;
+}
+
+.lr-card-body {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.lr-card-meta {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lr-card-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lr-card-meta i {
+  color: var(--accent-orange);
+}
+
+.lr-card-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 12px;
+  color: var(--primary-blue);
+}
+
+.lr-card-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.lr-card-title a:hover {
+  color: var(--accent-orange);
+}
+
+.lr-card-author {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.lr-card-author span {
+  color: var(--text-light);
+  font-weight: 400;
+}
+
+.lr-card-excerpt {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.lr-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-blue);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.lr-card-link:hover {
+  color: var(--accent-orange);
+  gap: 12px;
+}
+
+/* ==========================================================================
+   LITERARY REVIEW SUBMISSIONS & GUIDELINES
+   ========================================================================== */
+.lr-sub-box {
+  background: var(--bg-white);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .lr-sub-box {
+    padding: 25px;
+  }
+}
+
+.lr-sub-guidelines h4 {
+  color: var(--primary-blue);
+  margin-top: 25px;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.lr-sub-guidelines ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.lr-sub-guidelines li {
+  margin-bottom: 8px;
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.lr-form-group {
+  margin-bottom: 20px;
+}
+
+.lr-form-group label {
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+  display: block;
+  color: var(--text-dark);
+}
+
+.lr-form-input, .lr-form-select, .lr-form-textarea {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  background: #f8fafc;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.lr-form-input:focus, .lr-form-select:focus, .lr-form-textarea:focus {
+  border-color: var(--accent-orange);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+}
+
+.lr-form-textarea {
+  resize: vertical;
+  min-height: 180px;
+}
+
+.lr-submit-btn {
+  background: var(--primary-blue);
+  color: white;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.lr-submit-btn:hover {
+  background: var(--accent-orange);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.25);
+}
+
+/* ==========================================================================
+   LITERARY WORK FULL DETAILS
+   ========================================================================== */
+.lr-full-work {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--bg-white);
+  padding: 50px;
+  border-radius: 28px;
+  box-shadow: 0 10px 45px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 768px) {
+  .lr-full-work {
+    padding: 30px 20px;
+  }
+}
+
+.lr-full-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--primary-blue);
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 800;
+}
+
+.lr-full-meta {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.lr-full-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lr-full-body {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--text-dark);
+}
+
+.lr-full-body p {
+  margin-bottom: 25px;
+}
+
+.lr-poetry-body {
+  white-space: pre-line;
+  text-align: center;
+  font-style: italic;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15rem;
+  line-height: 2;
+  color: var(--primary-blue);
+  max-width: 600px;
+  margin: 0 auto;
 }

@@ -99,12 +99,15 @@ document.addEventListener('DOMContentLoaded', () => {
         NAVBAR SCROLL EFFECT
        ══════════════════════════════════════════════ */
     const mainNav = document.getElementById('mainNav');
-    
+    const lrSubnav = document.querySelector('.lr-subnav-wrapper');
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
             mainNav.classList.add('scrolled');
+            if (lrSubnav) lrSubnav.classList.add('scrolled');
         } else {
             mainNav.classList.remove('scrolled');
+            if (lrSubnav) lrSubnav.classList.remove('scrolled');
         }
     });
 
