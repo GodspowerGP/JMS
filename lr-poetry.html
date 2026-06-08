@@ -146,139 +146,11 @@
         <!-- ═══ POETRY SECTION ═══ -->
         <section class="lr-section">
             <div class="container">
-                <div class="row g-4">
-                    <!-- POEM 1 -->
-                    <div class="col-md-6">
-                        <div class="lr-card">
-                            <div class="lr-card-img-wrap">
-                                <div class="lr-card-img-placeholder" style="background: linear-gradient(135deg, #0a2540, #3b82f6); color: white; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-sun fa-3x"></i>
-                                </div>
-                                <span class="lr-card-tag poetry">Poetry</span>
-                            </div>
-                            <div class="lr-card-body">
-                                <div class="lr-card-meta">
-                                    <span><i class="fas fa-user"></i> Amina Bello — SS2</span>
-                                    <span><i class="fas fa-calendar-alt"></i> June 2026</span>
-                                </div>
-                                <h3 class="lr-card-title"><a href="#" data-bs-toggle="modal" data-bs-target="#poemModal1">The Golden Sunset</a></h3>
-                                <p class="lr-card-excerpt">
-                                    A stunning piece capturing the peaceful, gold-hued moments of twilight, reflecting on the cyclic nature of time and promise.
-                                </p>
-                                <button class="lr-card-link border-0 bg-transparent text-start p-0" data-bs-toggle="modal" data-bs-target="#poemModal1">
-                                    Read Poem <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- POEM 2 -->
-                    <div class="col-md-6">
-                        <div class="lr-card">
-                            <div class="lr-card-img-wrap">
-                                <div class="lr-card-img-placeholder" style="background: linear-gradient(135deg, #f97316, #f43f5e); color: white; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-graduation-cap fa-3x"></i>
-                                </div>
-                                <span class="lr-card-tag poetry">Poetry</span>
-                            </div>
-                            <div class="lr-card-body">
-                                <div class="lr-card-meta">
-                                    <span><i class="fas fa-user"></i> Chidi Okafor — JS3</span>
-                                    <span><i class="fas fa-calendar-alt"></i> May 2026</span>
-                                </div>
-                                <h3 class="lr-card-title"><a href="#" data-bs-toggle="modal" data-bs-target="#poemModal2">Echoes of the Classroom</a></h3>
-                                <p class="lr-card-excerpt">
-                                    A rhythmic reflection on the busy desks, friendship bounds, and chalkboards that shape our early memories in JMS.
-                                </p>
-                                <button class="lr-card-link border-0 bg-transparent text-start p-0" data-bs-toggle="modal" data-bs-target="#poemModal2">
-                                    Read Poem <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                <div id="lr-works-grid" class="row g-4">
+                    <!-- Works loaded dynamically by lr-public.js -->
                 </div>
             </div>
         </section>
-    </main>
-
-    <!-- ═══ MODALS FOR FULL POEM TEXT ═══ -->
-    <!-- POEM 1 MODAL -->
-    <div class="modal fade" id="poemModal1" tabindex="-1" aria-labelledby="poemModal1Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 rounded-4">
-                <div class="modal-header border-0 pb-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4 p-md-5">
-                    <div class="lr-full-work">
-                        <h2 class="lr-full-title" id="poemModal1Label">The Golden Sunset</h2>
-                        <div class="lr-full-meta">
-                            <span><i class="fas fa-user text-orange"></i> Amina Bello (SS2)</span>
-                            <span><i class="fas fa-calendar-alt text-orange"></i> Published: June 2026</span>
-                        </div>
-                        <div class="lr-poetry-body">
-                            The skies are painted gold and red,
-                            As weary birds prepare for bed.
-                            A quiet whisper in the breeze,
-                            Rustles through the sleeping trees.
-
-                            The sun begins its slow descent,
-                            A day of light and labor spent.
-                            It leaves behind a glowing trace,
-                            Of warmth upon the earth's soft face.
-
-                            And as the shadows start to grow,
-                            The world takes on a gentle glow.
-                            A promise made of stars and night,
-                            Before the return of morning light.
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer border-0 justify-content-center pb-4">
-                    <button type="button" class="btn-primary-jms px-4 py-2 border-0" data-bs-dismiss="modal">Close Poem</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- POEM 2 MODAL -->
-    <div class="modal fade" id="poemModal2" tabindex="-1" aria-labelledby="poemModal2Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content border-0 rounded-4">
-                <div class="modal-header border-0 pb-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4 p-md-5">
-                    <div class="lr-full-work">
-                        <h2 class="lr-full-title" id="poemModal2Label">Echoes of the Classroom</h2>
-                        <div class="lr-full-meta">
-                            <span><i class="fas fa-user text-orange"></i> Chidi Okafor (JS3)</span>
-                            <span><i class="fas fa-calendar-alt text-orange"></i> Published: May 2026</span>
-                        </div>
-                        <div class="lr-poetry-body">
-                            The bell rings out, a sudden sound,
-                            And active footsteps run around.
-                            The heavy books, the wooden desk,
-                            The chalk and charts that we know best.
-
-                            We solve the math, we write the page,
-                            As learning guides us through this age.
-                            But more than lessons that we find,
-                            Are bonds of friendship left behind.
-
-                            The shared laugh under noon-day sun,
-                            The games we played when class was done.
-                            These echoes ring, and they will stay,
-                            Long after we have walked away.
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer border-0 justify-content-center pb-4">
-                    <button type="button" class="btn-primary-jms px-4 py-2 border-0" data-bs-dismiss="modal">Close Poem</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- ═══ FOOTER ═══ -->
     <footer class="site-footer">
@@ -340,9 +212,13 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- JMS Scripts -->
+    <script>window.LR_GENRE_FILTER = 'poetry';</script>
+    <script src="js/supabase-config.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/lr-public.js"></script>
 </body>
 
 </html>

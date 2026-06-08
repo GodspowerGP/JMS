@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Reading | JMS Literary Review</title>
+    <meta name="description" id="page-desc" content="Read a published work from the JMS Literary Review.">
+    <meta name="robots" content="noindex"><!-- individual works indexed only after launch -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,800;1,400;1,700&family=Montserrat:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css?v=2">
+
+    <style>
+        /* ── Work Reading Page ──────────────────────────────── */
+        .lr-work-loading {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 16px;
+            color: var(--text-muted, #64748b);
+        }
+
+        .lr-work-loading i { font-size: 2rem; opacity: 0.4; }
+        .lr-work-loading p { font-size: 15px; margin: 0; }
+
+        /* Hero banner for a single work */
+        .lr-work-hero {
+            background: linear-gradient(135deg, #0a2540 0%, #132d47 100%);
+            padding: 72px 0 56px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lr-work-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(249,115,22,0.08), transparent);
+            pointer-events: none;
+        }
+
+        .lr-work-hero .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.55);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s;
+        }
+        .lr-work-hero .back-link:hover { color: rgba(255,255,255,0.9); }
+
+        .lr-work-genre-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 20px;
+        }
+        .lr-work-genre-badge.poetry    { background: rgba(249,115,22,0.18); color: #fdba74; }
+        .lr-work-genre-badge.fiction   { background: rgba(59,130,246,0.18); color: #93c5fd; }
+        .lr-work-genre-badge.nonfiction{ background: rgba(16,185,129,0.18); color: #6ee7b7; }
+
+        .lr-work-main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .lr-work-hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .lr-work-hero-meta span {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.65);
+            font-weight: 500;
+        }
+
+        .lr-work-hero-meta span i { color: var(--accent-gold, #fbbf24); font-size: 12px; }
+
+        /* ── Reading body ─────────────────────────────────── */
+        .lr-work-body-section {
+            padding: 64px 0 80px;
+            background: #fdfcfb;
+        }
+
+        .lr-reading-frame {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        /* Poetry: preserve line breaks, serif font */
+        .lr-reading-poetry {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            line-height: 2.0;
+            color: #1e293b;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Prose (fiction / nonfiction) */
+        .lr-reading-prose p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #1e293b;
+            margin-bottom: 1.6em;
+            text-align: justify;
+        }
+
+        .lr-reading-prose p:first-child::first-letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            float: left;
+            line-height: 0.8;
+            margin: 6px 10px -4px 0;
+            color: var(--accent-orange, #f97316);
+        }
+
+        /* ── Work footer ──────────────────────────────────── */
+        .lr-work-footer-section {
+            background: #f0f4f9;
+            padding: 48px 0;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .lr-work-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-orange, #f97316), var(--accent-gold, #fbbf24));
+            border-radius: 2px;
+            margin: 0 auto 32px;
+        }
+
+        /* ── 404 / Error state ────────────────────────────── */
+        .lr-not-found {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            gap: 16px;
+            padding: 60px 20px;
+        }
+        .lr-not-found i { font-size: 3rem; color: #cbd5e1; }
+        .lr-not-found h2 { font-family: 'Playfair Display', serif; color: #0a2540; margin: 0; }
+        .lr-not-found p { color: #64748b; max-width: 460px; }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══ TOP UTILITY BAR ═══ -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-inner">
+                <div class="top-bar-left">
+                    <a href="mailto:jewelmodel1996@gmail.com"><i class="fas fa-envelope"></i>
+                        jewelmodel1996@gmail.com</a>
+                    <a href="tel:+2348037251044"><i class="fas fa-phone"></i> +234 803 725 1044</a>
+                    <a href="tel:+2348077158439"><i class="fas fa-phone"></i> +234 807 715 8439</a>
+                </div>
+                <div class="top-bar-right">
+                    <div class="top-bar-socials">
+                        <a href="https://www.facebook.com/share/1YLq4dXVFD/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/jewel_model_schools_kubwa?igsh=cnc4Zmo4YzF0NXBs" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/JewelAbuja912" target="_blank" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                    <a href="admissions.html" class="portal-link">Enrol Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ MAIN NAVBAR ═══ -->
+    <nav class="main-nav" id="mainNav">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="index.html" class="nav-logo">
+                    <img src="images/logo.png" alt="Jewel Model Schools Logo">
+                    <div class="logo-text">
+                        <h2 class="school-name">Jewel Model Schools</h2>
+                        <span class="school-tagline">Second to None</span>
+                    </div>
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html" class="nav-item-link">Home</a></li>
+                    <li><a href="about.html" class="nav-item-link">About Us</a></li>
+                    <li class="has-dropdown">
+                        <a href="#" class="nav-item-link active">Academics <i class="fas fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                        <div class="dropdown-menu-custom">
+                            <a href="branches.html">Branches</a>
+                            <a href="admissions.html">Admission Info</a>
+                            <a href="blog.html">Blog</a>
+                            <a href="literary-review.html" class="active">Literary Review</a>
+                        </div>
+                    </li>
+                    <li><a href="awards.html" class="nav-item-link">Achievements</a></li>
+                    <li><a href="contact.html" class="nav-item-link">Contact Us</a></li>
+                </ul>
+                <div class="nav-cta">
+                    <a href="https://www.jewelmodelschools.sch.ng/" class="btn-enrol" target="_blank">Result Portal</a>
+                    <button class="hamburger" id="hamburger" aria-label="Menu">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <button class="mobile-close" id="mobileClose" aria-label="Close Menu"><i class="fas fa-times"></i></button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="mobile-dropdown">
+                    <span class="mobile-dropdown-toggle active">Academics <i class="fas fa-chevron-down" style="font-size:1rem;"></i></span>
+                    <ul class="mobile-dropdown-menu">
+                        <li><a href="branches.html">Branches</a></li>
+                        <li><a href="admissions.html">Admission Info</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="literary-review.html" class="active">Literary Review</a></li>
+                    </ul>
+                </li>
+                <li><a href="awards.html">Achievements</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="https://www.jewelmodelschools.sch.ng/" class="mobile-portal-btn" target="_blank">Result Portal</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ═══ STICKY SECONDARY SUB-NAV ═══ -->
+    <div class="lr-subnav-wrapper">
+        <div class="container">
+            <div class="lr-subnav-inner">
+                <div class="lr-subnav-brand">JMS Literary Review</div>
+                <ul class="lr-subnav-links">
+                    <li><a href="literary-review.html" class="lr-subnav-link">All Works</a></li>
+                    <li><a href="lr-poetry.html" class="lr-subnav-link">Poetry</a></li>
+                    <li><a href="lr-fiction.html" class="lr-subnav-link">Fiction</a></li>
+                    <li><a href="lr-nonfiction.html" class="lr-subnav-link">Non-Fiction</a></li>
+                    <li><a href="lr-submissions.html" class="lr-subnav-link">Submissions</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main id="lr-work-page">
+
+        <!-- Loading State -->
+        <div id="lr-work-loading" class="lr-work-loading">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading work&hellip;</p>
+        </div>
+
+        <!-- Not Found State -->
+        <div id="lr-work-notfound" class="lr-not-found d-none">
+            <i class="fas fa-feather-alt"></i>
+            <h2>Work Not Found</h2>
+            <p>This piece may have been removed or the link may be incorrect. Browse our published works below.</p>
+            <a href="literary-review.html" class="btn-primary-jms d-inline-flex align-items-center gap-2 text-decoration-none px-4 py-3 mt-2">
+                <i class="fas fa-arrow-left"></i> Back to All Works
+            </a>
+        </div>
+
+        <!-- Work Content (hidden until loaded) -->
+        <div id="lr-work-content" class="d-none">
+
+            <!-- Hero -->
+            <section class="lr-work-hero" id="lr-work-hero">
+                <div class="container">
+                    <a href="#" id="lr-back-link" class="back-link">
+                        <i class="fas fa-arrow-left"></i> Back to <span id="lr-back-label">Literary Review</span>
+                    </a>
+                    <div>
+                        <span class="lr-work-genre-badge" id="lr-genre-badge"></span>
+                    </div>
+                    <h1 class="lr-work-main-title" id="lr-work-title">—</h1>
+                    <div class="lr-work-hero-meta">
+                        <span id="lr-work-author"><i class="fas fa-user"></i> —</span>
+                        <span id="lr-work-date"><i class="fas fa-calendar-alt"></i> —</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reading Body -->
+            <section class="lr-work-body-section">
+                <div class="container">
+                    <div class="lr-reading-frame">
+                        <div id="lr-work-body"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Work Footer -->
+            <section class="lr-work-footer-section">
+                <div class="container text-center">
+                    <div class="lr-work-divider"></div>
+                    <p class="text-muted mb-4" style="font-size:15px;">
+                        Published in the <strong style="color:#0a2540;">JMS Literary Review</strong>
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center">
+                        <a href="#" id="lr-footer-back-link" class="btn-jms-secondary-outline d-inline-flex align-items-center gap-2 text-decoration-none px-4 py-3" style="background:#e2e8f0; border-radius:10px; color:#0a2540; font-weight:600; font-size:14px; transition:all 0.2s;">
+                            <i class="fas fa-arrow-left"></i> Back to <span id="lr-footer-back-label">All Works</span>
+                        </a>
+                        <a href="lr-submissions.html" class="btn-primary-jms d-inline-flex align-items-center gap-2 text-decoration-none px-4 py-3">
+                            <i class="fas fa-paper-plane"></i> Submit Your Work
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+        </div><!-- /lr-work-content -->
+
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-brand col-12 col-xl-4 mb-5 mb-xl-0">
+                    <a href="index.html" class="nav-logo">
+                        <img src="images/logo.png" alt="Jewel Model Schools Logo" class="mb-0">
+                        <div class="logo-text">
+                            <h2 class="school-name">Jewel Model Schools</h2>
+                            <span class="school-tagline">Second to None</span>
+                        </div>
+                    </a>
+                    <p class="pt-4">Jewel Model Schools is dedicated to providing a holistic education that prepares students for leadership and global success since 1996.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.facebook.com/share/1YLq4dXVFD/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/jewel_model_schools_kubwa?igsh=cnc4Zmo4YzF0NXBs" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/JewelAbuja912" target="_blank" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col col-12 col-md-6 col-xl-2">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="branches.html">Our Campuses</a></li>
+                        <li><a href="awards.html">Achievements</a></li>
+                        <li><a href="awards.html#jmsGallerySection">Gallery</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col col-12 col-md-6 col-xl-3">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:jewelmodel1996@gmail.com" target="_blank"><i class="fas fa-envelope"></i> jewelmodel1996@gmail.com</a></li>
+                        <li><a href="tel:07031586881" target="_blank"><i class="fas fa-phone"></i> 0703 158 6881</a></li>
+                        <li><a href="tel:08038840260" target="_blank"><i class="fas fa-phone"></i> 0803 884 0260</a></li>
+                        <li><a href="tel:08169537716" target="_blank"><i class="fas fa-phone"></i> 0816 953 7716</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Kukwaba, Kubwa Village, Abuja</li>
+                    </ul>
+                </div>
+                <div class="footer-col col-12 col-xl-3 mt-3 mt-xl-0">
+                    <h4>Result Portal</h4>
+                    <p>Access grades, results, and school updates via our online portal.</p>
+                    <a href="https://www.jewelmodelschools.sch.ng/" class="portal-btn" target="_blank">Login to Portal <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom d-flex flex-wrap">
+                <p>&copy; 2026 Jewel Model Schools. All Rights Reserved.</p>
+                <p>Built with Excellence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- JMS Scripts -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+    /* ─── Individual Work Loader ─────────────────────────────────────────── */
+    'use strict';
+
+    const GENRE_CFG = {
+        poetry:    { label: 'Poetry',     icon: 'fas fa-feather-alt', badgeClass: 'poetry',    backHref: 'lr-poetry.html',    backLabel: 'Poetry' },
+        fiction:   { label: 'Fiction',    icon: 'fas fa-book',        badgeClass: 'fiction',   backHref: 'lr-fiction.html',   backLabel: 'Fiction' },
+        nonfiction:{ label: 'Non-Fiction',icon: 'fas fa-file-alt',    badgeClass: 'nonfiction',backHref: 'lr-nonfiction.html',backLabel: 'Non-Fiction' },
+    };
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        const params = new URLSearchParams(window.location.search);
+        const id     = params.get('id');
+
+        const loadingEl = document.getElementById('lr-work-loading');
+        const notFoundEl= document.getElementById('lr-work-notfound');
+        const contentEl = document.getElementById('lr-work-content');
+
+        if (!id) {
+            show(notFoundEl); hide(loadingEl);
+            return;
+        }
+
+        try {
+            const { data: work, error } = await supabaseClient
+                .from('lr_works')
+                .select('*')
+                .eq('id', id)
+                .eq('status', 'published')
+                .single();
+
+            if (error || !work) {
+                show(notFoundEl); hide(loadingEl);
+                return;
+            }
+
+            renderWork(work);
+            hide(loadingEl);
+            show(contentEl);
+
+        } catch (err) {
+            console.error('[lr-work] Fetch error:', err);
+            show(notFoundEl); hide(loadingEl);
+        }
+    });
+
+    function renderWork(work) {
+        const cfg        = GENRE_CFG[work.genre] || GENRE_CFG.poetry;
+        const authorLine = work.author_info
+            ? `${esc(work.author_name)} — ${esc(work.author_info)}`
+            : esc(work.author_name);
+        const date       = work.published_at
+            ? new Date(work.published_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+            : '';
+
+        // Update <title> & meta
+        document.getElementById('page-title').textContent = `${work.title} | JMS Literary Review`;
+        document.getElementById('page-desc').setAttribute('content',
+            `Read "${work.title}" by ${work.author_name} — JMS Literary Review.`);
+
+        // Back links
+        document.getElementById('lr-back-link').href       = cfg.backHref;
+        document.getElementById('lr-back-label').textContent = cfg.backLabel;
+        document.getElementById('lr-footer-back-link').href   = cfg.backHref;
+        document.getElementById('lr-footer-back-label').textContent = cfg.backLabel;
+
+        // Genre badge
+        const badge = document.getElementById('lr-genre-badge');
+        badge.className = `lr-work-genre-badge ${cfg.badgeClass}`;
+        badge.innerHTML = `<i class="${cfg.icon}"></i> ${cfg.label}`;
+
+        // Title
+        document.getElementById('lr-work-title').textContent = work.title;
+
+        // Meta
+        document.getElementById('lr-work-author').innerHTML =
+            `<i class="fas fa-user"></i> ${authorLine}`;
+        document.getElementById('lr-work-date').innerHTML =
+            `<i class="fas fa-calendar-alt"></i> Published: ${date}`;
+
+        // Body
+        const bodyEl = document.getElementById('lr-work-body');
+        if (work.genre === 'poetry') {
+            const pre = document.createElement('pre');
+            pre.className = 'lr-reading-poetry';
+            pre.textContent = work.body;
+            bodyEl.appendChild(pre);
+        } else {
+            const div = document.createElement('div');
+            div.className = 'lr-reading-prose';
+            const paras = work.body.split(/\n\n+/);
+            div.innerHTML = paras.map(p => `<p>${esc(p.trim())}</p>`).join('');
+            bodyEl.appendChild(div);
+        }
+
+        // Hero gradient tint based on genre
+        const heroEl = document.getElementById('lr-work-hero');
+        if (work.genre === 'poetry')     heroEl.style.background = 'linear-gradient(135deg, #2d1010 0%, #0a2540 100%)';
+        if (work.genre === 'fiction')    heroEl.style.background = 'linear-gradient(135deg, #0a1a40 0%, #0a2540 100%)';
+        if (work.genre === 'nonfiction') heroEl.style.background = 'linear-gradient(135deg, #042010 0%, #0a2540 100%)';
+    }
+
+    function show(el) { if (el) el.classList.remove('d-none'); }
+    function hide(el) { if (el) el.classList.add('d-none'); }
+
+    function esc(str) {
+        if (!str) return '';
+        return String(str)
+            .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+            .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    </script>
+
+</body>
+</html>

@@ -601,6 +601,11 @@
                 <i class="fas fa-inbox me-2"></i>Inbox <span class="badge bg-danger rounded-pill ms-1 d-none" id="unread-count" style="font-size:11px;">0</span>
             </button>
         </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="lr-tab" data-bs-toggle="tab" data-bs-target="#lr-panel" type="button" role="tab" style="font-weight:600; border-radius: 8px;">
+                <i class="fas fa-feather-alt me-2"></i>Literary Review
+            </button>
+        </li>
     </ul>
 
     <div class="tab-content" id="adminTabsContent">
@@ -773,7 +778,139 @@
                 </table>
             </div>
         </div>
+        </div>
     </div><!-- /inbox-panel -->
+
+    <!-- ══ LITERARY REVIEW PANEL ═══════════════════════════════════════════ -->
+    <div class="tab-pane fade" id="lr-panel" role="tabpanel">
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-book-open"></i></div>
+                <div>
+                    <div class="stat-label">Total Works</div>
+                    <div class="stat-value" id="lr-stat-total">—</div>
+                </div>
+            </div>
+            <div class="stat-card s-success">
+                <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                <div>
+                    <div class="stat-label">Published</div>
+                    <div class="stat-value" id="lr-stat-published">—</div>
+                </div>
+            </div>
+            <div class="stat-card s-warning">
+                <div class="stat-icon"><i class="fas fa-pen-alt"></i></div>
+                <div>
+                    <div class="stat-label">Drafts</div>
+                    <div class="stat-value" id="lr-stat-drafts">—</div>
+                </div>
+            </div>
+            <div class="stat-card s-info">
+                <div class="stat-icon"><i class="fas fa-star"></i></div>
+                <div>
+                    <div class="stat-label">Featured</div>
+                    <div class="stat-value" id="lr-stat-featured">—</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add / Edit Work Form -->
+        <div class="section-card">
+            <div class="section-card-header">
+                <h2 id="lr-form-heading"><i class="fas fa-plus-circle"></i> Add New Literary Work</h2>
+                <a href="literary-review.html" target="_blank" class="btn-jms-secondary" style="font-size:12px; padding:7px 14px;">
+                    <i class="fas fa-external-link-alt"></i> View Hub
+                </a>
+            </div>
+
+            <!-- Form Error -->
+            <div id="lr-form-error" style="display:none; color:var(--danger); background:#fef2f2; border:1px solid #fecaca; padding:12px 16px; border-radius:8px; margin-bottom:20px; font-size:13px; font-weight:500;"></div>
+
+            <form id="lr-work-form" novalidate>
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label class="form-label" for="lr-title">Title *</label>
+                        <input type="text" class="form-control" id="lr-title" placeholder="Enter work title" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lr-genre">Genre *</label>
+                        <select class="form-control" id="lr-genre" required style="appearance:auto;">
+                            <option value="" disabled selected>Select genre...</option>
+                            <option value="poetry">Poetry</option>
+                            <option value="fiction">Fiction</option>
+                            <option value="nonfiction">Non-Fiction</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-group">
+                        <label class="form-label" for="lr-author-name">Author Name *</label>
+                        <input type="text" class="form-control" id="lr-author-name" placeholder="e.g. John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lr-author-info">Author Class / Info</label>
+                        <input type="text" class="form-control" id="lr-author-info" placeholder="e.g. SS2, University of Abuja, Guest Writer">
+                    </div>
+                </div>
+
+                <!-- Plain Textarea for works (preserves poetry formatting better than Quill for this use case) -->
+                <div class="form-group">
+                    <label class="form-label" for="lr-body">Full Work Text *</label>
+                    <textarea class="form-control" id="lr-body" rows="12" placeholder="Paste the complete literary work here..." required style="resize:vertical; font-family:'Inter',sans-serif;"></textarea>
+                    <small style="color:var(--muted); font-size:12px; margin-top:6px; display:block;">For poetry, line breaks will be exactly preserved as typed.</small>
+                </div>
+
+                <div class="form-grid-2 align-items-center">
+                    <div class="form-group mb-0">
+                        <label class="form-label" for="lr-status">Status</label>
+                        <select class="form-control" id="lr-status" style="max-width:200px; appearance:auto;">
+                            <option value="draft">Draft</option>
+                            <option value="published">Published</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-0" style="padding-top:28px;">
+                        <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:500; font-size:14px;">
+                            <input type="checkbox" id="lr-featured" style="width:16px;height:16px;cursor:pointer;">
+                            Set as Featured Spotlight (replaces current)
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:24px;">
+                    <button type="submit" class="btn-jms-primary" id="lr-submit-btn">
+                        <i class="fas fa-paper-plane"></i> Save Work
+                    </button>
+                    <button type="button" class="btn-jms-secondary" id="lr-cancel-btn" style="display:none;">
+                        <i class="fas fa-times"></i> Cancel Edit
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Works List -->
+        <div class="section-card">
+            <div class="section-card-header">
+                <h2><i class="fas fa-list-ul"></i> Managed Works</h2>
+            </div>
+            <div class="posts-toolbar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="lr-works-search" placeholder="Search title, author, genre…">
+                </div>
+            </div>
+            <div id="lr-works-list">
+                <div class="empty-state">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading works…</p>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /lr-panel -->
 
     </div><!-- /tab-content -->
 
@@ -858,6 +995,6 @@
 <!-- JMS Scripts -->
 <script src="js/supabase-config.js"></script>
 <script src="js/admin.js"></script>
-
+<script src="js/lr-admin.js"></script>
 </body>
 </html>

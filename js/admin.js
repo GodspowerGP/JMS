@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadStats();
     await loadRecentPosts();
     await loadInbox();
+    if (typeof initLRAdmin === 'function') await initLRAdmin();
 
     // 5. Wire up events
     bindEvents();

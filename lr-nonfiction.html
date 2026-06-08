@@ -146,135 +146,11 @@
         <!-- ═══ NON-FICTION SECTION ═══ -->
         <section class="lr-section">
             <div class="container">
-                <div class="row g-4">
-                    <!-- ESSAY 1 -->
-                    <div class="col-md-6">
-                        <div class="lr-card">
-                            <div class="lr-card-img-wrap">
-                                <div class="lr-card-img-placeholder" style="background: linear-gradient(135deg, #065f46, #10b981); color: white; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-flask fa-3x"></i>
-                                </div>
-                                <span class="lr-card-tag nonfiction">Non-Fiction</span>
-                            </div>
-                            <div class="lr-card-body">
-                                <div class="lr-card-meta">
-                                    <span><i class="fas fa-user"></i> Kemi Adebayo — SS1</span>
-                                    <span><i class="fas fa-calendar-alt"></i> May 2026</span>
-                                </div>
-                                <h3 class="lr-card-title"><a href="#" data-bs-toggle="modal" data-bs-target="#essayModal1">A Day at the Science Exhibition</a></h3>
-                                <p class="lr-card-excerpt">
-                                    An engaging, first-person narrative chronicling the innovative projects and outstanding student exhibits at the annual JMS Science Fair.
-                                </p>
-                                <button class="lr-card-link border-0 bg-transparent text-start p-0" data-bs-toggle="modal" data-bs-target="#essayModal1">
-                                    Read Essay <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- ESSAY 2 -->
-                    <div class="col-md-6">
-                        <div class="lr-card">
-                            <div class="lr-card-img-wrap">
-                                <div class="lr-card-img-placeholder" style="background: linear-gradient(135deg, #0f766e, #14b8a6); color: white; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-atlas fa-3x"></i>
-                                </div>
-                                <span class="lr-card-tag nonfiction">Non-Fiction</span>
-                            </div>
-                            <div class="lr-card-body">
-                                <div class="lr-card-meta">
-                                    <span><i class="fas fa-user"></i> Samuel Johnson — SS2</span>
-                                    <span><i class="fas fa-calendar-alt"></i> April 2026</span>
-                                </div>
-                                <h3 class="lr-card-title"><a href="#" data-bs-toggle="modal" data-bs-target="#essayModal2">Why Reading Matters</a></h3>
-                                <p class="lr-card-excerpt">
-                                    An insightful essay exploring the power of literature in sharpening young minds and cultivating empathy in the modern digital age.
-                                </p>
-                                <button class="lr-card-link border-0 bg-transparent text-start p-0" data-bs-toggle="modal" data-bs-target="#essayModal2">
-                                    Read Essay <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                <div id="lr-works-grid" class="row g-4">
+                    <!-- Works loaded dynamically by lr-public.js -->
                 </div>
             </div>
         </section>
-    </main>
-
-    <!-- ═══ MODALS FOR FULL ESSAY TEXT ═══ -->
-    <!-- ESSAY 1 MODAL -->
-    <div class="modal fade" id="essayModal1" tabindex="-1" aria-labelledby="essayModal1Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-            <div class="modal-content border-0 rounded-4">
-                <div class="modal-header border-0 pb-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4 p-md-5">
-                    <div class="lr-full-work">
-                        <h2 class="lr-full-title" id="essayModal1Label">A Day at the Science Exhibition</h2>
-                        <div class="lr-full-meta">
-                            <span><i class="fas fa-user text-orange"></i> Kemi Adebayo (SS1)</span>
-                            <span><i class="fas fa-calendar-alt text-orange"></i> Published: May 2026</span>
-                        </div>
-                        <div class="lr-full-body">
-                            <p>
-                                The morning of May 14th began with an electric buzz of anticipation in the main hall of Jewel Model Schools. It was the day of our annual Science and Arts Exhibition, a time when our classrooms transform into laboratories of innovation.
-                            </p>
-                            <p>
-                                This year, my class, Senior Secondary 1, was tasked with presenting environmental sustainability models. My team had spent three weeks building a miniature solar-powered water filtration system designed for rural communities. We were nervous as visitors and judges began to fill the hall, but our hard work paid off.
-                            </p>
-                            <p>
-                                As the principal, accompanied by the guest speakers, stopped at our booth, we explained the mechanical structure, the filtration stages, and how local solar panels could power it. Seeing their nods of approval and hearing their constructive feedback was incredibly rewarding.
-                            </p>
-                            <p>
-                                Other booths were equally fascinating. The JSS3 students demonstrated a voice-controlled home automation system using basic coding, while the primary section wowed everyone with handmade recycled paper art. The exhibition reminded me that science is not just about memorizing formulas from a textbook; it is about finding practical solutions to real-world problems. It was a day of learning, inspiration, and pride for all of us at JMS.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer border-0 justify-content-center pb-4">
-                    <button type="button" class="btn-primary-jms px-4 py-2 border-0" data-bs-dismiss="modal">Close Essay</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ESSAY 2 MODAL -->
-    <div class="modal fade" id="essayModal2" tabindex="-1" aria-labelledby="essayModal2Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-            <div class="modal-content border-0 rounded-4">
-                <div class="modal-header border-0 pb-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4 p-md-5">
-                    <div class="lr-full-work">
-                        <h2 class="lr-full-title" id="essayModal2Label">Why Reading Matters</h2>
-                        <div class="lr-full-meta">
-                            <span><i class="fas fa-user text-orange"></i> Samuel Johnson (SS2)</span>
-                            <span><i class="fas fa-calendar-alt text-orange"></i> Published: April 2026</span>
-                        </div>
-                        <div class="lr-full-body">
-                            <p>
-                                In today's fast-paced world, where screen notifications and short videos dominate our attention, the habit of reading books is under threat. However, literature remains one of the most powerful tools we have for intellectual and personal growth.
-                            </p>
-                            <p>
-                                Firstly, reading expands our vocabulary and improves our writing skills. When we read essays, short stories, or poetry, we are exposed to diverse sentence structures and creative expressions that we can apply to our own academic work. It is no coincidence that students who read regularly often perform better in languages and humanities subjects.
-                            </p>
-                            <p>
-                                Secondly, books foster empathy. By stepping into the shoes of a character from a different culture, country, or time period, we begin to understand perspectives different from our own. A reader travels thousands of miles and lives a hundred lives without ever leaving their room. This is crucial for building a tolerant and understanding school community.
-                            </p>
-                            <p>
-                                Lastly, reading sharpens our critical thinking. Unlike passive media, reading requires us to actively analyze plots, evaluate arguments, and imagine scenarios. It trains the brain to think deeply and concentrate for longer periods. As young minds navigating a world shaped by information, embracing literature is not just an academic requirement — it is a path to becoming thoughtful, empathetic leaders of tomorrow. Let us put down our phones, open a book, and let our minds explore.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer border-0 justify-content-center pb-4">
-                    <button type="button" class="btn-primary-jms px-4 py-2 border-0" data-bs-dismiss="modal">Close Essay</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- ═══ FOOTER ═══ -->
     <footer class="site-footer">
@@ -336,9 +212,13 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- JMS Scripts -->
+    <script>window.LR_GENRE_FILTER = 'nonfiction';</script>
+    <script src="js/supabase-config.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/lr-public.js"></script>
 </body>
 
 </html>
