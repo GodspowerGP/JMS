@@ -63,16 +63,27 @@ const LR_GENRE_CONFIG = {
 };
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   GLOBAL STATE & CONSTANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+const WORKS_PER_LOAD = 6;
+let lrOffset         = 0;
+let lrAllLoaded      = false;
+let lrActiveGenre    = null;
+
+/* ═══════════════════════════════════════════════════════════════════════════
    ENTRY POINT
-═══════════════════════════════════════════════════════════════════════════ */
+   ═══════════════════════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', async () => {
-    const genre = window.LR_GENRE_FILTER || null;
+    lrActiveGenre = window.LR_GENRE_FILTER || null;
 
     const featuredContainer = document.getElementById('lr-featured-spotlight');
     const worksGrid         = document.getElementById('lr-works-grid');
 
     if (featuredContainer) await loadFeaturedWork(featuredContainer);
-    if (worksGrid)         await loadWorksGrid(worksGrid, genre);
+    if (worksGrid) {
+        await loadWorksGrid(true);
+        bindLoadMore();
+    }
 });
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -171,38 +182,74 @@ function renderFeaturedEmpty() {
 /* ═══════════════════════════════════════════════════════════════════════════
    WORKS GRID
 ═══════════════════════════════════════════════════════════════════════════ */
-async function loadWorksGrid(container, genre) {
-    container.innerHTML = renderSkeletons(4);
+async function loadWorksGrid(reset = false) {
+    const container = document.getElementById('lr-works-grid');
+    if (!container) return;
+
+    if (reset) {
+        lrOffset = 0;
+        lrAllLoaded = false;
+        container.innerHTML = renderSkeletons(lrActiveGenre ? 4 : 6);
+    }
 
     try {
         let query = supabaseClient
             .from('lr_works')
             .select('id, title, author_name, author_info, genre, excerpt, body, published_at')
             .eq('status', 'published')
-            .order('published_at', { ascending: false });
+            .order('published_at', { ascending: false })
+            .range(lrOffset, lrOffset + WORKS_PER_LOAD - 1);
 
-        if (genre) query = query.eq('genre', genre);
+        if (lrActiveGenre) query = query.eq('genre', lrActiveGenre);
 
         const { data: works, error } = await query;
         if (error) throw error;
 
         if (!works || works.length === 0) {
-            container.innerHTML = renderEmptyState(genre);
+            if (reset) {
+                container.innerHTML = renderEmptyState(lrActiveGenre);
+            }
+            lrAllLoaded = true;
+            updateLoadMoreBtn();
             return;
         }
 
         // Hub = 3-col, genre pages = 2-col
-        const colClass = genre ? 'col-md-6' : 'col-lg-4 col-md-6';
-        container.innerHTML = works.map((w, i) => renderWorkCard(w, i, colClass)).join('');
+        const colClass = lrActiveGenre ? 'col-md-6' : 'col-lg-4 col-md-6';
+        const cards = works.map((w, i) => renderWorkCard(w, lrOffset + i, colClass)).join('');
+
+        if (reset) {
+            container.innerHTML = cards;
+        } else {
+            container.insertAdjacentHTML('beforeend', cards);
+        }
+
+        lrOffset += works.length;
+        if (works.length < WORKS_PER_LOAD) lrAllLoaded = true;
+        updateLoadMoreBtn();
 
     } catch (err) {
         console.error('[LR] Works grid error:', err);
-        container.innerHTML = `
-        <div class="col-12 text-center py-5">
-            <i class="fas fa-exclamation-circle fa-2x text-muted mb-3 d-block"></i>
-            <p class="text-muted">Unable to load works. Please refresh the page.</p>
-        </div>`;
+        if (reset) {
+            container.innerHTML = `
+            <div class="col-12 text-center py-5">
+                <i class="fas fa-exclamation-circle fa-2x text-muted mb-3 d-block"></i>
+                <p class="text-muted">Unable to load works. Please refresh the page.</p>
+            </div>`;
+        }
     }
+}
+
+function bindLoadMore() {
+    const btn = document.getElementById('lr-load-more-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => loadWorksGrid(false));
+}
+
+function updateLoadMoreBtn() {
+    const btn = document.getElementById('lr-load-more-btn');
+    if (!btn) return;
+    btn.style.display = lrAllLoaded ? 'none' : 'inline-flex';
 }
 
 function renderWorkCard(work, index, colClass) {

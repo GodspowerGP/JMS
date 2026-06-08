@@ -5669,6 +5669,200 @@ a.btn-send:active {
 
 .lr-poetry-body {
   white-space: pre-line;
+.lr-card-title a:hover {
+  color: var(--accent-orange);
+}
+
+.lr-card-author {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.lr-card-author span {
+  color: var(--text-light);
+  font-weight: 400;
+}
+
+.lr-card-excerpt {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.lr-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-blue);
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.lr-card-link:hover {
+  color: var(--accent-orange);
+  gap: 12px;
+}
+
+/* ==========================================================================
+   LITERARY REVIEW SUBMISSIONS & GUIDELINES
+   ========================================================================== */
+.lr-sub-box {
+  background: var(--bg-white);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  margin-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+  .lr-sub-box {
+    padding: 25px;
+  }
+}
+
+.lr-sub-guidelines h4 {
+  color: var(--primary-blue);
+  margin-top: 25px;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.lr-sub-guidelines ul {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.lr-sub-guidelines li {
+  margin-bottom: 8px;
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.lr-form-group {
+  margin-bottom: 20px;
+}
+
+.lr-form-group label {
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-bottom: 8px;
+  display: block;
+  color: var(--text-dark);
+}
+
+.lr-form-input, .lr-form-select, .lr-form-textarea {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  background: #f8fafc;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  outline: none;
+}
+
+.lr-form-input:focus, .lr-form-select:focus, .lr-form-textarea:focus {
+  border-color: var(--accent-orange);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+}
+
+.lr-form-textarea {
+  resize: vertical;
+  min-height: 180px;
+}
+
+.lr-submit-btn {
+  background: var(--primary-blue);
+  color: white;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.lr-submit-btn:hover {
+  background: var(--accent-orange);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.25);
+}
+
+/* ==========================================================================
+   LITERARY WORK FULL DETAILS
+   ========================================================================== */
+.lr-full-work {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--bg-white);
+  padding: 50px;
+  border-radius: 28px;
+  box-shadow: 0 10px 45px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 768px) {
+  .lr-full-work {
+    padding: 30px 20px;
+  }
+}
+
+.lr-full-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--primary-blue);
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 800;
+}
+
+.lr-full-meta {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.lr-full-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lr-full-body {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--text-dark);
+}
+
+.lr-full-body p {
+  margin-bottom: 25px;
+}
+
+.lr-poetry-body {
+  white-space: pre-line;
   text-align: center;
   font-style: italic;
   font-family: 'Inter', sans-serif;
@@ -5677,4 +5871,37 @@ a.btn-send:active {
   color: var(--primary-blue);
   max-width: 600px;
   margin: 0 auto;
+}
+
+/* ==========================================================================
+   SHARED LOAD MORE STYLING
+   ========================================================================== */
+.load-more-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0 50px;
+}
+
+#lr-load-more-btn, #load-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 32px;
+  border-radius: 50px;
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+}
+
+#lr-load-more-btn:hover, #load-more-btn:hover {
+  background: var(--accent-orange);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.3);
+  color: white !important;
 }
