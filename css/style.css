@@ -1893,7 +1893,6 @@ dl {
 .mobile-dropdown-toggle.active {
   color: var(--accent-orange);
   display: flex;
-  justify-content: space-between;
   align-items: center;
   color: white;
   padding: 10px 0;

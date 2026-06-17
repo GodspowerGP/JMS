@@ -77,6 +77,15 @@ async function renderAdminProfile() {
     if (nameEl)   nameEl.textContent = name;
     if (roleEl)   roleEl.textContent = roleTag;
     if (avatarEl) avatarEl.textContent = name.charAt(0).toUpperCase();
+
+    // Reveal Audit Trail to Superadmins
+    if (roleTag === 'Superadmin') {
+        const auditTabItem = document.getElementById('audit-tab-item');
+        if (auditTabItem) auditTabItem.classList.remove('d-none');
+        if (typeof initAuditLogs === 'function') {
+            await initAuditLogs();
+        }
+    }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════

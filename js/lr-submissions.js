@@ -33,7 +33,7 @@
  *       {{body_text}}
  *
  *       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- *       Sent via JMS Literary Review Website
+ *       Sent via Jewel Literary Magazine Website
  *
  *  4. Note the Template ID (e.g. template_xxxxxx)
  *  5. Dashboard → Account → copy your Public Key

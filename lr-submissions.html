@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Your Work | JMS Literary Review</title>
+    <title>Submissions | Jewel Literary Magazine</title>
     <meta name="description"
-        content="Submit your poems, short stories, and essays to the Jewel Model Schools Literary Review. View guidelines and guidelines here.">
-    <meta name="keywords" content="JMS literary submission, student writers, writing submission form, Jewel Model Schools, Abuja">
+        content="Submit your poetry, fiction, and creative nonfiction to Jewel Literary Magazine. Read our submission guidelines before sending your work.">
+    <meta name="keywords" content="Jewel Literary Magazine submissions, submit poetry fiction nonfiction, literary journal Nigeria, Jewel Model Schools">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/logo.png">
@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700;800&family=Montserrat:wght@600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,800;1,400;1,700&family=Montserrat:wght@600;700;800&display=swap"
         rel="stylesheet">
 
     <!-- Bootstrap & Icons -->
@@ -25,6 +25,199 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css?v=2">
+
+    <style>
+        /* ── Submissions Page ─────────────────────────────── */
+
+        /* Intro block */
+        .lr-sub-intro {
+            background: #fff;
+            border-radius: 20px;
+            padding: 40px 44px;
+            border: 1px solid #e8edf5;
+            box-shadow: 0 2px 20px rgba(10,37,64,0.06);
+            margin-bottom: 40px;
+        }
+        .lr-sub-intro p {
+            font-size: 1.01rem;
+            line-height: 1.9;
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+        .lr-sub-intro p:last-child { margin-bottom: 0; }
+        .lr-sub-intro a {
+            color: var(--accent-orange, #f97316);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .lr-sub-intro a:hover { color: #ea580c; }
+
+        /* Email CTA highlight */
+        .lr-email-highlight {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(249,115,22,0.08);
+            border: 1.5px solid rgba(249,115,22,0.25);
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #0a2540;
+            margin: 4px 0;
+        }
+        .lr-email-highlight i { color: var(--accent-orange, #f97316); }
+
+        /* Genre sections */
+        .lr-genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .lr-genre-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 32px 28px;
+            border: 1px solid #e8edf5;
+            box-shadow: 0 2px 16px rgba(10,37,64,0.05);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .lr-genre-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 40px rgba(10,37,64,0.10);
+        }
+        .lr-genre-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+        }
+        .lr-genre-card.poetry::before  { background: linear-gradient(90deg, #f97316, #fbbf24); }
+        .lr-genre-card.fiction::before  { background: linear-gradient(90deg, #3b82f6, #6366f1); }
+        .lr-genre-card.nonfiction::before { background: linear-gradient(90deg, #10b981, #059669); }
+
+        .lr-genre-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+        }
+        .lr-genre-card.poetry .lr-genre-icon    { background: rgba(249,115,22,0.10); color: #f97316; }
+        .lr-genre-card.fiction .lr-genre-icon   { background: rgba(59,130,246,0.10); color: #3b82f6; }
+        .lr-genre-card.nonfiction .lr-genre-icon{ background: rgba(16,185,129,0.10); color: #10b981; }
+
+        .lr-genre-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #0a2540;
+            margin-bottom: 14px;
+        }
+        .lr-genre-body {
+            font-size: 0.96rem;
+            line-height: 1.8;
+            color: #475569;
+            margin: 0;
+        }
+
+        /* Section title */
+        .lr-sub-section-title {
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            font-weight: 800;
+            color: #0a2540;
+            margin-bottom: 6px;
+        }
+        .lr-sub-eyebrow {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-orange, #f97316);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Info pills */
+        .lr-info-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: #f0f4f9;
+            border-radius: 30px;
+            padding: 6px 16px;
+            font-size: 0.83rem;
+            font-weight: 600;
+            color: #0a2540;
+            margin: 4px 6px 4px 0;
+        }
+        .lr-info-pill i { color: var(--accent-orange, #f97316); font-size: 0.8rem; }
+
+        /* Closing note */
+        .lr-closing-card {
+            background: linear-gradient(135deg, #0a2540 0%, #132d47 100%);
+            border-radius: 20px;
+            padding: 44px 44px;
+            text-align: center;
+            margin-top: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .lr-closing-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px; left: 20px;
+            font-size: 10rem;
+            color: rgba(255,255,255,0.04);
+            line-height: 1;
+            pointer-events: none;
+        }
+        .lr-closing-card p {
+            font-style: italic;
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.88);
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .lr-closing-card .lr-closing-sig {
+            font-style: normal;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent-gold, #fbbf24);
+        }
+
+        /* Divider */
+        .lr-sub-divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 44px 0 36px;
+        }
+        .lr-sub-divider::before,
+        .lr-sub-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #dde3ee, transparent);
+        }
+        .lr-sub-divider i { color: var(--accent-orange, #f97316); font-size: 1rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .lr-sub-intro { padding: 28px 22px; }
+            .lr-closing-card { padding: 32px 22px; }
+        }
+    </style>
 </head>
 
 <body>
@@ -58,10 +251,10 @@
     <nav class="main-nav" id="mainNav">
         <div class="container">
             <div class="nav-inner">
-                <a href="index.html" class="nav-logo">
-                    <img src="images/logo.png" alt="Jewel Model Schools Logo">
+                <a href="literary-review.html" class="nav-logo">
+                    <img src="images/JLM logo.jpeg" alt="Jewel Literary Magazine Logo">
                     <div class="logo-text">
-                        <h2 class="school-name">Jewel Model Schools</h2>
+                        <h2 class="school-name">Jewel Literary Magazine</h2>
                         <span class="school-tagline">Second to None</span>
                     </div>
                 </a>
@@ -117,185 +310,172 @@
     <div class="lr-subnav-wrapper">
         <div class="container">
             <div class="lr-subnav-inner">
-                <div class="lr-subnav-brand">
-                    JMS Literary Review
-                </div>
                 <ul class="lr-subnav-links">
                     <li><a href="literary-review.html" class="lr-subnav-link">All Works</a></li>
                     <li><a href="lr-poetry.html" class="lr-subnav-link">Poetry</a></li>
                     <li><a href="lr-fiction.html" class="lr-subnav-link">Fiction</a></li>
                     <li><a href="lr-nonfiction.html" class="lr-subnav-link">Non-Fiction</a></li>
                     <li><a href="lr-submissions.html" class="lr-subnav-link active">Submissions</a></li>
+                    <li><a href="lr-about.html" class="lr-subnav-link">About</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
     <main>
+
         <!-- ═══ HERO SECTION ═══ -->
         <section class="lr-hero">
             <div class="container">
-                <span class="section-eyebrow rounded-pill px-3 py-1 d-inline-block mb-3">Open to All</span>
-                <h1 class="ach-main-title em">Work <em>Submissions</em></h1>
+                <span class="section-eyebrow rounded-pill px-3 py-1 d-inline-block mb-3">Open Year-Round</span>
+                <h1 class="ach-main-title em">Submission <em>Guidelines</em></h1>
                 <p class="ach-header-desc2">
-                    Submit your poetry, stories, and essays to the JMS Editorial Board. JMS students, students from other schools, and individual writers are all welcome.
+                    We welcome poetry, fiction, and creative nonfiction from writers all over the world.
+                    Please read the guidelines carefully before sending your work.
                 </p>
             </div>
         </section>
 
-        <!-- ═══ SUBMISSION & GUIDELINES GRID ═══ -->
+        <!-- ═══ MAIN CONTENT ═══ -->
         <section class="lr-section">
             <div class="container">
-                <div class="row">
-                    <!-- GUIDELINES -->
-                    <div class="col-lg-5">
-                        <div class="lr-sub-box lr-sub-guidelines h-100">
-                            <h3 class="font-serif color-primary-blue mb-4">Submission Guidelines</h3>
-                            <p class="text-muted">
-                                The JMS Literary Review is open to <strong>JMS students</strong>, <strong>students from other schools</strong>, and <strong>independent writers</strong>. Please read these guidelines carefully before submitting:
+                <div class="row justify-content-center">
+                    <div class="col-lg-9">
+
+                        <!-- Quick facts strip -->
+                        <div class="d-flex flex-wrap mb-5">
+                            <span class="lr-info-pill"><i class="fas fa-calendar-check"></i> Open Year-Round</span>
+                            <span class="lr-info-pill"><i class="fas fa-globe"></i> Worldwide Submissions</span>
+                            <span class="lr-info-pill"><i class="fas fa-clock"></i> 2–4 Week Response</span>
+                            <span class="lr-info-pill"><i class="fas fa-layer-group"></i> Simultaneous Subs OK</span>
+                            <span class="lr-info-pill"><i class="fas fa-file-word"></i> MS Word Preferred</span>
+                        </div>
+
+                        <!-- General Guidelines -->
+                        <span class="lr-sub-eyebrow">General Guidelines</span>
+                        <h2 class="lr-sub-section-title">Before You <em style="color:var(--accent-orange);">Submit</em></h2>
+
+                        <div class="lr-sub-intro mt-4">
+                            <p>
+                                Submissions are open year-round. Please read the following guidelines before submitting.
+                            </p>
+                            <p>
+                                Writers from anywhere in the world are welcome to submit. Submissions may include other languages,
+                                but the primary language of the work must be <strong>English</strong>.
+                            </p>
+                            <p>
+                                We accept <strong>unpublished works</strong>, and works not generated or assisted by AI.
+                                Simultaneous submissions are allowed, but if your work is accepted elsewhere, notify us promptly.
                             </p>
 
-                            <!-- Who Can Submit -->
-                            <div class="mb-3 p-3 rounded-3" style="background: rgba(249,115,22,0.06); border-left: 3px solid var(--accent-orange);">
-                                <p class="small mb-0"><i class="fas fa-users text-orange me-2"></i><strong>Who Can Submit:</strong> JMS students, students from other secondary schools, and individual/independent writers of any age.</p>
-                            </div>
+                            <hr style="border-color:#e8edf5; margin: 24px 0;">
 
-                            <h4><i class="fas fa-feather-alt text-orange me-2"></i> Poetry</h4>
-                            <ul>
-                                <li>Maximum of 3 poems per person per term.</li>
-                                <li>Lines: No limit, but must fit within a single page of format.</li>
-                                <li>Any theme; positive, inspiring, or educational themes are highly encouraged.</li>
-                            </ul>
+                            <p>
+                                All submissions must be in electronic form. Our preference is a single
+                                <strong>MS Word file</strong> (12-point font, single-spaced) sent to:
+                            </p>
+                            <p>
+                                <a href="mailto:jewelliterarymagazine@gmail.com" class="lr-email-highlight">
+                                    <i class="fas fa-envelope"></i> jewelliterarymagazine@gmail.com
+                                </a>
+                            </p>
+                            <p>
+                                Please do not send PDF files unless the formatting of your work makes it necessary.
+                            </p>
 
-                            <h4><i class="fas fa-book text-blue me-2"></i> Fiction</h4>
-                            <ul>
-                                <li>Word count: 300 to 1,500 words.</li>
-                                <li>Short stories, fables, and narrative adventures.</li>
-                                <li>Must be entirely original work. Plagiarism is strictly prohibited.</li>
-                            </ul>
+                            <hr style="border-color:#e8edf5; margin: 24px 0;">
 
-                            <h4><i class="fas fa-file-alt text-green me-2"></i> Non-Fiction</h4>
-                            <ul>
-                                <li>Word count: 300 to 1,200 words.</li>
-                                <li>Personal essays, reflections, arguments, and reports.</li>
-                            </ul>
+                            <p>
+                                In the body of your email, please include a <strong>brief cover letter</strong>,
+                                the <strong>word count</strong> of your submission (for prose),
+                                the <strong>number of poems</strong> submitted (for poetry),
+                                and a <strong>short author bio</strong>.
+                            </p>
+                            <p>
+                                Please format your email subject line as <strong>"Genre + Submission."</strong>
+                                For instance, a poetry submission should have the subject line:
+                                <em>"Poetry Submission."</em>
+                                We strive to respond to all submissions within <strong>2–4 weeks</strong>.
+                            </p>
 
-                            <hr class="my-4">
-                            <div class="p-3 bg-light rounded-3">
-                                <p class="small text-muted mb-0">
-                                    <i class="fas fa-info-circle text-orange me-1"></i>
-                                    <strong>Note:</strong> All submissions are reviewed by the JMS Editorial Board. Approved works will be published online with author credit.
+                            <hr style="border-color:#e8edf5; margin: 24px 0;">
+
+                            <p>
+                                By submitting work to us you grant us a non-exclusive license to publish your work in
+                                any form we see fit. If we publish your work online, we may include it in a printed edition.
+                                <strong>Copyrights of all work published in Jewel Literary Magazine remain with the author.</strong>
+                            </p>
+                            <p>
+                                At this time, we do not offer payment to contributors. We hope to provide compensation in the near future.
+                            </p>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="lr-sub-divider">
+                            <i class="fas fa-feather-alt"></i>
+                        </div>
+
+                        <!-- Genre Cards -->
+                        <span class="lr-sub-eyebrow">By Genre</span>
+                        <h2 class="lr-sub-section-title">What We <em style="color:var(--accent-orange);">Accept</em></h2>
+
+                        <div class="lr-genre-grid mt-4">
+
+                            <!-- Poetry -->
+                            <div class="lr-genre-card poetry">
+                                <div class="lr-genre-icon">
+                                    <i class="fas fa-feather-alt"></i>
+                                </div>
+                                <h3 class="lr-genre-title">Poetry</h3>
+                                <p class="lr-genre-body">
+                                    Poems of any length may be submitted. Each submission may contain
+                                    <strong>up to 3 poems</strong>, totalling no more than <strong>5 pages</strong>.
+                                    Please don't submit 10 poems and ask us to pick 3.
                                 </p>
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- SUBMISSION FORM -->
-                    <div class="col-lg-7 mt-4 mt-lg-0">
-                        <div class="lr-sub-box">
-                            <h3 class="font-serif color-primary-blue mb-1">Submit Your Creative Work</h3>
-                            <p class="text-muted small mb-4">Open to JMS students, other school students, and independent writers.</p>
-
-                            <!-- Success Alert (hidden by default) -->
-                            <div id="submission-success" class="alert alert-success d-none rounded-3 p-4 mb-4" role="alert">
-                                <h5 class="alert-heading font-serif"><i class="fas fa-check-circle me-2"></i>Submission Received!</h5>
-                                <p class="mb-0">
-                                    Thank you for sharing your work with the JMS Editorial Board. We will review your draft and notify you via email when it is approved for publication.
+                            <!-- Fiction -->
+                            <div class="lr-genre-card fiction">
+                                <div class="lr-genre-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <h3 class="lr-genre-title">Fiction</h3>
+                                <p class="lr-genre-body">
+                                    You may submit fiction in three formats: <strong>flash, short stories, hybrid
+                                    forms</strong> — all in <strong>2,000 words or less</strong>.
+                                    A maximum of <strong>two pieces</strong> per submission.
+                                    We also accept longer forms of fiction occasionally.
                                 </p>
                             </div>
 
-                            <!-- Error Alert (hidden by default) -->
-                            <div id="submission-error" class="alert alert-danger d-none rounded-3 p-4 mb-4" role="alert">
-                                <h5 class="alert-heading font-serif"><i class="fas fa-exclamation-circle me-2"></i>Submission Failed</h5>
-                                <p class="mb-0" id="submission-error-msg">There was a problem sending your submission. Please try again or email us directly at jewelmodel1996@gmail.com.</p>
+                            <!-- Non-Fiction -->
+                            <div class="lr-genre-card nonfiction">
+                                <div class="lr-genre-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <h3 class="lr-genre-title">Non-Fiction</h3>
+                                <p class="lr-genre-body">
+                                    We accept <strong>memoir, cultural essays, personal essays, travel adventures</strong>.
+                                    Two pieces, each not more than <strong>2,000 words</strong>, may be submitted.
+                                </p>
                             </div>
 
-                            <form id="lr-submission-form">
-
-                                <!-- STEP 1: Who are you? -->
-                                <div class="lr-form-group">
-                                    <label for="sub-type">I am a&hellip;</label>
-                                    <select id="sub-type" name="submitter_type" class="lr-form-select" required>
-                                        <option value="" disabled selected>Select your category...</option>
-                                        <option value="jms">JMS Student</option>
-                                        <option value="other_school">Student from Another School</option>
-                                        <option value="individual">Independent / Individual Writer</option>
-                                    </select>
-                                </div>
-
-                                <!-- Name + Email always visible -->
-                                <div class="row">
-                                    <div class="col-md-6 lr-form-group">
-                                        <label for="sub-author-name">Full Name</label>
-                                        <input type="text" id="sub-author-name" name="author_name" class="lr-form-input" placeholder="e.g., Amina Bello" required>
-                                    </div>
-                                    <div class="col-md-6 lr-form-group">
-                                        <label for="sub-email">Email Address</label>
-                                        <input type="email" id="sub-email" name="email" class="lr-form-input" placeholder="e.g., amina@example.com" required>
-                                    </div>
-                                </div>
-
-                                <!-- JMS Student fields -->
-                                <div id="fields-jms" class="d-none">
-                                    <div class="lr-form-group">
-                                        <label for="sub-author-class">Class / Grade</label>
-                                        <input type="text" id="sub-author-class" name="author_class" class="lr-form-input" placeholder="e.g., SS2, JSS1">
-                                    </div>
-                                </div>
-
-                                <!-- Other School fields -->
-                                <div id="fields-other-school" class="d-none">
-                                    <div class="row">
-                                        <div class="col-md-6 lr-form-group">
-                                            <label for="sub-school-name">School Name</label>
-                                            <input type="text" id="sub-school-name" name="school_name" class="lr-form-input" placeholder="e.g., Federal Government College Abuja">
-                                        </div>
-                                        <div class="col-md-6 lr-form-group">
-                                            <label for="sub-other-class">Class / Grade</label>
-                                            <input type="text" id="sub-other-class" name="author_class_other" class="lr-form-input" placeholder="e.g., SS3, Form 5">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Individual fields -->
-                                <div id="fields-individual" class="d-none">
-                                    <div class="lr-form-group">
-                                        <label for="sub-affiliation">Affiliation <span class="text-muted fw-normal">(optional)</span></label>
-                                        <input type="text" id="sub-affiliation" name="affiliation" class="lr-form-input" placeholder="e.g., University of Abuja, Freelance Writer, etc.">
-                                    </div>
-                                </div>
-
-                                <!-- Genre + Title -->
-                                <div class="row">
-                                    <div class="col-md-6 lr-form-group">
-                                        <label for="sub-genre">Genre</label>
-                                        <select id="sub-genre" name="genre" class="lr-form-select" required>
-                                            <option value="" disabled selected>Select Genre...</option>
-                                            <option value="poetry">Poetry</option>
-                                            <option value="fiction">Fiction</option>
-                                            <option value="nonfiction">Non-Fiction</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6 lr-form-group">
-                                        <label for="sub-title">Title of Your Work</label>
-                                        <input type="text" id="sub-title" name="title" class="lr-form-input" placeholder="e.g., The Golden Sunset" required>
-                                    </div>
-                                </div>
-
-                                <div class="lr-form-group">
-                                    <label for="sub-body">Paste Your Work Here</label>
-                                    <textarea id="sub-body" name="body" class="lr-form-textarea" placeholder="Type or paste your poem, story, or essay here..." required></textarea>
-                                </div>
-
-                                <button type="submit" id="submit-btn" class="lr-submit-btn">
-                                    <i class="fas fa-paper-plane"></i> Submit Draft for Review
-                                </button>
-                            </form>
                         </div>
+
+                        <!-- Closing card -->
+                        <div class="lr-closing-card">
+                            <p>
+                                Thanks for your interest in Jewel Literary Magazine.<br>
+                                We look forward to reading your work.
+                            </p>
+                            <span class="lr-closing-sig">— The Editors, Jewel Literary Magazine</span>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
     <!-- ═══ FOOTER ═══ -->
@@ -358,13 +538,8 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Supabase CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- EmailJS CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- JMS Scripts -->
     <script src="js/main.js"></script>
-    <script src="js/lr-submissions.js"></script>
 </body>
 
 </html>

@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">Reading | JMS Literary Review</title>
-    <meta name="description" id="page-desc" content="Read a published work from the JMS Literary Review.">
+    <title id="page-title">Reading | Jewel Literary Magazine</title>
+    <meta name="description" id="page-desc" content="Read a published work from the Jewel Literary Magazine.">
     <meta name="robots" content="noindex"><!-- individual works indexed only after launch -->
 
     <!-- Favicon -->
@@ -85,7 +85,6 @@
         .lr-work-genre-badge.nonfiction{ background: rgba(16,185,129,0.18); color: #6ee7b7; }
 
         .lr-work-main-title {
-            font-family: 'Playfair Display', serif;
             font-size: clamp(2rem, 5vw, 3.2rem);
             font-weight: 800;
             color: #ffffff;
@@ -114,7 +113,7 @@
         /* ── Reading body ─────────────────────────────────── */
         .lr-work-body-section {
             padding: 64px 0 80px;
-            background: #fdfcfb;
+            background: var(--bg-light);
         }
 
         .lr-reading-frame {
@@ -122,9 +121,8 @@
             margin: 0 auto;
         }
 
-        /* Poetry: preserve line breaks, serif font */
+        /* Poetry: preserve line breaks */
         .lr-reading-poetry {
-            font-family: 'Playfair Display', serif;
             font-size: 1.15rem;
             line-height: 2.0;
             color: #1e293b;
@@ -134,7 +132,6 @@
 
         /* Prose (fiction / nonfiction) */
         .lr-reading-prose p {
-            font-family: 'Inter', sans-serif;
             font-size: 1.05rem;
             line-height: 1.9;
             color: #1e293b;
@@ -143,7 +140,6 @@
         }
 
         .lr-reading-prose p:first-child::first-letter {
-            font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             font-weight: 800;
             float: left;
@@ -154,7 +150,7 @@
 
         /* ── Work footer ──────────────────────────────────── */
         .lr-work-footer-section {
-            background: #f0f4f9;
+            background: var(--bg-light);
             padding: 48px 0;
             border-top: 1px solid #e2e8f0;
         }
@@ -179,7 +175,7 @@
             padding: 60px 20px;
         }
         .lr-not-found i { font-size: 3rem; color: #cbd5e1; }
-        .lr-not-found h2 { font-family: 'Playfair Display', serif; color: #0a2540; margin: 0; }
+        .lr-not-found h2 { color: #0a2540; margin: 0; }
         .lr-not-found p { color: #64748b; max-width: 460px; }
     </style>
 </head>
@@ -212,10 +208,10 @@
     <nav class="main-nav" id="mainNav">
         <div class="container">
             <div class="nav-inner">
-                <a href="index.html" class="nav-logo">
-                    <img src="images/logo.png" alt="Jewel Model Schools Logo">
+                <a href="literary-review.html" class="nav-logo">
+                    <img src="images/JLM logo.jpeg" alt="Jewel Literary Magazine Logo">
                     <div class="logo-text">
-                        <h2 class="school-name">Jewel Model Schools</h2>
+                        <h2 class="school-name">Jewel Literary Magazine</h2>
                         <span class="school-tagline">Second to None</span>
                     </div>
                 </a>
@@ -269,13 +265,13 @@
     <div class="lr-subnav-wrapper">
         <div class="container">
             <div class="lr-subnav-inner">
-                <div class="lr-subnav-brand">JMS Literary Review</div>
                 <ul class="lr-subnav-links">
                     <li><a href="literary-review.html" class="lr-subnav-link">All Works</a></li>
                     <li><a href="lr-poetry.html" class="lr-subnav-link">Poetry</a></li>
                     <li><a href="lr-fiction.html" class="lr-subnav-link">Fiction</a></li>
                     <li><a href="lr-nonfiction.html" class="lr-subnav-link">Non-Fiction</a></li>
                     <li><a href="lr-submissions.html" class="lr-subnav-link">Submissions</a></li>
+                    <li><a href="lr-about.html" class="lr-subnav-link">About</a></li>
                 </ul>
             </div>
         </div>
@@ -334,7 +330,7 @@
                 <div class="container text-center">
                     <div class="lr-work-divider"></div>
                     <p class="text-muted mb-4" style="font-size:15px;">
-                        Published in the <strong style="color:#0a2540;">JMS Literary Review</strong>
+                        Published in the <strong style="color:#0a2540;">Jewel Literary Magazine</strong>
                     </p>
                     <div class="d-flex flex-wrap gap-3 justify-content-center">
                         <a href="#" id="lr-footer-back-link" class="btn-jms-secondary-outline d-inline-flex align-items-center gap-2 text-decoration-none px-4 py-3" style="background:#e2e8f0; border-radius:10px; color:#0a2540; font-weight:600; font-size:14px; transition:all 0.2s;">
@@ -467,9 +463,9 @@
             : '';
 
         // Update <title> & meta
-        document.getElementById('page-title').textContent = `${work.title} | JMS Literary Review`;
+        document.getElementById('page-title').textContent = `${work.title} | Jewel Literary Magazine`;
         document.getElementById('page-desc').setAttribute('content',
-            `Read "${work.title}" by ${work.author_name} — JMS Literary Review.`);
+            `Read "${work.title}" by ${work.author_name} — Jewel Literary Magazine.`);
 
         // Back links
         document.getElementById('lr-back-link').href       = cfg.backHref;

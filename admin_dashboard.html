@@ -606,6 +606,11 @@
                 <i class="fas fa-feather-alt me-2"></i>Literary Review
             </button>
         </li>
+        <li class="nav-item d-none" id="audit-tab-item" role="presentation">
+            <button class="nav-link" id="audit-tab" data-bs-toggle="tab" data-bs-target="#audit-panel" type="button" role="tab" style="font-weight:600; border-radius: 8px;">
+                <i class="fas fa-history me-2"></i>Audit Trail
+            </button>
+        </li>
     </ul>
 
     <div class="tab-content" id="adminTabsContent">
@@ -912,6 +917,61 @@
 
     </div><!-- /lr-panel -->
 
+        <!-- ══ AUDIT PANEL ══════════════════════════════════════════════════ -->
+        <div class="tab-pane fade" id="audit-panel" role="tabpanel">
+            <div class="section-card">
+                <div class="section-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <h2><i class="fas fa-history"></i> System Audit Trail</h2>
+                    <button class="btn-jms-secondary" id="refresh-audit-btn" style="font-size:12px; padding:7px 14px;">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+
+                <!-- Filters -->
+                <div class="posts-toolbar d-flex flex-wrap gap-3 mt-3">
+                    <div class="search-box" style="flex: 1; min-width: 200px;">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="audit-search" placeholder="Search by admin name, email, or target title…">
+                    </div>
+                    <div style="flex-shrink: 0;">
+                        <select class="form-select" id="audit-action-filter" style="width: auto; min-width: 150px; border-radius:10px; font-size:13px; font-family:'Inter',sans-serif; height: 38px;">
+                            <option value="all">All Actions</option>
+                            <option value="CREATE">Create</option>
+                            <option value="UPDATE">Update</option>
+                            <option value="DELETE">Delete</option>
+                            <option value="PUBLISH">Publish</option>
+                            <option value="UNPUBLISH">Unpublish</option>
+                            <option value="FEATURE">Feature</option>
+                            <option value="UNFEATURE">Unfeature</option>
+                        </select>
+                    </div>
+                    <div style="flex-shrink: 0;">
+                        <select class="form-select" id="audit-target-filter" style="width: auto; min-width: 150px; border-radius:10px; font-size:13px; font-family:'Inter',sans-serif; height: 38px;">
+                            <option value="all">All Targets</option>
+                            <option value="BLOG_POST">Blog Posts</option>
+                            <option value="LITERARY_WORK">Literary Review</option>
+                            <option value="INBOX_MESSAGE">Inbox Messages</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Audit Logs List -->
+                <div id="audit-log-list" class="mt-4">
+                    <div class="empty-state">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading audit trail…</p>
+                    </div>
+                </div>
+
+                <!-- Load More Logs -->
+                <div class="text-center mt-4">
+                    <button id="load-more-audit-btn" class="btn-jms-secondary d-none" style="font-size: 13px; padding: 10px 20px;">
+                        Load More Logs
+                    </button>
+                </div>
+            </div>
+        </div><!-- /audit-panel -->
+
     </div><!-- /tab-content -->
 
 </div><!-- /page-body -->
@@ -980,6 +1040,36 @@
     </div>
 </div>
 
+<!-- ══ LITERARY REVIEW DELETE CONFIRMATION MODAL ═════════════════════════ -->
+<div class="modal fade" id="lr-delete-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="font-weight:700; color:var(--danger);">
+                    <i class="fas fa-exclamation-triangle me-2"></i>Delete Literary Work?
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p style="color:var(--muted); font-size:14px; margin:0;">
+                    You are about to permanently delete:
+                </p>
+                <p id="lr-delete-title" style="font-weight:600; margin-top:8px; color:var(--text);"></p>
+                <p style="color:var(--danger); font-size:13px; margin-top:8px;">
+                    <i class="fas fa-info-circle"></i>
+                    This action cannot be undone. The work will be removed from the Literary Review.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-jms-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button class="btn-danger-jms" id="lr-confirm-delete-btn">
+                    <i class="fas fa-trash me-1"></i> Delete Permanently
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- ══ TOAST NOTIFICATION ════════════════════════════════════════════════ -->
 <div class="toast-notification" id="toast-notification">
     <span id="toast-msg"></span>
@@ -996,5 +1086,6 @@
 <script src="js/supabase-config.js"></script>
 <script src="js/admin.js"></script>
 <script src="js/lr-admin.js"></script>
+<script src="js/audit.js"></script>
 </body>
 </html>
