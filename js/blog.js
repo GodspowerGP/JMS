@@ -219,13 +219,13 @@ function bindNewsletter() {
                 showNewsletterMsg(form, 'You\'re already subscribed! Thank you.', 'info');
             } else {
                 showNewsletterMsg(form, 'Something went wrong. Please try again.', 'error');
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
             }
         } else {
             showNewsletterMsg(form, '🎉 You\'re subscribed! Welcome to the JMS community.', 'success');
             emailInput.value = '';
         }
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
     });
 }
 
