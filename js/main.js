@@ -871,7 +871,7 @@ document.addEventListener("DOMContentLoaded", () => {
         var ROW1 = [
         {
             src: "images/JMS_img/2026-05-07 at 15.30.50.jpeg",
-            caption: "Award Trophies",
+            caption: "Celebrating Excellence",
             w: 370,
         },
         {
@@ -902,11 +902,6 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             src: "images/JMS_img/2026-05-27 at 8.27.04 PM.jpeg",
             caption: "Powerline Excursion",
-            w: 420,
-        },
-        {
-            src: "images/JMS_img/2026-05-27 at 8.32.46 PM.jpeg",
-            caption: "Inter House Sports",
             w: 420,
         },
         ];
