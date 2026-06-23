@@ -86,6 +86,21 @@ async function renderAdminProfile() {
             await initAuditLogs();
         }
     }
+
+    // Role-based UI constraints for lr-admin
+    if (roleTag === 'lr-admin') {
+        const blogTabBtn = document.getElementById('blog-tab');
+        const inboxTabBtn = document.getElementById('inbox-tab');
+        
+        if (blogTabBtn) blogTabBtn.parentElement.style.display = 'none';
+        if (inboxTabBtn) inboxTabBtn.parentElement.style.display = 'none';
+
+        const lrTabBtn = document.getElementById('lr-tab');
+        if (lrTabBtn) {
+            const bsTab = new bootstrap.Tab(lrTabBtn);
+            bsTab.show();
+        }
+    }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
