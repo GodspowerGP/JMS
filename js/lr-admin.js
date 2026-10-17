@@ -20,8 +20,9 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    STATE
 ═══════════════════════════════════════════════════════════════════════════ */
-let lrEditingId  = null;   // null = creating new, UUID = editing
-let allLRWorks   = [];
+let lrEditingId   = null;   // null = creating new, UUID = editing
+let allLRWorks    = [];
+let lrQuillEditor = null;   // Quill instance for Literary Magazine
 
 const GENRE_LABELS = { poetry: 'Poetry', fiction: 'Fiction', nonfiction: 'Non-Fiction' };
 const GENRE_ICONS  = { poetry: 'fas fa-feather-alt', fiction: 'fas fa-book', nonfiction: 'fas fa-file-alt' };
@@ -30,9 +31,31 @@ const GENRE_ICONS  = { poetry: 'fas fa-feather-alt', fiction: 'fas fa-book', non
    INIT — called from admin_dashboard.html after DOM ready
 ═══════════════════════════════════════════════════════════════════════════ */
 async function initLRAdmin() {
+    initLRQuill();
     await loadLRStats();
     await loadLRWorks();
     bindLREvents();
+}
+
+function initLRQuill() {
+    if (lrQuillEditor) return;
+    const el = document.getElementById('lr-quill-editor');
+    if (!el) return;
+    lrQuillEditor = new Quill('#lr-quill-editor', {
+        theme: 'snow',
+        placeholder: 'Write or paste the literary work here...',
+        modules: {
+            toolbar: [
+                [{ 'header': [1, 2, 3, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                ['blockquote', 'code-block'],
+                ['link', 'image'],
+                [{ 'align': [] }],
+                ['clean']
+            ]
+        }
+    });
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -145,6 +168,14 @@ function renderLRList(works) {
    BIND EVENTS
 ═══════════════════════════════════════════════════════════════════════════ */
 function bindLREvents() {
+    // Tab shown listener to ensure Quill is initialized
+    const lrTabBtn = document.getElementById('lr-tab');
+    if (lrTabBtn) {
+        lrTabBtn.addEventListener('shown.bs.tab', () => {
+            initLRQuill();
+        });
+    }
+
     // Form submit
     const form = document.getElementById('lr-work-form');
     if (form) form.addEventListener('submit', handleLRFormSubmit);
@@ -178,14 +209,15 @@ async function handleLRFormSubmit(e) {
     const authorName = (document.getElementById('lr-author-name')?.value || '').trim();
     const authorInfo = (document.getElementById('lr-author-info')?.value || '').trim();
     const genre      = document.getElementById('lr-genre')?.value || '';
-    const body       = (document.getElementById('lr-body')?.value || '').trim();
+    const body       = lrQuillEditor ? lrQuillEditor.root.innerHTML : (document.getElementById('lr-body')?.value || '').trim();
+    const textLen    = lrQuillEditor ? lrQuillEditor.getText().trim().length : body.length;
     const status     = document.getElementById('lr-status')?.value || 'draft';
     const featured   = document.getElementById('lr-featured')?.checked || false;
 
     if (!title)      return showLRFormError('Please enter a title.');
     if (!authorName) return showLRFormError('Please enter the author\'s name.');
     if (!genre)      return showLRFormError('Please select a genre.');
-    if (body.length < 20) return showLRFormError('Please paste the full work (at least 20 characters).');
+    if (textLen < 20) return showLRFormError('Please paste the full work (at least 20 characters).');
 
     clearLRFormError();
     setLRFormLoading(true);
@@ -261,7 +293,15 @@ async function startEditLR(workId) {
     setValue('lr-author-name', work.author_name);
     setValue('lr-author-info', work.author_info || '');
     setValue('lr-genre',       work.genre);
-    setValue('lr-body',        work.body);
+    if (lrQuillEditor) {
+        if (work.body && !/<[a-z][\s\S]*>/i.test(work.body)) {
+            lrQuillEditor.setText(work.body);
+        } else {
+            lrQuillEditor.root.innerHTML = work.body || '';
+        }
+    } else {
+        setValue('lr-body', work.body);
+    }
     setValue('lr-status',      work.status);
     const featEl = document.getElementById('lr-featured');
     if (featEl) featEl.checked = !!work.featured;
@@ -357,6 +397,9 @@ async function deleteLRWork(workId) {
 function resetLRForm() {
     lrEditingId = null;
     document.getElementById('lr-work-form')?.reset();
+    if (lrQuillEditor) {
+        lrQuillEditor.root.innerHTML = '';
+    }
 
     const heading = document.getElementById('lr-form-heading');
     if (heading) heading.innerHTML = '<i class="fas fa-plus-circle"></i> Add New Literary Work';
@@ -374,7 +417,9 @@ function resetLRForm() {
    HELPERS
 ═══════════════════════════════════════════════════════════════════════════ */
 function autoLRExcerpt(text, maxLen) {
-    const plain = text.replace(/\n+/g, ' ').replace(/\s+/g, ' ').trim();
+    if (!text) return '';
+    const stripped = text.replace(/<[^>]*>/g, ' ');
+    const plain = stripped.replace(/\n+/g, ' ').replace(/\s+/g, ' ').trim();
     if (plain.length <= maxLen) return plain;
     const cut = plain.lastIndexOf(' ', maxLen);
     return plain.substring(0, cut > 40 ? cut : maxLen) + '…';

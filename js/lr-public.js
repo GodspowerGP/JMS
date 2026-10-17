@@ -114,9 +114,7 @@ function renderFeaturedCard(work) {
     const cfg        = LR_GENRE_CONFIG[work.genre] || LR_GENRE_CONFIG.poetry;
     const excerpt    = work.excerpt || autoExcerpt(work.body, 220);
     const date       = fmtDate(work.published_at);
-    const authorLine = work.author_info
-        ? `${work.author_name} — ${work.author_info}`
-        : work.author_name;
+    const authorName = work.author_name || 'Anonymous';
 
     return `
     <div class="featured-post p-0">
@@ -138,7 +136,7 @@ function renderFeaturedCard(work) {
                     </div>
                     <h3 class="featured-title font-serif">${escLR(work.title)}</h3>
                     <div class="lr-card-meta mb-3">
-                        <span><i class="fas fa-user"></i> ${escLR(authorLine)}</span>
+                        <span><i class="fas fa-user"></i> ${escLR(authorName)}</span>
                         <span><i class="fas fa-calendar-alt"></i> ${date}</span>
                     </div>
                     <p class="featured-text font-serif fst-italic">&ldquo;${escLR(excerpt)}&hellip;&rdquo;</p>
@@ -257,9 +255,7 @@ function renderWorkCard(work, index, colClass) {
     const gradient   = cfg.gradients[index % cfg.gradients.length];
     const excerpt    = work.excerpt || autoExcerpt(work.body, 160);
     const date       = fmtDate(work.published_at);
-    const authorLine = work.author_info
-        ? `${work.author_name} — ${work.author_info}`
-        : work.author_name;
+    const authorName = work.author_name || 'Anonymous';
 
     return `
     <div class="${colClass}">
@@ -274,7 +270,7 @@ function renderWorkCard(work, index, colClass) {
             </div>
             <div class="lr-card-body">
                 <div class="lr-card-meta">
-                    <span><i class="fas fa-user"></i> ${escLR(authorLine)}</span>
+                    <span><i class="fas fa-user"></i> ${escLR(authorName)}</span>
                     <span><i class="fas fa-calendar-alt"></i> ${date}</span>
                 </div>
                 <h3 class="lr-card-title">
@@ -294,7 +290,8 @@ function renderWorkCard(work, index, colClass) {
 ═══════════════════════════════════════════════════════════════════════════ */
 function autoExcerpt(text, maxLen) {
     if (!text) return '';
-    const plain = text.replace(/\n+/g, ' ').replace(/\s+/g, ' ').trim();
+    const stripped = text.replace(/<[^>]*>/g, ' ');
+    const plain = stripped.replace(/\n+/g, ' ').replace(/\s+/g, ' ').trim();
     if (plain.length <= maxLen) return plain;
     const cut = plain.lastIndexOf(' ', maxLen);
     return plain.substring(0, cut > 40 ? cut : maxLen) + '…';

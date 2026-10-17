@@ -861,11 +861,12 @@
                     </div>
                 </div>
 
-                <!-- Plain Textarea for works (preserves poetry formatting better than Quill for this use case) -->
+                <!-- Literary Work Body — Quill Editor -->
                 <div class="form-group">
-                    <label class="form-label" for="lr-body">Full Work Text *</label>
-                    <textarea class="form-control" id="lr-body" rows="12" placeholder="Paste the complete literary work here..." required style="resize:vertical; font-family:'Inter',sans-serif;"></textarea>
-                    <small style="color:var(--muted); font-size:12px; margin-top:6px; display:block;">For poetry, line breaks will be exactly preserved as typed.</small>
+                    <label class="form-label">Full Work Text *</label>
+                    <div class="quill-wrapper">
+                        <div id="lr-quill-editor"></div>
+                    </div>
                 </div>
 
                 <div class="form-grid-2 align-items-center">

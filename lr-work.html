@@ -130,6 +130,18 @@
             word-wrap: break-word;
         }
 
+        .lr-reading-poetry-rich {
+            font-size: 1.15rem;
+            line-height: 2.0;
+            color: #1e293b;
+            word-wrap: break-word;
+        }
+
+        .lr-reading-poetry-rich p {
+            margin-bottom: 0.6em;
+            line-height: 1.9;
+        }
+
         /* Prose (fiction / nonfiction) */
         .lr-reading-prose p {
             font-size: 1.05rem;
@@ -146,6 +158,32 @@
             line-height: 0.8;
             margin: 6px 10px -4px 0;
             color: var(--accent-orange, #f97316);
+        }
+
+        .lr-reading-frame blockquote {
+            border-left: 4px solid var(--accent-orange, #f97316);
+            padding: 12px 20px;
+            margin: 24px 0;
+            background: rgba(249,115,22,0.04);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+
+        .lr-reading-frame img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 16px 0;
+        }
+
+        .lr-reading-frame a {
+            color: var(--accent-orange, #f97316);
+            text-decoration: underline;
+        }
+
+        .lr-reading-frame ul,
+        .lr-reading-frame ol {
+            padding-left: 1.5em;
+            margin-bottom: 1.4em;
         }
 
         /* ── Work footer ──────────────────────────────────── */
@@ -489,18 +527,40 @@
 
         // Body
         const bodyEl = document.getElementById('lr-work-body');
+        bodyEl.innerHTML = '';
+        const isHtml = /<[a-z][\s\S]*>/i.test(work.body || '');
+
         if (work.genre === 'poetry') {
-            const pre = document.createElement('pre');
-            pre.className = 'lr-reading-poetry';
-            pre.textContent = work.body;
-            bodyEl.appendChild(pre);
+            if (isHtml) {
+                const div = document.createElement('div');
+                div.className = 'lr-reading-poetry-rich';
+                div.innerHTML = work.body;
+                bodyEl.appendChild(div);
+            } else {
+                const pre = document.createElement('pre');
+                pre.className = 'lr-reading-poetry';
+                pre.textContent = work.body;
+                bodyEl.appendChild(pre);
+            }
         } else {
-            const div = document.createElement('div');
-            div.className = 'lr-reading-prose';
-            const paras = work.body.split(/\n\n+/);
-            div.innerHTML = paras.map(p => `<p>${esc(p.trim())}</p>`).join('');
-            bodyEl.appendChild(div);
+            if (isHtml) {
+                const div = document.createElement('div');
+                div.className = 'lr-reading-prose lr-reading-prose-rich';
+                div.innerHTML = work.body;
+                bodyEl.appendChild(div);
+            } else {
+                const div = document.createElement('div');
+                div.className = 'lr-reading-prose';
+                const paras = (work.body || '').split(/\n\n+/);
+                div.innerHTML = paras.map(p => `<p>${esc(p.trim())}</p>`).join('');
+                bodyEl.appendChild(div);
+            }
         }
+
+        bodyEl.querySelectorAll('a[href^="http"]').forEach(a => {
+            a.setAttribute('target', '_blank');
+            a.setAttribute('rel', 'noopener noreferrer');
+        });
 
         // Hero gradient tint based on genre
         const heroEl = document.getElementById('lr-work-hero');
