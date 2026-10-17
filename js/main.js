@@ -140,15 +140,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainNav = document.getElementById('mainNav');
     const lrSubnav = document.querySelector('.lr-subnav-wrapper');
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            mainNav.classList.add('scrolled');
-            if (lrSubnav) lrSubnav.classList.add('scrolled');
-        } else {
-            mainNav.classList.remove('scrolled');
-            if (lrSubnav) lrSubnav.classList.remove('scrolled');
-        }
-    });
+    if (mainNav) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                mainNav.classList.add('scrolled');
+                if (lrSubnav) lrSubnav.classList.add('scrolled');
+            } else {
+                mainNav.classList.remove('scrolled');
+                if (lrSubnav) lrSubnav.classList.remove('scrolled');
+            }
+        }, { passive: true });
+    }
 
     /* ══════════════════════════════════════════════
             MOBILE MENU TOGGLE
@@ -156,45 +158,49 @@ document.addEventListener("DOMContentLoaded", () => {
     const hamburger = document.getElementById("hamburger");
     const mobileMenu = document.getElementById("mobileMenu");
 
-    hamburger.addEventListener("click", () => {
-        mobileMenu.classList.toggle("active");
-        hamburger.classList.toggle("open");
+    if (hamburger && mobileMenu) {
+        hamburger.addEventListener("click", () => {
+            mobileMenu.classList.toggle("active");
+            hamburger.classList.toggle("open");
 
-        // Prevent body scroll when menu is open
-        document.body.style.overflow = mobileMenu.classList.contains("active")
-        ? "hidden"
-        : "";
-    });
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = mobileMenu.classList.contains("active")
+            ? "hidden"
+            : "";
+        });
 
-    const mobileClose = document.getElementById("mobileClose");
-    if (mobileClose) {
-        mobileClose.addEventListener("click", () => {
-        mobileMenu.classList.remove("active");
-        hamburger.classList.remove("open");
-        document.body.style.overflow = "";
+        const mobileClose = document.getElementById("mobileClose");
+        if (mobileClose) {
+            mobileClose.addEventListener("click", () => {
+                mobileMenu.classList.remove("active");
+                hamburger.classList.remove("open");
+                document.body.style.overflow = "";
+            });
+        }
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", (e) => {
+                // Don't close if clicking a dropdown toggle
+                if (link.closest(".mobile-dropdown") && link.tagName === "SPAN") return;
+
+                mobileMenu.classList.remove("active");
+                hamburger.classList.remove("open");
+                document.body.style.overflow = "";
+            });
         });
     }
-
-    // Close mobile menu on link click
-    mobileMenu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", (e) => {
-        // Don't close if clicking a dropdown toggle
-        if (link.closest(".mobile-dropdown") && link.tagName === "SPAN") return;
-
-        mobileMenu.classList.remove("active");
-        hamburger.classList.remove("open");
-        document.body.style.overflow = "";
-        });
-    });
 
     // Mobile Dropdown Toggle
     const mobileDropdowns = document.querySelectorAll(".mobile-dropdown");
     mobileDropdowns.forEach((dropdown) => {
         const toggle = dropdown.querySelector("span");
-        toggle.addEventListener("click", (e) => {
-        e.preventDefault();
-        dropdown.classList.toggle("open");
-        });
+        if (toggle) {
+            toggle.addEventListener("click", (e) => {
+                e.preventDefault();
+                dropdown.classList.toggle("open");
+            });
+        }
     });
 
     /* ══════════════════════════════════════════════
@@ -208,44 +214,29 @@ document.addEventListener("DOMContentLoaded", () => {
     let slideInterval;
 
     function showSlide(index) {
+        if (!slides.length) return;
         slides.forEach((slide) => slide.classList.remove("active"));
         dots.forEach((dot) => dot.classList.remove("active"));
 
-        slides[index].classList.add("active");
-        dots[index].classList.add("active");
+        if (slides[index]) slides[index].classList.add("active");
+        if (dots[index]) dots[index].classList.add("active");
         currentSlide = index;
     }
 
     function nextSlide() {
+        if (!slides.length) return;
         let index = (currentSlide + 1) % slides.length;
         showSlide(index);
     }
 
     function prevSlide() {
+        if (!slides.length) return;
         let index = (currentSlide - 1 + slides.length) % slides.length;
         showSlide(index);
     }
 
-    if (nextBtn && prevBtn) {
-        nextBtn.addEventListener("click", () => {
-        nextSlide();
-        resetInterval();
-        });
-
-        prevBtn.addEventListener("click", () => {
-        prevSlide();
-        resetInterval();
-        });
-    }
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-        showSlide(index);
-        resetInterval();
-        });
-    });
-
     function startInterval() {
+        if (!slides.length) return;
         slideInterval = setInterval(nextSlide, 6000);
     }
 
@@ -254,7 +245,28 @@ document.addEventListener("DOMContentLoaded", () => {
         startInterval();
     }
 
-    startInterval();
+    if (slides.length > 0) {
+        if (nextBtn && prevBtn) {
+            nextBtn.addEventListener("click", () => {
+                nextSlide();
+                resetInterval();
+            });
+
+            prevBtn.addEventListener("click", () => {
+                prevSlide();
+                resetInterval();
+            });
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener("click", () => {
+                showSlide(index);
+                resetInterval();
+            });
+        });
+
+        startInterval();
+    }
 
     /* ══════════════════════════════════════════════
             LEADERSHIP CAROUSEL LOGIC
@@ -342,30 +354,35 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     if (stats.length > 0) {
-        statsObserver.observe(document.querySelector(".stats-strip"));
+        const statsStrip = document.querySelector(".stats-strip");
+        if (statsStrip) statsObserver.observe(statsStrip);
     }
 
     /* ══════════════════════════════════════════════
             SMOOTH ANCHOR SCROLLING
         ══════════════════════════════════════════════ */
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    document.querySelectorAll('a[href^="#"]:not([data-bs-toggle]):not([data-bs-target])').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute("href");
-        if (targetId === "#") return;
+            const targetId = this.getAttribute("href");
+            if (!targetId || targetId === "#") return;
 
-        const target = document.querySelector(targetId);
-        if (target) {
-            const headerOffset = 100;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition =
-            elementPosition + window.pageYOffset - headerOffset;
+            try {
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const headerOffset = 100;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition =
+                        elementPosition + window.pageYOffset - headerOffset;
 
-            window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-            });
-        }
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth",
+                    });
+                }
+            } catch (err) {
+                // Ignore invalid CSS selector
+            }
         });
     });
 
@@ -747,6 +764,7 @@ document.addEventListener("DOMContentLoaded", () => {
         /* ─── BUILD CARDS ─── */
         function buildCards() {
         var grid = document.getElementById("achGrid");
+        if (!grid) return;
         var html = "";
         for (var i = 0; i < data.length; i++) {
             var a = data[i];
@@ -777,8 +795,10 @@ document.addEventListener("DOMContentLoaded", () => {
             "</div>";
         }
         grid.innerHTML = html;
-        document.getElementById("achTotalCount").textContent = data.length;
-        document.getElementById("achVisibleCount").textContent = data.length;
+        var totalEl = document.getElementById("achTotalCount");
+        if (totalEl) totalEl.textContent = data.length;
+        var visEl = document.getElementById("achVisibleCount");
+        if (visEl) visEl.textContent = data.length;
         }
 
         /* ─── FILTER ─── */
@@ -858,9 +878,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         /* ─── INIT ─── */
-        buildCards();
-        setupFilterButtons();
-        setTimeout(setupReveal, 80); /* slight delay so layout is painted first */
+        if (document.getElementById("achGrid")) {
+            buildCards();
+            setupFilterButtons();
+            setTimeout(setupReveal, 80); /* slight delay so layout is painted first */
+        }
     })();
 
     // GALLERY CAROUSEL JS
@@ -997,6 +1019,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         var track1 = document.getElementById("jgalTrack1");
         var track2 = document.getElementById("jgalTrack2");
+        if (!track1 || !track2) return;
 
         buildTrack(track1, ROW1);
         buildTrack(track2, ROW2);

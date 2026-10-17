@@ -38,68 +38,77 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    // 2. Display admin profile in header
+    // 2. Set up Quill editors immediately
+    initQuill();
+    if (typeof initLRQuill === 'function') initLRQuill();
+
+    // 3. Wire up UI event listeners immediately so all tabs and buttons are responsive
+    bindEvents();
+    if (typeof bindLREvents === 'function') bindLREvents();
+
+    // 4. Display admin profile in header (and handle role tab visibility)
     await renderAdminProfile();
 
-    // 3. Set up Quill editor
-    initQuill();
-
-    // 4. Load dashboard data
-    await loadStats();
-    await loadRecentPosts();
-    await loadInbox();
-    if (typeof initLRAdmin === 'function') await initLRAdmin();
-
-    // 5. Wire up events
-    bindEvents();
+    // 5. Load dashboard data concurrently in parallel — no blocking
+    Promise.allSettled([
+        loadStats(),
+        loadRecentPosts(),
+        loadInbox(),
+        typeof loadLRStats === 'function' ? loadLRStats() : Promise.resolve(),
+        typeof loadLRWorks === 'function' ? loadLRWorks() : Promise.resolve()
+    ]).catch(err => console.error('[Dashboard] Data load error:', err));
 });
 
 /* ═══════════════════════════════════════════════════════════════════════════
    ADMIN PROFILE
 ═══════════════════════════════════════════════════════════════════════════ */
 async function renderAdminProfile() {
-    const { data: { user } } = await supabaseClient.auth.getUser();
-    if (!user) return;
+    try {
+        const { data: { user } } = await supabaseClient.auth.getUser();
+        if (!user) return;
 
-    const { data: profile } = await supabaseClient
-        .from('admin_profiles')
-        .select('full_name, role_tag')
-        .eq('id', user.id)
-        .single();
+        const { data: profile } = await supabaseClient
+            .from('admin_profiles')
+            .select('full_name, role_tag')
+            .eq('id', user.id)
+            .single();
 
-    const name    = profile?.full_name || user.email;
-    const roleTag = profile?.role_tag  || 'Admin';
+        const name    = profile?.full_name || user.email;
+        const roleTag = profile?.role_tag  || 'Admin';
 
-    const nameEl    = document.getElementById('admin-name');
-    const roleEl    = document.getElementById('admin-role');
-    const avatarEl  = document.getElementById('admin-avatar');
+        const nameEl    = document.getElementById('admin-name');
+        const roleEl    = document.getElementById('admin-role');
+        const avatarEl  = document.getElementById('admin-avatar');
 
-    if (nameEl)   nameEl.textContent = name;
-    if (roleEl)   roleEl.textContent = roleTag;
-    if (avatarEl) avatarEl.textContent = name.charAt(0).toUpperCase();
+        if (nameEl)   nameEl.textContent = name;
+        if (roleEl)   roleEl.textContent = roleTag;
+        if (avatarEl) avatarEl.textContent = name.charAt(0).toUpperCase();
 
-    // Reveal Audit Trail to Superadmins
-    if (roleTag === 'Superadmin') {
-        const auditTabItem = document.getElementById('audit-tab-item');
-        if (auditTabItem) auditTabItem.classList.remove('d-none');
-        if (typeof initAuditLogs === 'function') {
-            await initAuditLogs();
+        // Reveal Audit Trail to Superadmins (non-blocking)
+        if (roleTag === 'Superadmin') {
+            const auditTabItem = document.getElementById('audit-tab-item');
+            if (auditTabItem) auditTabItem.classList.remove('d-none');
+            if (typeof initAuditLogs === 'function') {
+                initAuditLogs().catch(err => console.error('[Audit] Init error:', err));
+            }
         }
-    }
 
-    // Role-based UI constraints for lr-admin
-    if (roleTag === 'lr-admin') {
-        const blogTabBtn = document.getElementById('blog-tab');
-        const inboxTabBtn = document.getElementById('inbox-tab');
-        
-        if (blogTabBtn) blogTabBtn.parentElement.style.display = 'none';
-        if (inboxTabBtn) inboxTabBtn.parentElement.style.display = 'none';
+        // Role-based UI constraints for lr-admin
+        if (roleTag === 'lr-admin') {
+            const blogTabBtn = document.getElementById('blog-tab');
+            const inboxTabBtn = document.getElementById('inbox-tab');
+            
+            if (blogTabBtn) blogTabBtn.parentElement.style.display = 'none';
+            if (inboxTabBtn) inboxTabBtn.parentElement.style.display = 'none';
 
-        const lrTabBtn = document.getElementById('lr-tab');
-        if (lrTabBtn) {
-            const bsTab = new bootstrap.Tab(lrTabBtn);
-            bsTab.show();
+            const lrTabBtn = document.getElementById('lr-tab');
+            if (lrTabBtn) {
+                const bsTab = new bootstrap.Tab(lrTabBtn);
+                bsTab.show();
+            }
         }
+    } catch (err) {
+        console.error('[Admin] Error rendering profile:', err);
     }
 }
 
@@ -128,33 +137,28 @@ function initQuill() {
    STATS
 ═══════════════════════════════════════════════════════════════════════════ */
 async function loadStats() {
-    // Total posts
-    const { count: total } = await supabaseClient
-        .from('blog_posts')
-        .select('*', { count: 'exact', head: true });
+    try {
+        const [
+            { count: total },
+            { count: published },
+            { count: drafts },
+            { data: tagsData }
+        ] = await Promise.all([
+            supabaseClient.from('blog_posts').select('*', { count: 'exact', head: true }),
+            supabaseClient.from('blog_posts').select('*', { count: 'exact', head: true }).eq('status', 'published'),
+            supabaseClient.from('blog_posts').select('*', { count: 'exact', head: true }).eq('status', 'draft'),
+            supabaseClient.from('blog_posts').select('tag')
+        ]);
 
-    // Published
-    const { count: published } = await supabaseClient
-        .from('blog_posts')
-        .select('*', { count: 'exact', head: true })
-        .eq('status', 'published');
+        const uniqueTags = new Set((tagsData || []).map(p => p.tag).filter(Boolean)).size;
 
-    // Drafts
-    const { count: drafts } = await supabaseClient
-        .from('blog_posts')
-        .select('*', { count: 'exact', head: true })
-        .eq('status', 'draft');
-
-    // Unique tags
-    const { data: tagsData } = await supabaseClient
-        .from('blog_posts')
-        .select('tag');
-    const uniqueTags = new Set((tagsData || []).map(p => p.tag).filter(Boolean)).size;
-
-    animateCount('total-posts',     total     || 0);
-    animateCount('published-posts', published || 0);
-    animateCount('draft-posts',     drafts    || 0);
-    animateCount('total-tags',      uniqueTags);
+        animateCount('total-posts',     total     || 0);
+        animateCount('published-posts', published || 0);
+        animateCount('draft-posts',     drafts    || 0);
+        animateCount('total-tags',      uniqueTags);
+    } catch (err) {
+        console.error('[Admin] Error loading stats:', err);
+    }
 }
 
 function animateCount(id, target) {
@@ -173,27 +177,35 @@ function animateCount(id, target) {
    LOAD RECENT POSTS
 ═══════════════════════════════════════════════════════════════════════════ */
 async function loadRecentPosts() {
-    const { data: posts, error } = await supabaseClient
-        .from('blog_posts')
-        .select(`
-            id,
-            title,
-            tag,
-            status,
-            featured,
-            created_at,
-            admin_profiles ( full_name, role_tag )
-        `)
-        .order('created_at', { ascending: false })
-        .limit(50);
+    try {
+        const { data: posts, error } = await supabaseClient
+            .from('blog_posts')
+            .select(`
+                id,
+                title,
+                tag,
+                status,
+                featured,
+                created_at,
+                admin_profiles ( full_name, role_tag )
+            `)
+            .order('created_at', { ascending: false })
+            .limit(50);
 
-    if (error) {
-        console.error('Error loading posts:', error.message);
-        return;
+        if (error) {
+            console.error('Error loading posts:', error.message);
+            const container = document.getElementById('recent-blogs-list');
+            if (container) {
+                container.innerHTML = `<div class="empty-state"><i class="fas fa-exclamation-circle"></i><p>Failed to load posts.</p></div>`;
+            }
+            return;
+        }
+
+        allPosts = posts || [];
+        renderPostsTable(allPosts);
+    } catch (err) {
+        console.error('[Admin] Error in loadRecentPosts:', err);
     }
-
-    allPosts = posts || [];
-    renderPostsTable(allPosts);
 }
 
 function renderPostsTable(posts) {
@@ -213,6 +225,7 @@ function renderPostsTable(posts) {
         const isAnon   = !post.author_id;
         const author   = isAnon ? 'Anonymous' : (post.admin_profiles?.full_name || 'Admin');
         const roleTag  = isAnon ? '' : (post.admin_profiles?.role_tag  || '');
+        const date     = new Date(post.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         const statusBadge = post.status === 'published'
             ? `<span class="badge-status published"><i class="fas fa-circle"></i> Published</span>`
             : `<span class="badge-status draft"><i class="fas fa-circle"></i> Draft</span>`;
@@ -603,19 +616,23 @@ function escHtml(str) {
 let allMessages = [];
 
 async function loadInbox() {
-    const { data: messages, error } = await supabaseClient
-        .from('contact_messages')
-        .select('*')
-        .order('created_at', { ascending: false });
+    try {
+        const { data: messages, error } = await supabaseClient
+            .from('contact_messages')
+            .select('*')
+            .order('created_at', { ascending: false });
 
-    if (error) {
-        console.error('Error loading inbox:', error.message);
-        return;
+        if (error) {
+            console.error('Error loading inbox:', error.message);
+            return;
+        }
+
+        allMessages = messages || [];
+        renderInboxTable();
+        updateUnreadCount();
+    } catch (err) {
+        console.error('[Admin] Error in loadInbox:', err);
     }
-
-    allMessages = messages || [];
-    renderInboxTable();
-    updateUnreadCount();
 }
 
 function updateUnreadCount() {

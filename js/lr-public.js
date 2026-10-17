@@ -133,10 +133,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     const featuredContainer = document.getElementById('lr-featured-spotlight');
     const worksGrid         = document.getElementById('lr-works-grid');
 
-    if (featuredContainer) await loadFeaturedWork(featuredContainer);
+    const tasks = [];
+    if (featuredContainer) tasks.push(loadFeaturedWork(featuredContainer));
     if (worksGrid) {
-        await loadWorksGrid(true);
         bindLoadMore();
+        tasks.push(loadWorksGrid(true));
+    }
+
+    if (tasks.length) {
+        await Promise.allSettled(tasks);
     }
 });
 

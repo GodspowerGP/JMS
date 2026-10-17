@@ -101,9 +101,8 @@ async function uploadLRImage(file, folder = 'lr-pieces') {
 ═══════════════════════════════════════════════════════════════════════════ */
 async function initLRAdmin() {
     initLRQuill();
-    await loadLRStats();
-    await loadLRWorks();
     bindLREvents();
+    await Promise.allSettled([loadLRStats(), loadLRWorks()]);
 }
 
 function initLRQuill() {
@@ -141,10 +140,17 @@ function initLRQuill() {
 ═══════════════════════════════════════════════════════════════════════════ */
 async function loadLRStats() {
     try {
-        const { count: total }     = await supabaseClient.from('lr_works').select('*', { count: 'exact', head: true });
-        const { count: published } = await supabaseClient.from('lr_works').select('*', { count: 'exact', head: true }).eq('status', 'published');
-        const { count: drafts }    = await supabaseClient.from('lr_works').select('*', { count: 'exact', head: true }).eq('status', 'draft');
-        const { count: featured }  = await supabaseClient.from('lr_works').select('*', { count: 'exact', head: true }).eq('featured', true);
+        const [
+            { count: total },
+            { count: published },
+            { count: drafts },
+            { count: featured }
+        ] = await Promise.all([
+            supabaseClient.from('lr_works').select('*', { count: 'exact', head: true }),
+            supabaseClient.from('lr_works').select('*', { count: 'exact', head: true }).eq('status', 'published'),
+            supabaseClient.from('lr_works').select('*', { count: 'exact', head: true }).eq('status', 'draft'),
+            supabaseClient.from('lr_works').select('*', { count: 'exact', head: true }).eq('featured', true)
+        ]);
 
         animateLRCount('lr-stat-total',     total     || 0);
         animateLRCount('lr-stat-published', published || 0);
