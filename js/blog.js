@@ -52,8 +52,9 @@ async function loadFeaturedPost() {
     }
 
     const date   = formatDate(post.created_at);
-    const author = post.admin_profiles?.full_name || 'Admin';
-    const role   = post.admin_profiles?.role_tag  || '';
+    const isAnon = !post.author_id;
+    const author = isAnon ? 'Anonymous' : (post.admin_profiles?.full_name || 'Admin');
+    const role   = isAnon ? '' : (post.admin_profiles?.role_tag  || '');
     const excerpt = stripHtml(post.body).slice(0, 200) + (post.body.length > 200 ? '…' : '');
 
     container.innerHTML = `
@@ -143,8 +144,9 @@ async function loadBlogPosts(reset = false) {
 
 function buildCard(post, index) {
     const date    = formatDate(post.created_at);
-    const author  = post.admin_profiles?.full_name || 'Admin';
-    const role    = post.admin_profiles?.role_tag  || '';
+    const isAnon  = !post.author_id;
+    const author  = isAnon ? 'Anonymous' : (post.admin_profiles?.full_name || 'Admin');
+    const role    = isAnon ? '' : (post.admin_profiles?.role_tag  || '');
     const excerpt = stripHtml(post.body).slice(0, 140) + '…';
 
     return `

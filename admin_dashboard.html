@@ -709,6 +709,14 @@
                             Mark as Featured Post
                         </label>
                     </div>
+
+                    <div class="toggle-row mt-2">
+                        <input type="checkbox" class="form-check-input" id="blog-anonymous">
+                        <label class="form-label mb-0" for="blog-anonymous">
+                            <i class="fas fa-user-secret" style="color:var(--orange);"></i>
+                            Publish as Anonymous (Hide author name publicly)
+                        </label>
+                    </div>
                 </div>
             </div>
 
@@ -861,11 +869,73 @@
                     </div>
                 </div>
 
+                <div class="form-group mb-3">
+                    <div class="toggle-row" style="display:flex; align-items:center; gap:8px;">
+                        <input type="checkbox" class="form-check-input" id="lr-anonymous" style="width:16px;height:16px;cursor:pointer;">
+                        <label class="form-label mb-0" for="lr-anonymous" style="cursor:pointer; font-weight:500; font-size:14px;">
+                            <i class="fas fa-user-secret" style="color:var(--orange);"></i>
+                            Publish as Anonymous (Hide author name publicly)
+                        </label>
+                    </div>
+                    <small style="color:var(--muted); font-size:12px; margin-left:24px; display:block;">
+                        When checked, readers will see "Anonymous" and author bio/affiliation will remain private.
+                    </small>
+                </div>
+
                 <!-- Literary Work Body — Quill Editor -->
                 <div class="form-group">
                     <label class="form-label">Full Work Text *</label>
                     <div class="quill-wrapper">
                         <div id="lr-quill-editor"></div>
+                    </div>
+                </div>
+
+                <!-- Piece Cover Image & Author Photo Settings -->
+                <div class="form-grid-2 mb-3">
+                    <div class="form-group mb-0">
+                        <label class="form-label" for="lr-cover-file">
+                            <i class="fas fa-image" style="color:var(--orange);"></i> Piece Cover Image
+                        </label>
+                        <input class="form-control" type="file" id="lr-cover-file" accept="image/*">
+                        <input type="hidden" id="lr-current-cover-url">
+                        <div class="img-preview-wrap d-flex align-items-center gap-2 mt-2">
+                            <img id="lr-cover-preview" src="" alt="Cover Preview" style="max-width:180px; max-height:110px; border-radius:8px; border:2px solid var(--border); display:none; object-fit:cover;">
+                            <button type="button" id="lr-remove-cover-btn" class="btn btn-sm btn-outline-danger" style="display:none; font-size:12px; padding:4px 10px;">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </div>
+                        <small style="color:var(--muted); font-size:12px; display:block; margin-top:4px;">
+                            Replaces the static placeholder on cards and the reader page.
+                        </small>
+                    </div>
+
+                    <div class="form-group mb-0">
+                        <label class="form-label" for="lr-author-file">
+                            <i class="fas fa-user-circle" style="color:var(--navy);"></i> Author Photo
+                        </label>
+                        <input class="form-control" type="file" id="lr-author-file" accept="image/*">
+                        <input type="hidden" id="lr-current-author-url">
+                        <div class="img-preview-wrap d-flex align-items-center gap-2 mt-2">
+                            <img id="lr-author-preview" src="" alt="Author Preview" style="width:48px; height:48px; border-radius:50%; border:2px solid var(--border); display:none; object-fit:cover;">
+                            <button type="button" id="lr-remove-author-btn" class="btn btn-sm btn-outline-danger" style="display:none; font-size:12px; padding:4px 10px;">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </div>
+
+                        <!-- Author Avatar Display Choice -->
+                        <div class="mt-2 p-2 rounded" style="background:#f8fafc; border:1px solid var(--border);">
+                            <span style="font-size:12.5px; font-weight:600; color:var(--navy); display:block; margin-bottom:4px;">Public Avatar Display:</span>
+                            <div class="d-flex align-items-center gap-3">
+                                <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; font-size:13px; margin:0;">
+                                    <input type="radio" name="lr-author-display" value="abbreviation" id="lr-author-display-abbrev" checked style="cursor:pointer;">
+                                    <span>Initials / Abbreviation</span>
+                                </label>
+                                <label style="display:inline-flex; align-items:center; gap:6px; cursor:pointer; font-size:13px; margin:0;">
+                                    <input type="radio" name="lr-author-display" value="photo" id="lr-author-display-photo" style="cursor:pointer;">
+                                    <span>Display Photo</span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -880,7 +950,7 @@
                     <div class="form-group mb-0" style="padding-top:28px;">
                         <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:500; font-size:14px;">
                             <input type="checkbox" id="lr-featured" style="width:16px;height:16px;cursor:pointer;">
-                            Set as Featured Spotlight (replaces current)
+                            Feature in Spotlight (can feature 2 or more works)
                         </label>
                     </div>
                 </div>

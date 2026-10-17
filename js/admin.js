@@ -210,9 +210,9 @@ function renderPostsTable(posts) {
     }
 
     const rows = posts.map(post => {
-        const date     = new Date(post.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-        const author   = post.admin_profiles?.full_name || 'Unknown';
-        const roleTag  = post.admin_profiles?.role_tag  || '';
+        const isAnon   = !post.author_id;
+        const author   = isAnon ? 'Anonymous' : (post.admin_profiles?.full_name || 'Admin');
+        const roleTag  = isAnon ? '' : (post.admin_profiles?.role_tag  || '');
         const statusBadge = post.status === 'published'
             ? `<span class="badge-status published"><i class="fas fa-circle"></i> Published</span>`
             : `<span class="badge-status draft"><i class="fas fa-circle"></i> Draft</span>`;
@@ -346,11 +346,13 @@ async function handleFormSubmit(e) {
             imageUrl = await uploadImage(fileInput.files[0]);
         }
 
+        const isAnon = document.getElementById('blog-anonymous')?.checked || false;
+
         const postData = {
             title,
             body,
             tag: tag || null,
-            author_id: user.id,
+            author_id: isAnon ? null : user.id,
             image_url: imageUrl,
             status,
             featured,
@@ -435,6 +437,9 @@ async function startEdit(postId) {
 
     const featuredEl = document.getElementById('blog-featured');
     if (featuredEl) featuredEl.checked = !!post.featured;
+
+    const anonEl = document.getElementById('blog-anonymous');
+    if (anonEl) anonEl.checked = !post.author_id;
 
     // Set Quill content
     quillEditor.root.innerHTML = post.body || '';
@@ -532,6 +537,8 @@ async function toggleFeatured(postId, setFeatured) {
 function resetForm() {
     editingPostId = null;
     document.getElementById('blog-form')?.reset();
+    const anonEl = document.getElementById('blog-anonymous');
+    if (anonEl) anonEl.checked = false;
     if (quillEditor) quillEditor.root.innerHTML = '';
 
     const preview = document.getElementById('image-preview');

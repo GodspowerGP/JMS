@@ -53,8 +53,9 @@ async function loadPost(postId) {
 ═══════════════════════════════════════════════════════════════════════════ */
 function renderPost(post) {
     const date    = new Date(post.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-    const author  = post.admin_profiles?.full_name || 'Admin';
-    const role    = post.admin_profiles?.role_tag  || '';
+    const isAnon  = !post.author_id;
+    const author  = isAnon ? 'Anonymous' : (post.admin_profiles?.full_name || 'Admin');
+    const role    = isAnon ? '' : (post.admin_profiles?.role_tag  || '');
     const excerpt = stripHtml(post.body).slice(0, 160);
 
     // ── Update <head> meta ──
@@ -97,7 +98,7 @@ function renderPost(post) {
     if (metaEl) {
         metaEl.innerHTML = `
             <span><i class="fas fa-calendar-alt"></i> ${date}</span>
-            <span><i class="fas fa-user-circle"></i> ${escHtml(author)}${role ? ` &middot; <strong>${escHtml(role)}</strong>` : ''}</span>
+            <span><i class="${isAnon ? 'fas fa-user-secret' : 'fas fa-user-circle'}"></i> ${escHtml(author)}${role ? ` &middot; <strong>${escHtml(role)}</strong>` : ''}</span>
             ${post.tag ? `<span><i class="fas fa-tag"></i> ${escHtml(post.tag)}</span>` : ''}`;
     }
 

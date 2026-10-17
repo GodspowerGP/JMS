@@ -153,7 +153,7 @@ async function handleLRSubmit(e) {
     }
 
     // Human-readable labels
-    const TYPE_LABELS  = { jms: 'JMS Student', other_school: 'Student from Another School', individual: 'Independent / Individual Writer' };
+    const TYPE_LABELS  = { jms: 'JMS Contributor', other_school: 'Contributor from Peer School', individual: 'Independent / Individual Writer' };
     const GENRE_LABELS = { poetry: 'Poetry', fiction: 'Fiction', nonfiction: 'Non-Fiction' };
     const typeLabel    = TYPE_LABELS[submitterType]  || submitterType;
     const genreLabel   = GENRE_LABELS[genre] || genre;

@@ -5103,6 +5103,50 @@ GALLERY SECTION — scoped .jgal- prefix
   color: black;
 }
 
+/* LR MULTI-SPOTLIGHT CARDS */
+.lr-spotlight-card {
+  background: linear-gradient(135deg, #1a2438, #0f172a);
+  border-radius: 28px;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 36px rgba(10, 37, 64, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.lr-spotlight-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(10, 37, 64, 0.35);
+  border-color: rgba(212, 175, 55, 0.55);
+}
+
+.lr-spotlight-cover-wrap {
+  position: relative;
+  height: 230px;
+  overflow: hidden;
+}
+
+.lr-spotlight-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.lr-spotlight-card:hover .lr-spotlight-cover-img {
+  transform: scale(1.05);
+}
+
+.lr-spotlight-card .lr-spotlight-title a {
+  transition: color 0.2s ease;
+}
+
+.lr-spotlight-card .lr-spotlight-title a:hover {
+  color: var(--accent) !important;
+}
+
 /* NEWSLETTER */
 .newsletter-box {
   margin-top: 100px;

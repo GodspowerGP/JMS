@@ -37,8 +37,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             const date    = new Date(post.created_at).toLocaleDateString('en-GB', {
                 day: 'numeric', month: 'long', year: 'numeric'
             });
-            const author  = post.admin_profiles?.full_name || 'Admin';
-            const role    = post.admin_profiles?.role_tag  || '';
+            const isAnon  = !post.author_id;
+            const author  = isAnon ? 'Anonymous' : (post.admin_profiles?.full_name || 'Admin');
+            const role    = isAnon ? '' : (post.admin_profiles?.role_tag  || '');
             const excerpt = stripHtml(post.body).slice(0, 130) + '…';
             return `
             <div class="col-md-6 col-xl-4" style="animation: fadeIn 0.6s ease forwards;">

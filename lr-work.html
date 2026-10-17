@@ -92,6 +92,166 @@
             margin-bottom: 20px;
         }
 
+        /* ── Hero Author Meta Card ─────────────────────────── */
+        .lr-hero-author-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            padding: 10px 18px;
+            max-width: 100%;
+            backdrop-filter: blur(12px);
+            margin-top: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .lr-hero-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-orange, #f97316), var(--accent-gold, #fbbf24));
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35);
+        }
+
+        .lr-hero-author-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .lr-hero-author-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lr-hero-author-name {
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lr-hero-meta-divider {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 14px;
+        }
+
+        .lr-hero-date {
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lr-hero-date i {
+            color: var(--accent-gold, #fbbf24);
+            font-size: 12px;
+        }
+
+        @media (max-width: 576px) {
+            .lr-hero-author-card {
+                padding: 10px 14px;
+                gap: 10px;
+            }
+            .lr-hero-avatar {
+                width: 36px;
+                height: 36px;
+                font-size: 13px;
+            }
+            .lr-hero-author-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+            }
+            .lr-hero-meta-divider {
+                display: none;
+            }
+        }
+
+        /* ── Bottom Author Card ────────────────────────────── */
+        .lr-author-footer-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-top: 56px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lr-author-footer-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--accent-orange, #f97316), var(--accent-gold, #fbbf24));
+        }
+
+        .lr-author-footer-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0a2540, #1e3a8a);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .lr-author-footer-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .lr-author-footer-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--accent-orange, #f97316);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .lr-author-footer-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0a2540;
+            margin-bottom: 8px;
+        }
+
+        .lr-author-footer-desc {
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: #475569;
+            margin: 0;
+        }
+
         .lr-work-hero-meta {
             display: flex;
             flex-wrap: wrap;
@@ -119,6 +279,22 @@
         .lr-reading-frame {
             max-width: 720px;
             margin: 0 auto;
+        }
+
+        .lr-work-cover-wrap {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 36px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+        }
+
+        .lr-work-cover-img {
+            width: 100%;
+            max-height: 480px;
+            object-fit: cover;
+            display: block;
         }
 
         /* Poetry: preserve line breaks */
@@ -347,9 +523,22 @@
                         <span class="lr-work-genre-badge" id="lr-genre-badge"></span>
                     </div>
                     <h1 class="lr-work-main-title" id="lr-work-title">—</h1>
-                    <div class="lr-work-hero-meta">
-                        <span id="lr-work-author"><i class="fas fa-user"></i> —</span>
-                        <span id="lr-work-date"><i class="fas fa-calendar-alt"></i> —</span>
+
+                    <!-- Author & Metadata Card -->
+                    <div class="lr-hero-author-card" id="lr-hero-author-card">
+                        <div class="lr-hero-avatar" id="lr-hero-avatar">A</div>
+                        <div class="lr-hero-author-content">
+                            <div class="lr-hero-author-meta">
+                                <span class="lr-hero-author-name">
+                                    <i class="fas fa-user-circle me-1" style="color:var(--accent-gold,#fbbf24);"></i>
+                                    <span id="lr-work-author">—</span>
+                                </span>
+                                <span class="lr-hero-meta-divider">&bull;</span>
+                                <span class="lr-hero-date" id="lr-work-date">
+                                    <i class="fas fa-calendar-alt"></i> —
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -358,7 +547,22 @@
             <section class="lr-work-body-section">
                 <div class="container">
                     <div class="lr-reading-frame">
+                        <!-- Piece Cover Image (if added by editor) -->
+                        <div id="lr-work-cover-wrap" class="lr-work-cover-wrap d-none">
+                            <img id="lr-work-cover-img" src="" alt="Work Cover" class="lr-work-cover-img">
+                        </div>
+
                         <div id="lr-work-body"></div>
+
+                        <!-- Bottom About the Author Card -->
+                        <div id="lr-author-footer-card" class="lr-author-footer-card d-none">
+                            <div class="lr-author-footer-avatar" id="lr-footer-avatar"></div>
+                            <div class="lr-author-footer-body">
+                                <span class="lr-author-footer-eyebrow">About the Author</span>
+                                <h4 class="lr-author-footer-name" id="lr-footer-author-name"></h4>
+                                <p class="lr-author-footer-desc" id="lr-footer-author-desc"></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -397,7 +601,7 @@
                             <span class="school-tagline">Second to None</span>
                         </div>
                     </a>
-                    <p class="pt-4">Jewel Model Schools is dedicated to providing a holistic education that prepares students for leadership and global success since 1996.</p>
+                    <p class="pt-4">Jewel Model Schools is dedicated to providing a holistic education that prepares future leaders for global success since 1996.</p>
                     <div class="footer-socials">
                         <a href="https://www.facebook.com/share/1YLq4dXVFD/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/jewel_model_schools?igsh=cjExNHlzMXBhZDU1" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -468,42 +672,111 @@
             return;
         }
 
+        let work = null;
         try {
-            const { data: work, error } = await supabaseClient
+            const { data, error } = await supabaseClient
                 .from('lr_works')
                 .select('*')
                 .eq('id', id)
                 .eq('status', 'published')
                 .single();
 
-            if (error || !work) {
+            if (error || !data) {
                 show(notFoundEl); hide(loadingEl);
                 return;
             }
-
-            renderWork(work);
-            hide(loadingEl);
-            show(contentEl);
-
+            work = data;
         } catch (err) {
             console.error('[lr-work] Fetch error:', err);
             show(notFoundEl); hide(loadingEl);
+            return;
+        }
+
+        try {
+            renderWork(work);
+            hide(loadingEl);
+            show(contentEl);
+        } catch (err) {
+            console.error('[lr-work] Render error:', err);
+            hide(loadingEl);
+            show(contentEl);
         }
     });
 
+    function parseLRWorkMeta(work) {
+        if (!work) return { coverImage: null, authorImage: null, authorDisplay: 'abbreviation', isAnonymous: false, displayName: 'Anonymous', cleanInfo: '' };
+
+        let coverImage = work.image_url || work.cover_image || null;
+        let authorImage = work.author_image || null;
+        let authorDisplay = work.author_image_display || 'abbreviation';
+        let authorInfo = work.author_info || '';
+        let authorName = work.author_name || '';
+
+        if (authorInfo) {
+            const coverMatch = authorInfo.match(/\[COVER:([^\]]+)\]/);
+            if (coverMatch) {
+                if (!coverImage) coverImage = coverMatch[1];
+                authorInfo = authorInfo.replace(/\[COVER:[^\]]+\]\s*/g, '');
+            }
+
+            const authorImgMatch = authorInfo.match(/\[AUTHOR_IMG:([^\]]+)\]/);
+            if (authorImgMatch) {
+                if (!authorImage) authorImage = authorImgMatch[1];
+                authorInfo = authorInfo.replace(/\[AUTHOR_IMG:[^\]]+\]\s*/g, '');
+            }
+
+            const displayMatch = authorInfo.match(/\[AUTHOR_DISPLAY:([^\]]+)\]/);
+            if (displayMatch) {
+                authorDisplay = displayMatch[1];
+                authorInfo = authorInfo.replace(/\[AUTHOR_DISPLAY:[^\]]+\]\s*/g, '');
+            }
+
+            const anonMatch = authorInfo.match(/\[ANON:([^\]]+)\]/);
+            if (anonMatch) {
+                authorInfo = authorInfo.replace(/\[ANON:[^\]]+\]\s*/g, '');
+            }
+        }
+
+        const isAnonymous = (work.author_name || '').toLowerCase() === 'anonymous' || (work.author_info && work.author_info.includes('[ANON:'));
+        const displayName = isAnonymous ? 'Anonymous' : (authorName || 'Anonymous');
+
+        return {
+            coverImage,
+            authorImage,
+            authorDisplay,
+            isAnonymous,
+            displayName,
+            cleanInfo: authorInfo.trim()
+        };
+    }
+
     function renderWork(work) {
-        const cfg        = GENRE_CFG[work.genre] || GENRE_CFG.poetry;
-        const authorLine = work.author_info
-            ? `${esc(work.author_name)} — ${esc(work.author_info)}`
-            : esc(work.author_name);
-        const date       = work.published_at
+        const meta = parseLRWorkMeta(work);
+        const cfg = GENRE_CFG[work.genre] || GENRE_CFG.poetry;
+        const authorName = meta.displayName;
+        const isAnonymous = meta.isAnonymous;
+        const rawBio = isAnonymous ? '' : meta.cleanInfo;
+        const bio = cleanBio(rawBio, authorName);
+        const initials = isAnonymous ? 'A' : getInitials(authorName);
+        const date = work.published_at
             ? new Date(work.published_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
             : '';
+
+        // Piece Cover Image
+        const coverWrap = document.getElementById('lr-work-cover-wrap');
+        const coverImg  = document.getElementById('lr-work-cover-img');
+        if (meta.coverImage && coverWrap && coverImg) {
+            coverImg.src = meta.coverImage;
+            coverImg.alt = work.title || 'Work Cover';
+            coverWrap.classList.remove('d-none');
+        } else if (coverWrap) {
+            coverWrap.classList.add('d-none');
+        }
 
         // Update <title> & meta
         document.getElementById('page-title').textContent = `${work.title} | Jewel Literary Magazine`;
         document.getElementById('page-desc').setAttribute('content',
-            `Read "${work.title}" by ${work.author_name} — Jewel Literary Magazine.`);
+            `Read "${work.title}" by ${authorName} — Jewel Literary Magazine.`);
 
         // Back links
         document.getElementById('lr-back-link').href       = cfg.backHref;
@@ -519,11 +792,34 @@
         // Title
         document.getElementById('lr-work-title').textContent = work.title;
 
-        // Meta
-        document.getElementById('lr-work-author').innerHTML =
-            `<i class="fas fa-user"></i> ${authorLine}`;
+        // Author, Date & Avatar in Hero
+        document.getElementById('lr-work-author').textContent = authorName;
+        const heroAvatar = document.getElementById('lr-hero-avatar');
+        if (isAnonymous) {
+            heroAvatar.innerHTML = '<i class="fas fa-user-secret"></i>';
+        } else if (meta.authorDisplay === 'photo' && meta.authorImage) {
+            heroAvatar.innerHTML = `<img src="${esc(meta.authorImage)}" alt="${esc(authorName)}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
+        } else {
+            heroAvatar.textContent = initials;
+        }
         document.getElementById('lr-work-date').innerHTML =
             `<i class="fas fa-calendar-alt"></i> Published: ${date}`;
+
+        // Bottom Author Attribution Card (sole location for author bio)
+        const footerCard = document.getElementById('lr-author-footer-card');
+        if (bio && footerCard && !isAnonymous) {
+            const footerAvatar = document.getElementById('lr-footer-avatar');
+            if (meta.authorDisplay === 'photo' && meta.authorImage) {
+                footerAvatar.innerHTML = `<img src="${esc(meta.authorImage)}" alt="${esc(authorName)}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
+            } else {
+                footerAvatar.textContent = initials;
+            }
+            document.getElementById('lr-footer-author-name').textContent = authorName;
+            document.getElementById('lr-footer-author-desc').textContent = bio;
+            footerCard.classList.remove('d-none');
+        } else if (footerCard) {
+            footerCard.classList.add('d-none');
+        }
 
         // Body
         const bodyEl = document.getElementById('lr-work-body');
@@ -567,6 +863,28 @@
         if (work.genre === 'poetry')     heroEl.style.background = 'linear-gradient(135deg, #2d1010 0%, #0a2540 100%)';
         if (work.genre === 'fiction')    heroEl.style.background = 'linear-gradient(135deg, #0a1a40 0%, #0a2540 100%)';
         if (work.genre === 'nonfiction') heroEl.style.background = 'linear-gradient(135deg, #042010 0%, #0a2540 100%)';
+    }
+
+    function cleanBio(bio, authorName) {
+        if (!bio) return '';
+        let text = bio.trim();
+        if (authorName) {
+            const escaped = authorName.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+            const regex = new RegExp('^' + escaped + '\\s*[-—–:]\\s*', 'i');
+            text = text.replace(regex, '');
+        }
+        text = text.trim();
+        if (text.length > 0) {
+            text = text.charAt(0).toUpperCase() + text.slice(1);
+        }
+        return text;
+    }
+
+    function getInitials(name) {
+        if (!name) return 'A';
+        const parts = name.trim().split(/\s+/);
+        if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+        return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
     }
 
     function show(el) { if (el) el.classList.remove('d-none'); }
