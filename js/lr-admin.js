@@ -107,24 +107,33 @@ async function initLRAdmin() {
 }
 
 function initLRQuill() {
-    if (lrQuillEditor) return;
     const el = document.getElementById('lr-quill-editor');
     if (!el) return;
-    lrQuillEditor = new Quill('#lr-quill-editor', {
-        theme: 'snow',
-        placeholder: 'Write or paste the literary work here...',
-        modules: {
-            toolbar: [
-                [{ 'header': [1, 2, 3, false] }],
-                ['bold', 'italic', 'underline', 'strike'],
-                [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                ['blockquote', 'code-block'],
-                ['link', 'image'],
-                [{ 'align': [] }],
-                ['clean']
-            ]
+
+    if (!lrQuillEditor) {
+        lrQuillEditor = new Quill('#lr-quill-editor', {
+            theme: 'snow',
+            placeholder: 'Write or paste the literary work here...',
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                    ['blockquote', 'code-block'],
+                    ['link', 'image'],
+                    [{ 'align': [] }],
+                    ['clean']
+                ]
+            }
+        });
+    }
+
+    if (lrQuillEditor) {
+        lrQuillEditor.enable(true);
+        if (lrQuillEditor.root) {
+            lrQuillEditor.root.setAttribute('contenteditable', 'true');
         }
-    });
+    }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -252,11 +261,28 @@ function renderLRList(works) {
    BIND EVENTS
 ═══════════════════════════════════════════════════════════════════════════ */
 function bindLREvents() {
-    // Tab shown listener to ensure Quill is initialized
+    // Tab shown listener to ensure Quill is initialized & focused
     const lrTabBtn = document.getElementById('lr-tab');
     if (lrTabBtn) {
-        lrTabBtn.addEventListener('shown.bs.tab', () => {
+        const onTabActivate = () => {
             initLRQuill();
+            setTimeout(() => {
+                if (lrQuillEditor) {
+                    lrQuillEditor.enable(true);
+                }
+            }, 50);
+        };
+        lrTabBtn.addEventListener('shown.bs.tab', onTabActivate);
+        lrTabBtn.addEventListener('click', onTabActivate);
+    }
+
+    // Click wrapper to focus Quill editor
+    const quillWrapper = document.querySelector('#lr-panel .quill-wrapper');
+    if (quillWrapper) {
+        quillWrapper.addEventListener('click', (e) => {
+            if (!e.target.closest('.ql-toolbar') && lrQuillEditor) {
+                lrQuillEditor.focus();
+            }
         });
     }
 

@@ -279,13 +279,15 @@
             border-radius: 10px;
             overflow: hidden;
             transition: border-color 0.2s;
+            background: #ffffff;
+            cursor: text;
         }
 
         .quill-wrapper:focus-within { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(249,115,22,0.12); }
 
-        .quill-wrapper .ql-toolbar { border: none; border-bottom: 1px solid var(--border); background: #f8fafc; }
-        .quill-wrapper .ql-container { border: none; font-family: 'Inter', sans-serif; font-size: 14px; }
-        .quill-wrapper .ql-editor { min-height: 240px; padding: 16px; }
+        .quill-wrapper .ql-toolbar { border: none; border-bottom: 1px solid var(--border); background: #f8fafc; cursor: default; }
+        .quill-wrapper .ql-container { border: none; font-family: 'Inter', sans-serif; font-size: 14px; background: #ffffff; }
+        .quill-wrapper .ql-editor { min-height: 240px; padding: 16px; cursor: text; -webkit-user-select: text; user-select: text; }
         .quill-wrapper .ql-editor.ql-blank::before { color: #9ca3af; font-style: normal; }
 
         /* Image preview */
